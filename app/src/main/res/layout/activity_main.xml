@@ -8,25 +8,50 @@
 
     <Button
         android:id="@+id/residentButton"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="274dp"
         android:layout_height="112dp"
         android:text="Арендаторы"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="220dp" />
+        android:onClick="onResidentActivity"
+        app:layout_constraintBottom_toTopOf="@+id/historyButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/historyButton"
         android:layout_width="274dp"
         android:layout_height="112dp"
         android:text="История оплаты"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="355dp" />
+        android:onClick="onHistoryActivity"
+        app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/residentButton" />
 
     <Button
         android:id="@+id/settingsButton"
         android:layout_width="274dp"
         android:layout_height="112dp"
         android:text="Настройки"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="492dp" />
+        android:onClick="onSettingsActivity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historyButton" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/residentButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
