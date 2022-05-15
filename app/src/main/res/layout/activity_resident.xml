@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ResidentActivity">
 
+    <LinearLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backButtonFromResidentActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Назад"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="34dp"
+            android:onClick="closeActivity"/>
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Добавить арендатора"
+            android:onClick="onAddActivity"/>
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

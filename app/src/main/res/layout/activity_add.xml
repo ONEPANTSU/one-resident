@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+
+    <LinearLayout
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backButtonFromResidentActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goBack"
+            android:text="Назад"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="34dp" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="addResident"
+            android:text="Добавить" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/editTextAddCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Город" />
+
+            <EditText
+                android:id="@+id/editTextAddStreet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Улица" />
+
+            <EditText
+                android:id="@+id/editTextAddHouse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Дом" />
+
+            <EditText
+                android:id="@+id/editTextAddLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Этаж" />
+
+            <EditText
+                android:id="@+id/editTextAddFlat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Квартира"/>
+
+            <EditText
+                android:id="@+id/editTextAddSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Фамилия" />
+
+            <EditText
+                android:id="@+id/editTextAddName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Имя" />
+
+            <EditText
+                android:id="@+id/editTextAddSecondName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Отчество" />
+
+            <EditText
+                android:id="@+id/editTextAddPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="Номер телефона"/>
+
+            <EditText
+                android:id="@+id/editTextAddDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="Дата (дд.мм.гггг)"/>
+
+            <EditText
+                android:id="@+id/editTextAddPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Стоимость арендной платы"/>
+
+            <EditText
+                android:id="@+id/editTextAddComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Комментарий" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

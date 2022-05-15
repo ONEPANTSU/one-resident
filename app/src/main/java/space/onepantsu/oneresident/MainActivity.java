@@ -11,17 +11,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button residentBttn = (Button) findViewById(R.id.residentButton);
-        Button historyBttn = (Button) findViewById(R.id.residentButton);
-        Button settingsBttn = (Button) findViewById(R.id.residentButton);
+        if(!((OneResidentApp) getApplicationContext()).isAppForeground()){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+        }
     }
 
     public void onResidentActivity(View view){
         Intent intent = new Intent(this, ResidentActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     public void onHistoryActivity(View view){
