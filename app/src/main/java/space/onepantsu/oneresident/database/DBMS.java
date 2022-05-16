@@ -50,6 +50,7 @@ public class DBMS extends SQLiteOpenHelper {
                 + DataBase.ResidentsTable.COLUMN_SECONDNAME + " TEXT , "
                 + DataBase.ResidentsTable.COLUMN_PHONE + " TEXT , "
                 + DataBase.ResidentsTable.COLUMN_DATE + " DATE NOT NULL , "
+                + DataBase.ResidentsTable.COLUMN_PERIOD + " INTEGER NOT NULL , "
                 + DataBase.ResidentsTable.COLUMN_PRICE + " INTEGER NOT NULL , "
                 + DataBase.ResidentsTable.COLUMN_COMMENT + " TEXT) ";
 

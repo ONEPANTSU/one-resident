@@ -19,7 +19,7 @@
             android:text="Назад"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="34dp"
-            android:onClick="closeActivity"/>
+            android:onClick="goBack"/>
 
         <Button
             android:id="@+id/addButton"
@@ -31,6 +31,28 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+
+            android:id="@+id/residentLinear"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ public class DataBase {
         public final static String COLUMN_SECONDNAME = "secondname";
         public final static String COLUMN_PHONE = "phone";
         public final static String COLUMN_DATE = "date";
+        public final static String COLUMN_PERIOD = "period";
         public final static String COLUMN_PRICE = "price";
         public final static String COLUMN_COMMENT = "comment";
 

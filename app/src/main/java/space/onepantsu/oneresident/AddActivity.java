@@ -34,6 +34,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText addSecondName;
     private EditText addPhone;
     private EditText addDate;
+    private EditText addPeriod;
     private EditText addPrice;
     private EditText addComment;
 
@@ -47,6 +48,7 @@ public class AddActivity extends AppCompatActivity {
     private String secondName = "";
     private String phone = "";
     private Date date;
+    private Integer period = 30;
     private Integer price = null;
     private String comment = "";
 
@@ -70,6 +72,7 @@ public class AddActivity extends AppCompatActivity {
         addSecondName = (EditText) findViewById(R.id.editTextAddSecondName);
         addPhone = (EditText) findViewById(R.id.editTextAddPhone);
         addDate = (EditText) findViewById(R.id.editTextAddDate);
+        addPeriod =(EditText) findViewById(R.id.editTextAddPeriod);
         addPrice = (EditText) findViewById(R.id.editTextAddPrice);
         addComment = (EditText) findViewById(R.id.editTextAddComment);
 
@@ -151,6 +154,16 @@ public class AddActivity extends AppCompatActivity {
                             }
                             else {
                                 date = format.parse(stringDate);
+
+                                try{
+                                    period = Integer.parseInt(addPrice.getText().toString());
+                                    if (period <= 0){
+                                        throw new Exception();
+                                    }
+                                }
+                                catch (Exception e){
+                                    period = 30;
+                                }
                                 try {
                                     price = Integer.parseInt(addPrice.getText().toString());
                                 }
@@ -205,6 +218,7 @@ public class AddActivity extends AppCompatActivity {
         values.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondName);
         values.put(DataBase.ResidentsTable.COLUMN_PHONE, phone);
         values.put(DataBase.ResidentsTable.COLUMN_DATE, date.toString());
+        values.put(DataBase.ResidentsTable.COLUMN_PERIOD, period);
         values.put(DataBase.ResidentsTable.COLUMN_PRICE, price);
         values.put(DataBase.ResidentsTable.COLUMN_COMMENT, comment);
 

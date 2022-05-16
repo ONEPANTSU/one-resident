@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Улица" />
+                android:hint="*Улица" />
 
             <EditText
                 android:id="@+id/editTextAddHouse"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Дом" />
+                android:hint="*Дом" />
 
             <EditText
                 android:id="@+id/editTextAddLevel"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Фамилия" />
+                android:hint="*Фамилия" />
 
             <EditText
                 android:id="@+id/editTextAddName"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Имя" />
+                android:hint="*Имя" />
 
             <EditText
                 android:id="@+id/editTextAddSecondName"
@@ -126,7 +126,15 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
-                android:hint="Дата (дд.мм.гггг)"/>
+                android:hint="*Дата начала аренды (дд.мм.гггг)"/>
+
+            <EditText
+                android:id="@+id/editTextAddPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Период внесения арендной платы"/>
 
             <EditText
                 android:id="@+id/editTextAddPrice"
@@ -134,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:hint="Стоимость арендной платы"/>
+                android:hint="*Стоимость арендной платы"/>
 
             <EditText
                 android:id="@+id/editTextAddComment"
