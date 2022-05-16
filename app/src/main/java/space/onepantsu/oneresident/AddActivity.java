@@ -4,15 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import space.onepantsu.oneresident.database.DBMS;
+import space.onepantsu.oneresident.database.DataBase;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -186,6 +192,31 @@ public class AddActivity extends AppCompatActivity {
 
     public void addToDB(){
         System.out.println("Добавление в Базу Данных...");
+        DBMS dbms = new DBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DataBase.ResidentsTable.COLUMN_CITY, city);
+        values.put(DataBase.ResidentsTable.COLUMN_STREET, street);
+        values.put(DataBase.ResidentsTable.COLUMN_HOUSE, house);
+        values.put(DataBase.ResidentsTable.COLUMN_LEVEL, level);
+        values.put(DataBase.ResidentsTable.COLUMN_FLAT, flat);
+        values.put(DataBase.ResidentsTable.COLUMN_SURNAME, surname);
+        values.put(DataBase.ResidentsTable.COLUMN_NAME, name);
+        values.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondName);
+        values.put(DataBase.ResidentsTable.COLUMN_PHONE, phone);
+        values.put(DataBase.ResidentsTable.COLUMN_DATE, date.toString());
+        values.put(DataBase.ResidentsTable.COLUMN_PRICE, price);
+        values.put(DataBase.ResidentsTable.COLUMN_COMMENT, comment);
+
+        long newRowId = db.insert(DataBase.ResidentsTable.TABLE_NAME, null, values);
+
+        if (newRowId == -1) {
+            // Если ID  -1, значит произошла ошибка
+            Toast.makeText(this, "Ошибка при добавлении арендатора", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Добавление произошло успешно!\nАрендатор заведён под номером: " + newRowId, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void goBack(View view){
