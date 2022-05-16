@@ -8,23 +8,37 @@
 
     <Button
         android:id="@+id/residentButton"
-        style="@style/Widget.AppCompat.Button"
+        android:backgroundTint="@color/defolt"
+        android:background="@drawable/round_style"
         android:layout_width="274dp"
         android:layout_height="112dp"
-        android:text="Арендаторы"
         android:onClick="onResidentActivity"
+        android:text="Арендаторы "
+        android:drawableLeft="@drawable/resident"
+        android:paddingLeft="10dp"
+        android:textSize="15dp"
+
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/historyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:gravity="center"
+        />
 
     <Button
         android:id="@+id/historyButton"
         android:layout_width="274dp"
         android:layout_height="112dp"
-        android:text="История оплаты"
         android:onClick="onHistoryActivity"
+        android:text="История оплаты "
+        android:textSize="15dp"
+        android:backgroundTint="@color/defolt"
+        android:background="@drawable/round_style"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/history_payment"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toTopOf="@+id/settingsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,8 +49,15 @@
         android:id="@+id/settingsButton"
         android:layout_width="274dp"
         android:layout_height="112dp"
-        android:text="Настройки"
         android:onClick="onSettingsActivity"
+        android:text="Настройки"
+        android:backgroundTint="@color/defolt"
+        android:background="@drawable/round_style"
+        android:textColor="@color/white"
+
+        android:drawableLeft="@drawable/settings"
+        android:paddingLeft="10dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,11 +68,11 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/residentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
