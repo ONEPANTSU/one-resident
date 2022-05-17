@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.sql.Struct;
 
 import space.onepantsu.oneresident.database.DBMS;
@@ -24,7 +27,7 @@ public class ResidentActivity extends AppCompatActivity {
 
     DBMS dbms = new DBMS(this);
 
-    protected static class ResidentInfo{
+    protected static class ResidentInfo implements Serializable {
         public int currentID;
         public String currentCity;
         public String currentStreet;
@@ -103,7 +106,7 @@ public class ResidentActivity extends AppCompatActivity {
                 newResident.currentDate = cursor.getString(dateColumnIndex);
                 newResident.currentPeriod = cursor.getInt(periodColumnIndex);
                 newResident.currentPrice = cursor.getInt(priceColumnIndex);
-                newResident.currentComment = cursor.getString(dateColumnIndex);
+                newResident.currentComment = cursor.getString(commentColumnIndex);
 
                 addResidentsView(newResident);
 
@@ -126,21 +129,49 @@ public class ResidentActivity extends AppCompatActivity {
                 try {
                     ((LinearLayout) view.getParent()).removeView(view);
                     SQLiteDatabase db = dbms.getWritableDatabase();
+
                     db.execSQL("DELETE FROM " + DataBase.ResidentsTable.TABLE_NAME + " WHERE "
                             + DataBase.ResidentsTable._ID + " = " + newResident.currentID);
+                    Toast.makeText(ResidentActivity.this, "Арендатор успешно удалён", Toast.LENGTH_SHORT).show();
 
-                } catch(IndexOutOfBoundsException ex) {
+                }
+                catch(IndexOutOfBoundsException ex) {
                     ex.printStackTrace();
+                    Toast.makeText(ResidentActivity.this, "Ошибка при удалении арендатора", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        TextView text = (TextView) view.findViewById(R.id.residentTextView);
-        text.setText(newResident.currentID + "\t" + newResident.currentCity + "\t" + newResident.currentStreet + "\t" +
-                newResident.currentHouse + "\t" + newResident.currentLevel + "\t" + newResident.currentFlat + "\n" +
-                newResident.currentSurname + "\t" + newResident.currentName + "\t" + newResident.currentSecondname + "\n" +
-                newResident.currentPhone + "\n" + newResident.currentDate + "\t" + newResident.currentPeriod + "\n" +
-                newResident.currentPrice + "\n" + newResident.currentComment);
+        Button residentInfoBttn = (Button) view.findViewById(R.id.residentInfo);
+        StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
+        if(!newResident.currentCity.equals("")){
+            System.out.println(newResident.currentCity + "!!!");
+            residentInfoBttnTextBuilder.append("г." + newResident.currentCity + ",\t ");
+        }
+        if(!newResident.currentStreet.equals("")){
+            residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet + ",\t ");
+        }
+        if(!newResident.currentHouse.equals("")){
+            residentInfoBttnTextBuilder.append("д." + newResident.currentHouse);
+        }
+        if(newResident.currentFlat > 0){
+            residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
+        }
+        if(!newResident.currentDate.equals("")){
+            residentInfoBttnTextBuilder.append("\n" + newResident.currentDate);
+        }
+        residentInfoBttn.setText(residentInfoBttnTextBuilder.toString());
+
+        residentInfoBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ResidentActivity.this, ResidentInfoActivity.class);
+                intent.putExtra(ResidentInfo.class.getSimpleName(), newResident);
+                startActivity(intent);
+                closeActivity();
+            }
+        });
+
 
         linear.addView(view);
     }

@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_add.xml" value="0.264" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_history.xml" value="0.25" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.2359375" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.536" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.32653061224489793" />
       </map>
     </option>
   </component>

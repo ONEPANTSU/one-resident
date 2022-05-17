@@ -47,7 +47,7 @@ public class AddActivity extends AppCompatActivity {
     private String name = "";
     private String secondName = "";
     private String phone = "";
-    private Date date;
+    private String date;
     private Integer period = 30;
     private Integer price = null;
     private String comment = "";
@@ -153,10 +153,10 @@ public class AddActivity extends AppCompatActivity {
                                 throw new Exception();
                             }
                             else {
-                                date = format.parse(stringDate);
+                                date = stringDate;
 
                                 try{
-                                    period = Integer.parseInt(addPrice.getText().toString());
+                                    period = Integer.parseInt(addPeriod.getText().toString());
                                     if (period <= 0){
                                         throw new Exception();
                                     }
@@ -217,7 +217,7 @@ public class AddActivity extends AppCompatActivity {
         values.put(DataBase.ResidentsTable.COLUMN_NAME, name);
         values.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondName);
         values.put(DataBase.ResidentsTable.COLUMN_PHONE, phone);
-        values.put(DataBase.ResidentsTable.COLUMN_DATE, date.toString());
+        values.put(DataBase.ResidentsTable.COLUMN_DATE, date);
         values.put(DataBase.ResidentsTable.COLUMN_PERIOD, period);
         values.put(DataBase.ResidentsTable.COLUMN_PRICE, price);
         values.put(DataBase.ResidentsTable.COLUMN_COMMENT, comment);
@@ -228,12 +228,17 @@ public class AddActivity extends AppCompatActivity {
             // Если ID  -1, значит произошла ошибка
             Toast.makeText(this, "Ошибка при добавлении арендатора", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Добавление произошло успешно!\nАрендатор заведён под номером: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Добавление произошло успешно!", Toast.LENGTH_SHORT).show();
+            back();
         }
 
     }
 
     public void goBack(View view){
+        back();
+    }
+
+    public void back(){
         Intent intent = new Intent(this, ResidentActivity.class);
         startActivity(intent);
         closeActivity();
