@@ -7,13 +7,11 @@
     tools:context=".AddActivity">
 
     <LinearLayout
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_height="50dp"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/backButtonFromResidentActivity"
@@ -44,50 +42,122 @@
 
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:ignore="MissingConstraints"
             android:orientation="vertical">
 
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:text="Адресс"
+                android:textSize="50dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="50dp"
+                />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Город"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                />
 
             <EditText
                 android:id="@+id/editTextAddCity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Город" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="20dp"/>
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Улица"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextAddStreet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
+                android:paddingLeft="20dp"
                 android:inputType="textPersonName"
-                android:hint="Улица" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Дом"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextAddHouse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Дом" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Этаж"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextAddLevel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="number"
-                android:hint="Этаж" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Квартира"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextAddFlat"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="number"
-                android:hint="Квартира"/>
-
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+        </LinearLayout>
             <EditText
                 android:id="@+id/editTextAddSurname"
                 android:layout_width="match_parent"
@@ -127,23 +197,42 @@
                 android:ems="10"
                 android:inputType="date"
                 android:hint="Дата (дд.мм.гггг)"/>
+            <EditText
+                android:id="@+id/editTextAddPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Период внесения арендной платы"/>
 
             <EditText
                 android:id="@+id/editTextAddPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="Стоимость арендной платы"/>
+                android:hint="Стоимость арендной платы"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/editTextAddComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Комментарий" />
+                android:hint="Комментарий"
+                android:inputType="textPersonName" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
