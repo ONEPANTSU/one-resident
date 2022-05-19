@@ -12,13 +12,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import space.onepantsu.oneresident.database.DBMS;
 import space.onepantsu.oneresident.database.DataBase;
+import space.onepantsu.oneresident.dialogframe.DialogButton;
+import space.onepantsu.oneresident.dialogframe.DialogFrame;
+import space.onepantsu.oneresident.dialogframe.InfoButton;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -52,10 +54,6 @@ public class AddActivity extends AppCompatActivity {
     private Integer price = null;
     private String comment = "";
 
-    private enum Error{
-        WRONG_DATE_FORMAT, WRONG_NAME, WRONG_SURNAME,
-        WRONG_STREET, WRONG_HOUSE, WRONG_PRICE, WRONG_DATE
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +76,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void tryAgain(Error error){
+    private void tryAgain(Error error) {
         String errorMessage;
         switch(error){
             case WRONG_STREET: errorMessage = "Поле \"Улица\" должно быть заполнено!"; break;
@@ -88,9 +86,11 @@ public class AddActivity extends AppCompatActivity {
             case WRONG_DATE: errorMessage = "Поле \"Дата\" должно быть заполнено!"; break;
             case WRONG_DATE_FORMAT: errorMessage = "Неверный формат поля \"Дата!\""; break;
             case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
-            default: errorMessage = "Ошибка!"; break;
+            default: errorMessage = "Ошибка при добавлении арендатора!"; break;
            }
-        DialogFrame warning = new DialogFrame(errorMessage);
+
+        InfoButton dialogButton = new InfoButton();
+        DialogFrame warning = new DialogFrame("Ошибка!",  errorMessage, dialogButton);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         warning.show(transaction, "dialog");
@@ -98,7 +98,7 @@ public class AddActivity extends AppCompatActivity {
         isDataError = true;
     }
 
-    public void addResident(View view){
+    public void addResident(View view) throws IllegalAccessException, InstantiationException {
 
         isDataError = false;
 
@@ -153,6 +153,21 @@ public class AddActivity extends AppCompatActivity {
                                 throw new Exception();
                             }
                             else {
+                                try{
+                                    int day, month, year;
+                                    day = (int) stringDate.charAt(0) * 10 + (int) stringDate.charAt(1) - 528;
+                                    month = (int) stringDate.charAt(3) * 10 + (int) stringDate.charAt(4) - 528;
+                                    year = (int) stringDate.charAt(6) * 1000 + (int) stringDate.charAt(7) * 100
+                                            + (int) stringDate.charAt(8) * 10 + (int) stringDate.charAt(9) - 53328;
+                                    if(day > 31 || day < 1 || month > 12 || month < 1){
+                                        throw new Exception();
+                                    }
+
+                                }
+                                catch (Exception e){
+                                    tryAgain(Error.WRONG_DATE_FORMAT);
+                                }
+
                                 date = stringDate;
 
                                 try{

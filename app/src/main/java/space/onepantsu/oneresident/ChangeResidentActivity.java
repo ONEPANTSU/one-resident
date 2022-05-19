@@ -1,6 +1,8 @@
 package space.onepantsu.oneresident;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -12,11 +14,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import space.onepantsu.oneresident.database.DBMS;
 import space.onepantsu.oneresident.database.DataBase;
+import space.onepantsu.oneresident.dialogframe.AcceptButton;
+import space.onepantsu.oneresident.dialogframe.ChangeResidentButton;
+import space.onepantsu.oneresident.dialogframe.DialogButton;
+import space.onepantsu.oneresident.dialogframe.DialogFrame;
+import space.onepantsu.oneresident.dialogframe.InfoButton;
 
 public class ChangeResidentActivity extends AppCompatActivity {
 
+    boolean isDataError = false;
     ResidentActivity.ResidentInfo resident;
     EditText city, street, house, level, flat,
             surname, name, secondname, phone, date, period, price, comment;
@@ -92,35 +104,135 @@ public class ChangeResidentActivity extends AppCompatActivity {
         }
     }
 
-    public void saveChanges(View view){
+    public void acceptChanges(View view) {
 
+        AcceptButton dialogButton = new ChangeResidentButton(this);
+        DialogFrame warning = new DialogFrame("Вы уверены, что хотите сохранить изменения?",  "", dialogButton);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        warning.show(transaction, "dialog");
+
+    }
+
+    private void tryAgain(Error error) {
+        String errorMessage;
+        switch(error){
+            case WRONG_STREET: errorMessage = "Поле \"Улица\" должно быть заполнено!"; break;
+            case WRONG_HOUSE: errorMessage = "Поле \"Дом\" должно быть заполнено!"; break;
+            case WRONG_SURNAME: errorMessage = "Поле \"Фамилия\" арендатора должно быть заполнено!"; break;
+            case WRONG_NAME: errorMessage = "Поле \"Имя\" арендатора должно быть заполнено!"; break;
+            case WRONG_DATE: errorMessage = "Поле \"Дата\" должно быть заполнено!"; break;
+            case WRONG_DATE_FORMAT: errorMessage = "Неверный формат поля \"Дата!\""; break;
+            case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
+            default: errorMessage = "Ошибка при добавлении арендатора!"; break;
+        }
+
+        InfoButton dialogButton = new InfoButton();
+        DialogFrame warning = new DialogFrame("Ошибка!",  errorMessage, dialogButton);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        warning.show(transaction, "dialog");
+
+        isDataError = true;
+    }
+
+    public void saveChanges(){
+        Error error = Error.OK;
         DBMS dbms = new DBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-
-        newValues.put(DataBase.ResidentsTable.COLUMN_CITY, city.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_STREET, street.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_HOUSE, house.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_LEVEL, level.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_FLAT, flat.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_SURNAME, surname.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_NAME, name.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondname.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_PHONE, phone.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_DATE, date.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_PERIOD, period.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_PRICE, price.getText().toString());
-        newValues.put(DataBase.ResidentsTable.COLUMN_COMMENT, comment.getText().toString());
-
-        String where = DataBase.ResidentsTable._ID + "=" + resident.currentID;
-
         try {
-            db.update(DataBase.ResidentsTable.TABLE_NAME, newValues, where, null);
-            Toast.makeText(this, "Арендатор успешно изменён", Toast.LENGTH_SHORT).show();
-            back();
+            String stringDate = date.getText().toString();
+
+            if(street.getText().toString().equals("")){
+                error = Error.WRONG_STREET;
+                throw new IllegalArgumentException();
+            }
+            else if(house.getText().toString().equals("")){
+                error = Error.WRONG_HOUSE;
+                throw new IllegalArgumentException();
+            }
+            else if(surname.getText().toString().equals("")){
+                error = Error.WRONG_SURNAME;
+                throw new IllegalArgumentException();
+            }
+            else if(name.getText().toString().equals("")){
+                error = Error.WRONG_NAME;
+                throw new IllegalArgumentException();
+            }
+            else if(stringDate.equals("")){
+                error = Error.WRONG_DATE;
+                throw new IllegalArgumentException();
+            }
+            else if (stringDate.charAt(2) != '.' || stringDate.charAt(5) != '.'
+                    || stringDate.length() != 10){
+                throw new IllegalArgumentException();
+            }
+            else{
+                    try {
+                        int day, month, year;
+                        System.out.println(stringDate.charAt(0) * 10);
+                        day = stringDate.charAt(0) * 10 + stringDate.charAt(1) - 528;
+                        month = stringDate.charAt(3)* 10 + stringDate.charAt(4) - 528;
+                        year = stringDate.charAt(6) * 1000 + stringDate.charAt(7) * 100
+                                + stringDate.charAt(8) * 10 + stringDate.charAt(9) - 53328;
+                        if (day > 31 || day < 1 || month > 12 || month < 1) {
+                            throw new Exception();
+                        }
+
+                    }
+                    catch (Exception e) {
+                        error = Error.WRONG_DATE_FORMAT;
+                        throw new IllegalArgumentException();
+                    }
+                if(price.getText().toString().equals("")){
+                    error = Error.WRONG_PRICE;
+                    throw new IllegalArgumentException();
+                }
+            }
+
+            newValues.put(DataBase.ResidentsTable.COLUMN_CITY, city.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_STREET, street.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_HOUSE, house.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_LEVEL, level.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_FLAT, flat.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_SURNAME, surname.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_NAME, name.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondname.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_PHONE, phone.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_DATE, date.getText().toString());
+            if(period.getText().toString() != ""){
+                newValues.put(DataBase.ResidentsTable.COLUMN_PERIOD, period.getText().toString());
+            }
+            else{
+                newValues.put(DataBase.ResidentsTable.COLUMN_PERIOD, "30");
+            }
+            newValues.put(DataBase.ResidentsTable.COLUMN_PRICE, price.getText().toString());
+            newValues.put(DataBase.ResidentsTable.COLUMN_COMMENT, comment.getText().toString());
+
+            String where = DataBase.ResidentsTable._ID + "=" + resident.currentID;
+
+            try {
+                db.update(DataBase.ResidentsTable.TABLE_NAME, newValues, where, null);
+                Toast.makeText(this, "Арендатор успешно изменён", Toast.LENGTH_SHORT).show();
+                back();
+            } catch (Exception e) {
+                InfoButton dialogButton = new InfoButton();
+                DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                warning.show(transaction, "dialog");
+            }
         }
-        catch (Exception e){
-            Toast.makeText(this, "Ошибка при изменении арендатора", Toast.LENGTH_SHORT).show();
+        catch (IllegalArgumentException e){
+            tryAgain(error);
+        }
+        catch (Exception e) {
+            InfoButton dialogButton = new InfoButton();
+            DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            warning.show(transaction, "dialog");
         }
     }
 

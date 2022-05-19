@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.dialogframe;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -7,23 +7,36 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public class DialogFrame extends DialogFragment {
-    String errorMessage = "Error!";
+    String title;
+    String message;
+    DialogButton button;
 
-    public DialogFrame(String errorMessage){
+    public DialogFrame(String title, String message, DialogButton button){
         super();
-        this.errorMessage = errorMessage;
+        this.title = title;
+        this.message = message;
+        this.button = button;
     }
 
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(errorMessage).setMessage("Попробуйте ещё раз.")
+        builder.setTitle(title).setMessage(message)
                 .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Закрываем окно
-                        dialog.cancel();
+                        button.setDialog(dialog);
+                        button.funcOnClick();
                     }
                 });
+        if(button.isAccept){
+            builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    dialog.cancel();
+                }
+            });
+        }
         return builder.create();
     }
 }
