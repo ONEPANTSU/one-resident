@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_style"
             android:backgroundTint="@color/defolt"
-            android:onClick="addResident"
+            android:onClick="acceptChanges"
             android:text="Добавить"
             android:textColor="@color/white"
             android:alpha="0.9"
