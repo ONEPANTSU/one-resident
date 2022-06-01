@@ -2,7 +2,7 @@ package space.onepantsu.oneresident.dialogframe;
 
 import android.view.View;
 
-import space.onepantsu.oneresident.ResidentActivity;
+import space.onepantsu.oneresident.residentManagement.ResidentActivity;
 
 public class DeleteResidentButton extends AcceptButton{
 

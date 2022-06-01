@@ -11,13 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OneResident">
         <activity
-            android:name=".ChangeResidentActivity"
+            android:name=".residentManagement.ChangeResidentActivity"
             android:exported="false" />
         <activity
-            android:name=".ResidentInfoActivity"
+            android:name=".residentManagement.ResidentInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".AddActivity"
+            android:name=".residentManagement.AddActivity"
             android:exported="false" />
         <activity
             android:name=".HistoryActivity"
@@ -26,7 +26,7 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".ResidentActivity"
+            android:name=".residentManagement.ResidentActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
