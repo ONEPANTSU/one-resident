@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.residentManagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import space.onepantsu.oneresident.R;
 
 public class ResidentInfoActivity extends AppCompatActivity {
 

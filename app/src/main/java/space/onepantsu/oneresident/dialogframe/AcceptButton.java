@@ -2,10 +2,6 @@ package space.onepantsu.oneresident.dialogframe;
 
 import android.content.DialogInterface;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import space.onepantsu.oneresident.ChangeResidentActivity;
-
 
 public class AcceptButton extends DialogButton {
 

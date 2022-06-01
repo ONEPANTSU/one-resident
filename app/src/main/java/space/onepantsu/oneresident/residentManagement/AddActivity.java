@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.residentManagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -16,8 +16,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import space.onepantsu.oneresident.database.DBMS;
-import space.onepantsu.oneresident.database.DataBase;
+import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.residentManagement.database.DBMS;
+import space.onepantsu.oneresident.residentManagement.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
 import space.onepantsu.oneresident.dialogframe.AddResidentButton;
 import space.onepantsu.oneresident.dialogframe.BackButtonFromAdd;

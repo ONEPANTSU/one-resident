@@ -1,6 +1,6 @@
 package space.onepantsu.oneresident.dialogframe;
 
-import space.onepantsu.oneresident.AddActivity;
+import space.onepantsu.oneresident.residentManagement.AddActivity;
 
 public class BackButtonFromAdd extends AcceptButton{
 

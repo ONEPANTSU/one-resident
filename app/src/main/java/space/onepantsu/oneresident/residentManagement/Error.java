@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.residentManagement;
 
 enum Error{
     OK, WRONG_DATE_FORMAT, WRONG_NAME, WRONG_SURNAME,

@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.residentManagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-import space.onepantsu.oneresident.database.DBMS;
-import space.onepantsu.oneresident.database.DataBase;
+import space.onepantsu.oneresident.MainActivity;
+import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.residentManagement.database.DBMS;
+import space.onepantsu.oneresident.residentManagement.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
 import space.onepantsu.oneresident.dialogframe.DeleteResidentButton;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;

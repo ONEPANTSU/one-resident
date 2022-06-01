@@ -1,13 +1,11 @@
-package space.onepantsu.oneresident.database;
+package space.onepantsu.oneresident.residentManagement.database;
 
-import static space.onepantsu.oneresident.database.DataBase.ResidentsTable.TABLE_NAME;
+import static space.onepantsu.oneresident.residentManagement.database.DataBase.ResidentsTable.TABLE_NAME;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 public class DBMS extends SQLiteOpenHelper {
 
