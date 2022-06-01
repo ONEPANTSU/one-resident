@@ -148,9 +148,6 @@ public class ResidentActivity extends AppCompatActivity {
         if(newResident.currentFlat > 0){
             residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
         }
-        if(newResident.currentPrice > 0){
-            residentInfoBttnTextBuilder.append("\t\t\t\t\t\t\t\t\t\t" + newResident.currentPrice + "₽");
-        }
         if(!newResident.currentDate.equals("")){
             residentInfoBttnTextBuilder.append("\n" + newResident.currentDate);
         }
