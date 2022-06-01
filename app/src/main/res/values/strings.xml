@@ -12,6 +12,7 @@
     <string name="surname"><font color= "#C20800">*</font>Фамилия</string>
     <string name="name"><font color= "#C20800">*</font>Имя</string>
     <string name="date"><font color= "#C20800">*</font>Дата начала аренды (дд.мм.гггг)</string>
+    <string name="cost"><font color= "#C20800">*</font>Стоимость арендной платы</string>
     
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

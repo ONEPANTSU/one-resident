@@ -12,9 +12,11 @@
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.2359375" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.32653061224489793" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/arrow.xml" value="0.11" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/arrow2.xml" value="0.1885" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/border_text.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/boreder_text.xml" value="0.1365" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/logo.xml" value="0.213" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/plus.xml" value="0.1975" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/resident.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/round_style.xml" value="0.1365" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_add.xml" value="0.25" />
@@ -24,7 +26,7 @@
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.1" />
       </map>
     </option>
   </component>
