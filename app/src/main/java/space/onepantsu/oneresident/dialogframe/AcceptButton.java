@@ -9,12 +9,8 @@ import space.onepantsu.oneresident.ChangeResidentActivity;
 
 public class AcceptButton extends DialogButton {
 
-    ChangeResidentActivity activity;
-    public AcceptButton() {}
-
-    public AcceptButton(ChangeResidentActivity activity) {
+    public AcceptButton() {
         super.isAccept = true;
-        this.activity = activity;
     }
 
     public DialogInterface dialog;

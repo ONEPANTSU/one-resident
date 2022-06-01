@@ -18,7 +18,9 @@ import java.util.Locale;
 
 import space.onepantsu.oneresident.database.DBMS;
 import space.onepantsu.oneresident.database.DataBase;
-import space.onepantsu.oneresident.dialogframe.DialogButton;
+import space.onepantsu.oneresident.dialogframe.AcceptButton;
+import space.onepantsu.oneresident.dialogframe.AddResidentButton;
+import space.onepantsu.oneresident.dialogframe.BackButtonFromAdd;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
 
@@ -49,7 +51,7 @@ public class AddActivity extends AppCompatActivity {
     private String name = "";
     private String secondName = "";
     private String phone = "";
-    private String date;
+    private String date = "";
     private Integer period = 30;
     private Integer price = null;
     private String comment = "";
@@ -76,6 +78,14 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    public void acceptChanges(View view){
+        AcceptButton dialogButton = new AddResidentButton(this);
+        DialogFrame warning = new DialogFrame("Вы уверены, что хотите сохранить арендатора?",  "", dialogButton);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        warning.show(transaction, "dialog");
+    }
+
     private void tryAgain(Error error) {
         String errorMessage;
         switch(error){
@@ -98,7 +108,7 @@ public class AddActivity extends AppCompatActivity {
         isDataError = true;
     }
 
-    public void addResident(View view) throws IllegalAccessException, InstantiationException {
+    public void addResident() throws IllegalAccessException, InstantiationException {
 
         isDataError = false;
 
@@ -249,8 +259,80 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+
+    private boolean allIsNotEmpty(){
+        try {
+            city = addCity.getText().toString();
+        }
+        catch (Exception ignored){}
+        try {
+            street = addStreet.getText().toString();
+            try {
+                house = addHouse.getText().toString();
+                try {
+                    level = Integer.parseInt(addLevel.getText().toString());
+                }
+                catch (Exception ignored){}
+                try {
+                    flat = Integer.parseInt(addFlat.getText().toString());
+                }
+                catch (Exception ignored){}
+                try {
+                    surname = addSurname.getText().toString();
+                    try {
+                        name = addName.getText().toString();
+                        try {
+                            secondName = addSecondName.getText().toString();
+                        }
+                        catch (Exception ignored){}
+                        try {
+                            phone = addPhone.getText().toString();
+                        }
+                        catch (Exception ignored){}
+                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+                        try{
+                            String stringDate = addDate.getText().toString();
+                                date = stringDate;
+                                try{
+                                    period = Integer.parseInt(addPeriod.getText().toString());
+                                }
+                                catch (Exception ignored){}
+                                try {
+                                    price = Integer.parseInt(addPrice.getText().toString());
+                                }
+                                catch (Exception ignored){}
+                                try {
+                                    comment = addComment.getText().toString();
+                                }
+                                catch (Exception ignored){}
+                        }
+                        catch (Exception ignored){}
+                    }
+                    catch (Exception ignored){}
+                }
+                catch (Exception ignored){}
+            }
+            catch(Exception ignored){}
+        }
+        catch (Exception ignored){}
+
+        return !city.equals("") || !street.equals("") || !house.equals("") || level != null ||
+                flat != null || !surname.equals("") || !name.equals("") || !secondName.equals("") ||
+                !phone.equals("") || !date.equals("") || period != 30 || price != null || !comment.equals("");
+    }
+
     public void goBack(View view){
-        back();
+        if(allIsNotEmpty()){
+            AcceptButton dialogButton = new BackButtonFromAdd(this);
+            DialogFrame warning = new DialogFrame("Вы уверены, что хотите вернуться?",
+                    "Все изменения будут отменены.", dialogButton);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            warning.show(transaction, "dialog");
+        }
+        else{
+            back();
+        }
     }
 
     public void back(){

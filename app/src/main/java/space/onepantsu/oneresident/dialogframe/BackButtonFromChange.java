@@ -1,18 +1,17 @@
 package space.onepantsu.oneresident.dialogframe;
-
 import space.onepantsu.oneresident.ChangeResidentActivity;
 
-public class ChangeResidentButton extends AcceptButton{
+public class BackButtonFromChange extends AcceptButton{
 
     ChangeResidentActivity activity;
 
-    public ChangeResidentButton(ChangeResidentActivity activity){super(); this.activity = activity;}
+    public BackButtonFromChange(ChangeResidentActivity activity){super(); this.activity = activity;}
 
     @Override
     public void funcOnClick() {
         super.funcOnClick();
         try {
-            activity.saveChanges();
+            activity.back();
         }
         catch (Exception e){
             e.getCause();

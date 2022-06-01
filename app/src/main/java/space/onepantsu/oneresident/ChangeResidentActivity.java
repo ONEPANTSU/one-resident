@@ -11,27 +11,27 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import space.onepantsu.oneresident.database.DBMS;
 import space.onepantsu.oneresident.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
+import space.onepantsu.oneresident.dialogframe.BackButtonFromChange;
 import space.onepantsu.oneresident.dialogframe.ChangeResidentButton;
-import space.onepantsu.oneresident.dialogframe.DialogButton;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
 
 public class ChangeResidentActivity extends AppCompatActivity {
-
     boolean isDataError = false;
     ResidentActivity.ResidentInfo resident;
     EditText city, street, house, level, flat,
             surname, name, secondname, phone, date, period, price, comment;
+
+    Map<String, String> previosValues = new HashMap<String, String>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -102,6 +102,19 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 comment.setText(resident.currentComment);
             }
         }
+        previosValues.put("city", city.getText().toString());
+        previosValues.put("street", street.getText().toString());
+        previosValues.put("house", house.getText().toString());
+        previosValues.put("level", level.getText().toString());
+        previosValues.put("flat", flat.getText().toString());
+        previosValues.put("surname", surname.getText().toString());
+        previosValues.put("name", name.getText().toString());
+        previosValues.put("secondname", secondname.getText().toString());
+        previosValues.put("phone", phone.getText().toString());
+        previosValues.put("date", date.getText().toString());
+        previosValues.put("period", period.getText().toString());
+        previosValues.put("price", price.getText().toString());
+        previosValues.put("comment", comment.getText().toString());
     }
 
     public void acceptChanges(View view) {
@@ -236,8 +249,34 @@ public class ChangeResidentActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isChanged(){
+        return !Objects.equals(previosValues.get("flat"), flat.getText().toString()) ||
+                !Objects.equals(previosValues.get("city"), city.getText().toString()) ||
+                !Objects.equals(previosValues.get("period"), period.getText().toString()) ||
+                !Objects.equals(previosValues.get("level"), level.getText().toString()) ||
+                !Objects.equals(previosValues.get("price"), price.getText().toString()) ||
+                !Objects.equals(previosValues.get("comment"), comment.getText().toString()) ||
+                !Objects.equals(previosValues.get("date"), date.getText().toString()) ||
+                !Objects.equals(previosValues.get("phone"), phone.getText().toString()) ||
+                !Objects.equals(previosValues.get("surname"), surname.getText().toString()) ||
+                !Objects.equals(previosValues.get("name"), name.getText().toString()) ||
+                !Objects.equals(previosValues.get("secondname"), secondname.getText().toString()) ||
+                !Objects.equals(previosValues.get("house"), house.getText().toString()) ||
+                !Objects.equals(previosValues.get("street"), street.getText().toString());
+    }
+
     public void goBack(View view){
-        back();
+        if(isChanged()){
+            AcceptButton dialogButton = new BackButtonFromChange(this);
+            DialogFrame warning = new DialogFrame("Вы уверены, что хотите вернуться?",
+                    "Все изменения будут отменены.", dialogButton);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            warning.show(transaction, "dialog");
+        }
+        else{
+            back();
+        }
     }
 
     public void back(){
