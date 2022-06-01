@@ -19,4 +19,5 @@
     </style>
     <style name="Theme.OneResident.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.OneResident.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
