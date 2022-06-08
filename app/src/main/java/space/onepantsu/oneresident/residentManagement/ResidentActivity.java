@@ -18,6 +18,8 @@ import java.io.Serializable;
 
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.payment.database.PaymentDB;
+import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.residentManagement.database.DBMS;
 import space.onepantsu.oneresident.residentManagement.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
@@ -29,6 +31,7 @@ public class ResidentActivity extends AppCompatActivity {
     LinearLayout linear;
 
     DBMS dbms = new DBMS(this);
+    PaymentDBMS paymentDBMS = new PaymentDBMS(this);
 
     public static class ResidentInfo implements Serializable {
         public int currentID;
@@ -136,7 +139,6 @@ public class ResidentActivity extends AppCompatActivity {
         Button residentInfoBttn = (Button) view.findViewById(R.id.residentInfo);
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
         if(!newResident.currentCity.equals("")){
-            System.out.println(newResident.currentCity + "!!!");
             residentInfoBttnTextBuilder.append("г." + newResident.currentCity + ",\t ");
         }
         if(!newResident.currentStreet.equals("")){
@@ -175,6 +177,20 @@ public class ResidentActivity extends AppCompatActivity {
         warning.show(transaction, "dialog");
     }
 
+    private void deletePayment(ResidentInfo resident){
+        try {
+            SQLiteDatabase db = paymentDBMS.getWritableDatabase();
+            //db.execSQL("DELETE FROM " + PaymentDB.PaymentTable.TABLE_NAME + " WHERE "
+            //        + PaymentDB.PaymentTable._ID + " = " + resident.currentID);
+            db.delete(PaymentDB.PaymentTable.TABLE_NAME,
+                    PaymentDB.PaymentTable._ID + "=" + resident.currentID, null);
+        }
+        catch(IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+            Toast.makeText(ResidentActivity.this, "Ошибка при удалении арендатора", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void deleteResident(View view, ResidentInfo newResident){
         try {
             ((LinearLayout) view.getParent()).removeView(view);
@@ -182,6 +198,7 @@ public class ResidentActivity extends AppCompatActivity {
 
             db.execSQL("DELETE FROM " + DataBase.ResidentsTable.TABLE_NAME + " WHERE "
                     + DataBase.ResidentsTable._ID + " = " + newResident.currentID);
+            deletePayment(newResident);
             Toast.makeText(ResidentActivity.this, "Арендатор успешно удалён", Toast.LENGTH_SHORT).show();
             finish();
             overridePendingTransition(0, 0);

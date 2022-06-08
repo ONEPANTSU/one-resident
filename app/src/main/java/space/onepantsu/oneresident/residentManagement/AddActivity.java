@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.payment.database.PaymentDB;
+import space.onepantsu.oneresident.payment.database.PaymentDBMS;
+import space.onepantsu.oneresident.payment.database.PaymentStatus;
 import space.onepantsu.oneresident.residentManagement.database.DBMS;
 import space.onepantsu.oneresident.residentManagement.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
@@ -229,6 +234,16 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
+    private void addToPaymentDB(int id){
+        PaymentDBMS dbms = new PaymentDBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PaymentDB.PaymentTable._ID, id);
+        values.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
+        long newRowId = db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
+
+    }
+
     public void addToDB(){
         System.out.println("Добавление в Базу Данных...");
         DBMS dbms = new DBMS(this);
@@ -255,6 +270,13 @@ public class AddActivity extends AppCompatActivity {
             Toast.makeText(this, "Ошибка при добавлении арендатора", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Добавление произошло успешно!", Toast.LENGTH_SHORT).show();
+
+            String selectQuery = "SELECT  * FROM " + DataBase.ResidentsTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            cursor.moveToLast();
+            @SuppressLint("Range") int residentID = cursor.getInt(cursor.getColumnIndex(DataBase.ResidentsTable._ID));
+            addToPaymentDB(residentID);
+
             back();
         }
 

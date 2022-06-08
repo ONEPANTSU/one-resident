@@ -20,14 +20,14 @@
         android:text="Арендаторы "
         android:textColor="@color/white"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/residentButton1"
+        app:layout_constraintBottom_toTopOf="@+id/paymentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/residentButton1"
+        android:id="@+id/paymentButton"
         android:layout_width="274dp"
         android:layout_height="90dp"
         android:background="@drawable/round_style"
@@ -35,7 +35,7 @@
         android:drawableLeft="@drawable/resident"
         android:drawablePadding="-40dp"
         android:gravity="center"
-        android:onClick="onResidentActivity"
+        android:onClick="onPaymentActivity"
         android:paddingLeft="20dp"
         android:text="Оплата"
         android:textColor="@color/white"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/residentButton1"
+        app:layout_constraintTop_toBottomOf="@+id/paymentButton"
         android:drawablePadding="-10dp"
         />
 
