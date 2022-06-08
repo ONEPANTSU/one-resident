@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import space.onepantsu.oneresident.payment.PaymentActivity;
 import space.onepantsu.oneresident.residentManagement.ResidentActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResidentActivity.class);
         startActivity(intent);
         this.finish();
+    }
+
+    public void onPaymentActivity(View view){
+        Intent intent = new Intent(this, PaymentActivity.class);
+        startActivity(intent);
     }
 
     public void onHistoryActivity(View view){

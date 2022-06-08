@@ -1,12 +1,34 @@
 package space.onepantsu.oneresident.payment;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.Serializable;
+
+import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.dialogframe.AcceptButton;
+import space.onepantsu.oneresident.dialogframe.DeleteResidentButton;
+import space.onepantsu.oneresident.dialogframe.DialogFrame;
+import space.onepantsu.oneresident.payment.database.PaymentDB;
+import space.onepantsu.oneresident.payment.database.PaymentDBMS;
+import space.onepantsu.oneresident.residentManagement.AddActivity;
+import space.onepantsu.oneresident.residentManagement.ResidentActivity;
+import space.onepantsu.oneresident.residentManagement.ResidentInfoActivity;
+import space.onepantsu.oneresident.residentManagement.database.DBMS;
+import space.onepantsu.oneresident.residentManagement.database.DataBase;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -14,23 +36,77 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-        addAlarmNotification(0, "ALARM", "SOME TEXT");
+        linear = (LinearLayout) findViewById(R.id.residentLinear);
+        checkPayment();
     }
 
-    private void addAlarmNotification(long startTime, String title, String text){
-        AlarmManager alarmManager;
+    LinearLayout linear;
 
-        PendingIntent alarmIntent;
+    PaymentDBMS dbms = new PaymentDBMS(this);
 
-        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+    public static class PaymentInfo implements Serializable {
+        public int currentID;
+        public String currentStatus;
+    }
 
-        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-        intent.putExtra("title", title);
-        intent.putExtra("text", text);
-        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
+    public void checkPayment(){
+        SQLiteDatabase db = dbms.getReadableDatabase();
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
+        String[] projection = {
+                PaymentDB.PaymentTable._ID,  PaymentDB.PaymentTable.STATUS};
+
+        Cursor cursor = db.query(
+                PaymentDB.PaymentTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                null,                  // столбцы для условия WHERE
+                null,                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);                   // порядок сортировки
+
+        int idColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable._ID);
+        int statusColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS);
+
+        while (cursor.moveToNext()) {
+            try {
+                PaymentInfo paymentInfo = new PaymentInfo();
+
+                paymentInfo.currentID = cursor.getInt(idColumnIndex);
+                paymentInfo.currentStatus = cursor.getString(statusColumnIndex);
+
+                addPaymentView(paymentInfo);
+
+            }
+            catch (Exception e){
+                System.out.println("Ошибка при чтении строки");
+            }
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void addPaymentView(PaymentInfo paymentInfo){
+        @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
+
+        TextView paymentText = (TextView) view.findViewById(R.id.paymentInfo);
+
+        StringBuilder paymentTextBuilder = new StringBuilder();
+
+        paymentTextBuilder.append(paymentInfo.currentID + "\t" + paymentInfo.currentStatus);
+
+        paymentText.setText(paymentTextBuilder.toString());
+
+        linear.addView(view);
     }
 
 
+    public void goBack(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        closeActivity();
+    }
+
+    private void closeActivity() {
+        this.finish();
+    }
 }

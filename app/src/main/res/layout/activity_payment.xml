@@ -6,4 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".payment.PaymentActivity">
 
+    <LinearLayout
+        android:layout_height="80dp"
+        android:layout_width="70dp"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/backButtonFromResidentActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_weight="1"
+            android:background="#fafafa"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/arrow2"
+            />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/residentLinear"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        >
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_style"
+            android:backgroundTint="@color/defolt"
+            android:onClick="onAddActivity"
+            app:srcCompat="@drawable/plus"
+            android:layout_alignParentRight="true"
+            android:layout_marginVertical="30dp"
+            android:layout_marginHorizontal="30dp"/>
+    </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
