@@ -1,6 +1,6 @@
 package space.onepantsu.oneresident.dialogframe;
 
-import space.onepantsu.oneresident.residentManagement.ChangeResidentActivity;
+import space.onepantsu.oneresident.residents.ChangeResidentActivity;
 
 public class ChangeResidentButton extends AcceptButton{
 

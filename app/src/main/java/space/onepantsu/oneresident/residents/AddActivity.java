@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident.residentManagement;
+package space.onepantsu.oneresident.residents;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -22,8 +22,8 @@ import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
-import space.onepantsu.oneresident.residentManagement.database.DBMS;
-import space.onepantsu.oneresident.residentManagement.database.DataBase;
+import space.onepantsu.oneresident.residents.database.DBMS;
+import space.onepantsu.oneresident.residents.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
 import space.onepantsu.oneresident.dialogframe.AddResidentButton;
 import space.onepantsu.oneresident.dialogframe.BackButtonFromAdd;

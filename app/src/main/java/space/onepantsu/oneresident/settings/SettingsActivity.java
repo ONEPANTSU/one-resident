@@ -1,8 +1,10 @@
-package space.onepantsu.oneresident;
+package space.onepantsu.oneresident.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import space.onepantsu.oneresident.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

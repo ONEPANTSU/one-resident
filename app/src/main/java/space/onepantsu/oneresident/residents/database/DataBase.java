@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident.residentManagement.database;
+package space.onepantsu.oneresident.residents.database;
 
 import android.provider.BaseColumns;
 

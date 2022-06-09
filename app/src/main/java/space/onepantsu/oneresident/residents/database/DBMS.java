@@ -1,6 +1,6 @@
-package space.onepantsu.oneresident.residentManagement.database;
+package space.onepantsu.oneresident.residents.database;
 
-import static space.onepantsu.oneresident.residentManagement.database.DataBase.ResidentsTable.TABLE_NAME;
+import static space.onepantsu.oneresident.residents.database.DataBase.ResidentsTable.TABLE_NAME;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
