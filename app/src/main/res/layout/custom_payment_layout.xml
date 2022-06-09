@@ -19,6 +19,13 @@
         android:layout_toStartOf="@+id/residentDeleteButton"
         android:text="Some text"
         android:textAlignment="textStart"/>
+
+        <Button
+            android:id="@+id/paidButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="+"
+            tools:ignore="MissingConstraints" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
