@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident.residentManagement;
+package space.onepantsu.oneresident.residents;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import space.onepantsu.oneresident.R;
-import space.onepantsu.oneresident.residentManagement.database.DBMS;
-import space.onepantsu.oneresident.residentManagement.database.DataBase;
+import space.onepantsu.oneresident.residents.database.DBMS;
+import space.onepantsu.oneresident.residents.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
 import space.onepantsu.oneresident.dialogframe.BackButtonFromChange;
 import space.onepantsu.oneresident.dialogframe.ChangeResidentButton;

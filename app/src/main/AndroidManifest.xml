@@ -14,22 +14,22 @@
             android:name=".payment.PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".residentManagement.ChangeResidentActivity"
+            android:name=".residents.ChangeResidentActivity"
             android:exported="false" />
         <activity
-            android:name=".residentManagement.ResidentInfoActivity"
+            android:name=".residents.ResidentInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".residentManagement.AddActivity"
+            android:name=".residents.AddActivity"
             android:exported="false" />
         <activity
-            android:name=".HistoryActivity"
+            android:name=".history.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".residentManagement.ResidentActivity"
+            android:name=".residents.ResidentActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

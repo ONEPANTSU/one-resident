@@ -1,4 +1,4 @@
-package space.onepantsu.oneresident.residentManagement;
+package space.onepantsu.oneresident.residents;
 
 import androidx.appcompat.app.AppCompatActivity;
 

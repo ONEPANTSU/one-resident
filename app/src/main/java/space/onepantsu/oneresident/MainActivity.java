@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import space.onepantsu.oneresident.history.HistoryActivity;
 import space.onepantsu.oneresident.payment.PaymentActivity;
-import space.onepantsu.oneresident.residentManagement.ResidentActivity;
+import space.onepantsu.oneresident.residents.ResidentActivity;
+import space.onepantsu.oneresident.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 

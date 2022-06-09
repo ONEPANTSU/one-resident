@@ -20,18 +20,14 @@ import java.io.Serializable;
 
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
-import space.onepantsu.oneresident.dialogframe.AcceptButton;
-import space.onepantsu.oneresident.dialogframe.DeleteResidentButton;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
-import space.onepantsu.oneresident.residentManagement.AddActivity;
-import space.onepantsu.oneresident.residentManagement.ResidentActivity;
-import space.onepantsu.oneresident.residentManagement.ResidentInfoActivity;
-import space.onepantsu.oneresident.residentManagement.database.DBMS;
-import space.onepantsu.oneresident.residentManagement.database.DataBase;
+import space.onepantsu.oneresident.residents.ResidentActivity;
+import space.onepantsu.oneresident.residents.database.DBMS;
+import space.onepantsu.oneresident.residents.database.DataBase;
 
 public class PaymentActivity extends AppCompatActivity {
 
