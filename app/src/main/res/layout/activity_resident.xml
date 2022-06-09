@@ -35,7 +35,9 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical">
+
         <LinearLayout
             android:id="@+id/residentLinear"
             android:layout_height="match_parent"

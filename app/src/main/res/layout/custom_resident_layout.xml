@@ -5,40 +5,52 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        tools:ignore="MissingConstraints"
-        >
-    <Button
-        android:id="@+id/residentInfo"
-        android:layout_toLeftOf="@+id/residentDeleteButton"
-        android:layout_toStartOf="@+id/residentDeleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Some text"
-        android:textSize="15dp"
-        android:paddingLeft="10dp"
-        android:background="@drawable/round_custom_resident"
-        android:textColor="@color/white"
-        android:layout_weight="1"
-        android:textAlignment="textStart"
-        android:layout_marginLeft="20dp"
-        tools:ignore="MissingConstraints"
-        android:backgroundTint="@color/bg_custom"
+        tools:ignore="MissingConstraints">
 
 
-        />
+
+
+            <Button
+                android:id="@+id/residentInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_text"
+                android:backgroundTint="#e8e9ed"
+                android:drawableLeft="@drawable/house_block"
+
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Some text"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+
+
 
         <Button
             android:id="@+id/residentDeleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="25dp"
-            android:text="X"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignRight="@id/residentInfo"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/delete"
             tools:ignore="MissingConstraints"
-            android:layout_weight="0.2"/>
+            />
 
-    </LinearLayout>
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
