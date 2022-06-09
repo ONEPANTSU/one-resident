@@ -46,27 +46,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        >
-
-        <ImageButton
-            android:id="@+id/addButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_style"
-            android:backgroundTint="@color/defolt"
-            android:onClick="onAddActivity"
-            app:srcCompat="@drawable/plus"
-            android:layout_alignParentRight="true"
-            android:layout_marginVertical="30dp"
-            android:layout_marginHorizontal="30dp"/>
-    </RelativeLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

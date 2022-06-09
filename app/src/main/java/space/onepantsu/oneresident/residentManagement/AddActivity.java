@@ -275,6 +275,7 @@ public class AddActivity extends AppCompatActivity {
             Cursor cursor = db.rawQuery(selectQuery, null);
             cursor.moveToLast();
             @SuppressLint("Range") int residentID = cursor.getInt(cursor.getColumnIndex(DataBase.ResidentsTable._ID));
+            cursor.close();
             addToPaymentDB(residentID);
 
             back();
