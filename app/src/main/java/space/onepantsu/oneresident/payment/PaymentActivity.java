@@ -92,8 +92,12 @@ public class PaymentActivity extends AppCompatActivity {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
         TextView paymentText = (TextView) view.findViewById(R.id.paymentInfo);
+
+
+
         StringBuilder paymentTextBuilder = new StringBuilder();
-        paymentTextBuilder.append(paymentInfo.currentID + "\t" + paymentInfo.currentStatus);
+
+        paymentTextBuilder.append(getResidentInfo(paymentInfo.currentID) + "\t||\tSTATUS:\t" + paymentInfo.currentStatus);
         paymentText.setText(paymentTextBuilder.toString());
 
         Button paidButton = (Button) view.findViewById(R.id.paidButton);
@@ -109,6 +113,76 @@ public class PaymentActivity extends AppCompatActivity {
 
         linear.addView(view);
     }
+
+    private String getResidentInfo(int id){
+
+        DBMS dbms = new DBMS(this);
+        SQLiteDatabase db = dbms.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + DataBase.ResidentsTable.TABLE_NAME +
+                " WHERE " + DataBase.ResidentsTable._ID + " = " + id;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int idColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable._ID);
+        int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
+        int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
+        int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
+        int levelColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_LEVEL);
+        int flatColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_FLAT);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int secondnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SECONDNAME);
+        int phoneColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PHONE);
+        int dateColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_DATE);
+        int periodColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PERIOD);
+        int priceColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PRICE);
+        int commentColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_COMMENT);
+
+        while (cursor.moveToNext()) {
+            try {
+                ResidentActivity.ResidentInfo newResident = new ResidentActivity.ResidentInfo();
+
+                newResident.currentID = cursor.getInt(idColumnIndex);
+                newResident.currentCity = cursor.getString(cityColumnIndex);
+                newResident.currentStreet = cursor.getString(streetColumnIndex);
+                newResident.currentHouse = cursor.getString(houseColumnIndex);
+                newResident.currentLevel = cursor.getInt(levelColumnIndex);
+                newResident.currentFlat = cursor.getInt(flatColumnIndex);
+                newResident.currentSurname = cursor.getString(surnameColumnIndex);
+                newResident.currentName = cursor.getString(nameColumnIndex);
+                newResident.currentSecondname = cursor.getString(secondnameColumnIndex);
+                newResident.currentPhone = cursor.getString(phoneColumnIndex);
+                newResident.currentDate = cursor.getString(dateColumnIndex);
+                newResident.currentPeriod = cursor.getInt(periodColumnIndex);
+                newResident.currentPrice = cursor.getInt(priceColumnIndex);
+                newResident.currentComment = cursor.getString(commentColumnIndex);
+
+                StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
+                if(!newResident.currentCity.equals("")){
+                    residentInfoBttnTextBuilder.append("г." + newResident.currentCity + ",\t ");
+                }
+                if(!newResident.currentStreet.equals("")){
+                    residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet + ",\t ");
+                }
+                if(!newResident.currentHouse.equals("")){
+                    residentInfoBttnTextBuilder.append("д." + newResident.currentHouse);
+                }
+                if(newResident.currentFlat > 0){
+                    residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
+                }
+                if(!newResident.currentDate.equals("")){
+                    residentInfoBttnTextBuilder.append("\n" + newResident.currentDate);
+                }
+                return residentInfoBttnTextBuilder.toString();
+
+            }
+            catch (Exception e){
+                System.out.println("Ошибка при чтении строки");
+            }
+        }
+        return "";
+    }
+
 
     public void wasPaid(PaymentInfo paymentInfo, View view){
         PaymentDBMS dbms = new PaymentDBMS(this);
