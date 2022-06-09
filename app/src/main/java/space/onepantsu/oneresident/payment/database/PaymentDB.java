@@ -11,6 +11,7 @@ public class PaymentDB {
 
         public final static String _ID = BaseColumns._ID;
         public final static String STATUS = "status";
+        public final static String DEBT = "debt";
 
     }
 }

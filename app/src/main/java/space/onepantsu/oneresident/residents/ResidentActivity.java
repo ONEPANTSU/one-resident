@@ -180,8 +180,6 @@ public class ResidentActivity extends AppCompatActivity {
     private void deletePayment(ResidentInfo resident){
         try {
             SQLiteDatabase db = paymentDBMS.getWritableDatabase();
-            //db.execSQL("DELETE FROM " + PaymentDB.PaymentTable.TABLE_NAME + " WHERE "
-            //        + PaymentDB.PaymentTable._ID + " = " + resident.currentID);
             db.delete(PaymentDB.PaymentTable.TABLE_NAME,
                     PaymentDB.PaymentTable._ID + "=" + resident.currentID, null);
         }

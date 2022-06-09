@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.util.Calendar;
 
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
@@ -46,13 +48,14 @@ public class PaymentActivity extends AppCompatActivity {
     public static class PaymentInfo implements Serializable {
         public int currentID;
         public String currentStatus;
+        public int currentDebt;
     }
 
     public void checkPayment(){
         SQLiteDatabase db = dbms.getReadableDatabase();
 
         String[] projection = {
-                PaymentDB.PaymentTable._ID,  PaymentDB.PaymentTable.STATUS};
+                PaymentDB.PaymentTable._ID,  PaymentDB.PaymentTable.STATUS, PaymentDB.PaymentTable.DEBT};
 
         Cursor cursor = db.query(
                 PaymentDB.PaymentTable.TABLE_NAME,   // таблица
@@ -65,6 +68,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         int idColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable._ID);
         int statusColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS);
+        int debtColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT);
 
         while (cursor.moveToNext()) {
             try {
@@ -72,6 +76,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                 paymentInfo.currentID = cursor.getInt(idColumnIndex);
                 paymentInfo.currentStatus = cursor.getString(statusColumnIndex);
+                paymentInfo.currentDebt = cursor.getInt(debtColumnIndex);
 
                 addPaymentView(paymentInfo);
 
@@ -84,16 +89,21 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void addPaymentView(PaymentInfo paymentInfo){
+    private void addPaymentView(PaymentInfo paymentInfo) throws ParseException {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
         TextView paymentText = (TextView) view.findViewById(R.id.paymentInfo);
 
+        DebtSearcher debtSearcher = new DebtSearcher(this);
+
+        paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
 
 
         StringBuilder paymentTextBuilder = new StringBuilder();
 
-        paymentTextBuilder.append(getResidentInfo(paymentInfo.currentID) + "\t||\tSTATUS:\t" + paymentInfo.currentStatus);
+        paymentTextBuilder.append(getResidentInfo(paymentInfo.currentID) +
+                "\t||\tSTATUS:\t" + paymentInfo.currentStatus +
+                "\t||\tDEBT:\t" + paymentInfo.currentDebt);
         paymentText.setText(paymentTextBuilder.toString());
 
         Button paidButton = (Button) view.findViewById(R.id.paidButton);
@@ -103,7 +113,7 @@ public class PaymentActivity extends AppCompatActivity {
                 wasPaid(paymentInfo, v);
             }
         });
-        if(paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
+        if(paymentInfo.currentDebt == 0){
             paidButton.setClickable(false);
         }
 
@@ -184,22 +194,38 @@ public class PaymentActivity extends AppCompatActivity {
         PaymentDBMS dbms = new PaymentDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-        newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.PAID));
-        String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
 
-        try {
-            db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
-            Toast.makeText(this, "Оплата успешно произведена", Toast.LENGTH_SHORT).show();
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0, 0);
-        } catch (Exception e) {
-            InfoButton dialogButton = new InfoButton();
-            DialogFrame warning = new DialogFrame("Ошибка при проведении оплаты", "", dialogButton);
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            warning.show(transaction, "dialog");
+        String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
+                " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToNext()) {
+            @SuppressLint("Range") int debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
+
+            if (debt > 0) {
+                debt -= 1;
+            }
+            if (debt == 0) {
+                newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.PAID));
+            }
+
+            newValues.put(PaymentDB.PaymentTable.DEBT, String.valueOf(debt));
+
+            String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
+
+            try {
+                db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
+                Toast.makeText(this, "Оплата успешно произведена", Toast.LENGTH_SHORT).show();
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            } catch (Exception e) {
+                InfoButton dialogButton = new InfoButton();
+                DialogFrame warning = new DialogFrame("Ошибка при проведении оплаты", "", dialogButton);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                warning.show(transaction, "dialog");
+            }
         }
     }
 
