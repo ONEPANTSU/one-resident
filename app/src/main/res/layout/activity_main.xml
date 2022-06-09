@@ -55,7 +55,6 @@
         android:background="@drawable/round_style"
         android:backgroundTint="@color/defolt"
         android:drawableLeft="@drawable/history_payment"
-        android:drawablePadding="-10dp"
         android:layout_marginTop="20dp"
         android:onClick="onHistoryActivity"
         android:paddingLeft="20dp"
