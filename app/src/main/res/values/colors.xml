@@ -10,4 +10,5 @@
     <color name="defolt">#143880</color>
     <color name="red">#C20800</color>
     <color name="backgroundAdd">#fafafa</color>
+    <color name="bg_custom">#3700b3</color>
 </resources>

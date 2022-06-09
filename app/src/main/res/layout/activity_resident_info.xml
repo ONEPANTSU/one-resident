@@ -6,35 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".residentManagement.ResidentInfoActivity">
 
-    <LinearLayout
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_height="50dp"
+    <RelativeLayout
+        android:layout_height="75dp"
         android:layout_width="match_parent"
         tools:ignore="MissingConstraints"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/backButtonFromResidentActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
             android:onClick="goBack"
-            android:text="Назад"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="34dp" />
+            app:srcCompat="@drawable/arrow2" />
 
-        <Button
+
+
+        <ImageButton
             android:id="@+id/buttonAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="changeResident"
-            android:text="Изменить" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#fafafa"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/edit"
+            android:layout_alignParentEnd="true"
+            />
 
-    </LinearLayout>
+    </RelativeLayout>
     <ScrollView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -46,98 +50,252 @@
             android:layout_width="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
-
-
+            <!-- header_ADDRESS-->
+            <TextView
+                android:id="@+id/textViewAddressHeader"
+                style="@style/header_section"
+                android:text="Адрес обьекта" />
+            <!-- CITY-->
+            <TextView
+                android:id="@+id/textViewCity"
+                style="@style/text_headerField_RS_info"
+                android:text="Город" />
             <TextView
                 android:id="@+id/textCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Город"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- STREET-->
 
+            <TextView
+                android:id="@+id/textViewStreet"
+                style="@style/text_headerField_RS_info"
+                android:text="Улица" />
             <TextView
                 android:id="@+id/textStreet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Улица"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- HOUSE-->
 
+            <TextView
+                android:id="@+id/textViewHouse"
+                style="@style/text_headerField_RS_info"
+                android:text="Дом" />
             <TextView
                 android:id="@+id/textHouse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Дом"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- LEVEL-->
 
+            <TextView
+                android:id="@+id/textViewLevel"
+                style="@style/text_headerField_RS_info"
+                android:text="Этаж" />
             <TextView
                 android:id="@+id/textLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Этаж"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- FLAT-->
 
+            <TextView
+                android:id="@+id/textViewFlat"
+                style="@style/text_headerField_RS_info"
+                android:text="Квартира" />
             <TextView
                 android:id="@+id/textFlat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Квартира"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- header_personalData-->
+            <TextView
+                android:id="@+id/textViewResidentHeader"
+                style="@style/header_section"
+                android:text="Данные арендатора" />
+            <!-- SURNAME-->
 
+            <TextView
+                android:id="@+id/textViewSurname"
+                style="@style/text_headerField_RS_info"
+                android:text="Фамилия" />
             <TextView
                 android:id="@+id/textSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Фамилия"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- NAME-->
 
+            <TextView
+                android:id="@+id/textViewName"
+                style="@style/text_headerField_RS_info"
+                android:text="Имя" />
             <TextView
                 android:id="@+id/textName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Имя"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- SECONDNAME-->
 
+            <TextView
+                android:id="@+id/textViewSecondName"
+                style="@style/text_headerField_RS_info"
+                android:text="Отчество"/>
             <TextView
                 android:id="@+id/textSecondName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Отчество"/>
-
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- PHONE-->
+            <TextView
+                android:id="@+id/textViewPhone"
+                style="@style/text_headerField_RS_info"
+                android:text="Номер телефона" />
             <TextView
                 android:id="@+id/textPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Номер телефона"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
 
+            <!-- header_RentalData-->
+            <TextView
+                android:id="@+id/textViewRentHeader"
+                style="@style/header_section"
+                android:text="Данные об аренде" />
+            <!-- DATE-->
+
+            <TextView
+                android:id="@+id/textViewDate"
+                style="@style/text_headerField_RS_info"
+                android:text="Дата начала аренды" />
             <TextView
                 android:id="@+id/textDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Дата начала аренды (дд.мм.гггг)"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- PERIOD-->
 
+            <TextView
+                android:id="@+id/textViewPeriod"
+                style="@style/text_headerField_RS_info"
+                android:text="Период внесения арендной платы" />
             <TextView
                 android:id="@+id/textPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Период внесения арендной платы"/>
-
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- PRICE-->
+            <TextView
+                android:id="@+id/textViewPrice"
+                style="@style/text_headerField_RS_info"
+                android:text="Стоимость арендной платы" />
             <TextView
                 android:id="@+id/textPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Стоимость арендной платы"/>
-
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <!-- COMMENT-->
+            <TextView
+                android:id="@+id/textViewComment"
+                style="@style/text_headerField_RS_info"
+                android:text="Комментарий" />
             <TextView
                 android:id="@+id/textComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Комментарий"/>
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defolt"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
 
         </LinearLayout>
     </ScrollView>

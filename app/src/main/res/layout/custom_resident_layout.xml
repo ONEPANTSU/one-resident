@@ -11,24 +11,34 @@
         tools:ignore="MissingConstraints"
         >
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/residentInfo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/residentDeleteButton"
         android:layout_toStartOf="@+id/residentDeleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Some text"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/round_custom_resident"
+        android:textColor="@color/white"
+        android:layout_weight="1"
         android:textAlignment="textStart"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginLeft="20dp"
+        tools:ignore="MissingConstraints"
+        android:backgroundTint="@color/bg_custom"
+
+
+        />
 
         <Button
             android:id="@+id/residentDeleteButton"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="25dp"
             android:text="X"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginRight="20dp"
+            tools:ignore="MissingConstraints"
+            android:layout_weight="0.2"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
