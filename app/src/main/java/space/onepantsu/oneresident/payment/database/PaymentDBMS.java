@@ -37,7 +37,8 @@ public class PaymentDBMS extends SQLiteOpenHelper {
         // Строка для создания таблицы
         String SQL_CREATE_RESIDENTS_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
                 + PaymentDB.PaymentTable._ID + " INTEGER PRIMARY KEY, "
-                + PaymentDB.PaymentTable.STATUS + " INTEGER NOT NULL ) ";
+                + PaymentDB.PaymentTable.STATUS + " INTEGER NOT NULL, "
+                + PaymentDB.PaymentTable.DEBT + " INTEGER NOT NULL) ";
 
         // Запускаем создание таблицы
         db.execSQL(SQL_CREATE_RESIDENTS_TABLE);

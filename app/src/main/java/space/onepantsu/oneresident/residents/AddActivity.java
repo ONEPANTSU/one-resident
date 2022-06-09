@@ -240,6 +240,7 @@ public class AddActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(PaymentDB.PaymentTable._ID, id);
         values.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
+        values.put(PaymentDB.PaymentTable.DEBT, 0);
         long newRowId = db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
 
     }
@@ -313,7 +314,6 @@ public class AddActivity extends AppCompatActivity {
                             phone = addPhone.getText().toString();
                         }
                         catch (Exception ignored){}
-                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
                         try{
                             String stringDate = addDate.getText().toString();
                                 date = stringDate;
