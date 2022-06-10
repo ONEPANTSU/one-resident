@@ -21,7 +21,9 @@
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/border_bottom_text.xml" value="0.1825" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/border_text.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/boreder_text.xml" value="0.1365" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/delete.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/edit.xml" value="0.2195" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/house_block.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/logo.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/payment.xml" value="0.123" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/plus.xml" value="0.1975" />
@@ -36,7 +38,7 @@
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
