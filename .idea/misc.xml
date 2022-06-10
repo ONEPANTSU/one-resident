@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/round_custom_resident.xml" value="0.115" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_add.xml" value="0.264" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_history.xml" value="0.25" />
@@ -34,7 +35,6 @@
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.25416666666666665" />
->>>>>>> Payment Status demo
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.2" />
       </map>

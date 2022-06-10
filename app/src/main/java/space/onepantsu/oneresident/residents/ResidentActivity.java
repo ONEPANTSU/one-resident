@@ -136,11 +136,25 @@ public class ResidentActivity extends AppCompatActivity {
 
         Button residentInfoBttn = (Button) view.findViewById(R.id.residentInfo);
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
+
+
+        int maxLength = 26;
+
+        /*
         if(!newResident.currentCity.equals("")){
             residentInfoBttnTextBuilder.append("г." + newResident.currentCity + ",\t ");
         }
+        */
         if(!newResident.currentStreet.equals("")){
-            residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet + ",\t ");
+            residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet);
+
+            int currentLenght = residentInfoBttnTextBuilder.toString().length();
+
+            if(currentLenght > maxLength){
+                residentInfoBttnTextBuilder.delete(maxLength-3, currentLenght-1);
+                residentInfoBttnTextBuilder.append("...");
+            }
+            residentInfoBttnTextBuilder.append("\n");
         }
         if(!newResident.currentHouse.equals("")){
             residentInfoBttnTextBuilder.append("д." + newResident.currentHouse);
@@ -149,8 +163,14 @@ public class ResidentActivity extends AppCompatActivity {
             residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
         }
         if(!newResident.currentDate.equals("")){
-            residentInfoBttnTextBuilder.append("\n" + newResident.currentDate);
+            residentInfoBttnTextBuilder.append("\n");
+            residentInfoBttnTextBuilder.append(newResident.currentDate);
         }
+
+        residentInfoBttn.setText(residentInfoBttnTextBuilder.toString());
+
+
+
         residentInfoBttn.setText(residentInfoBttnTextBuilder.toString());
 
         residentInfoBttn.setOnClickListener(new View.OnClickListener() {
