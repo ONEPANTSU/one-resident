@@ -138,7 +138,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
             case WRONG_DATE: errorMessage = "Поле \"Дата\" должно быть заполнено!"; break;
             case WRONG_DATE_FORMAT: errorMessage = "Неверный формат поля \"Дата!\""; break;
             case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
-            default: errorMessage = "Ошибка при добавлении арендатора!"; break;
+            default: errorMessage = "Ошибка при сохранении изменений арендатора!"; break;
         }
 
         InfoButton dialogButton = new InfoButton();

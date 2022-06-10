@@ -4,28 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         tools:ignore="MissingConstraints">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/paymentInfo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/residentDeleteButton"
-        android:layout_toStartOf="@+id/residentDeleteButton"
-        android:text="Some text"
-        android:textAlignment="textStart"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paymentInfo"
+            android:text="Some text"
+            android:textAlignment="textStart"/>
 
         <Button
             android:id="@+id/paidButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
             android:text="+"
             tools:ignore="MissingConstraints" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

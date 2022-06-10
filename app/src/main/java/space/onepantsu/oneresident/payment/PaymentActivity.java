@@ -101,8 +101,9 @@ public class PaymentActivity extends AppCompatActivity {
         StringBuilder paymentTextBuilder = new StringBuilder();
 
         paymentTextBuilder.append(getResidentInfo(paymentInfo.currentID) +
-                "\t||\tSTATUS:\t" + paymentInfo.currentStatus +
-                "\t||\tDEBT:\t" + paymentInfo.currentDebt);
+                "\nSTATUS:\t" + paymentInfo.currentStatus +
+                "\nDEBT:\t" + paymentInfo.currentDebt);
+
         paymentText.setText(paymentTextBuilder.toString());
 
         Button paidButton = (Button) view.findViewById(R.id.paidButton);
