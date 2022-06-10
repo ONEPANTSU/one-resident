@@ -10,6 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneResident">
+        <service
+            android:name=".alarm_service.Alarm"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".payment.PaymentActivity"
             android:exported="false" />
