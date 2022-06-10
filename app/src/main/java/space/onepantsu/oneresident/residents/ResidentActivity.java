@@ -3,7 +3,6 @@ package space.onepantsu.oneresident.residents;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,10 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import java.io.Serializable;
-
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
@@ -191,7 +189,7 @@ public class ResidentActivity extends AppCompatActivity {
 
     public void deleteResident(View view, ResidentInfo newResident){
         try {
-            ((LinearLayout) view.getParent()).removeView(view);
+            ((RelativeLayout) view.getParent()).removeView(view);
             SQLiteDatabase db = dbms.getWritableDatabase();
 
             db.execSQL("DELETE FROM " + DataBase.ResidentsTable.TABLE_NAME + " WHERE "

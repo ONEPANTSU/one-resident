@@ -95,7 +95,6 @@ public class PaymentActivity extends AppCompatActivity {
         TextView paymentText = (TextView) view.findViewById(R.id.paymentInfo);
 
         DebtSearcher debtSearcher = new DebtSearcher(this);
-
         paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
 
 

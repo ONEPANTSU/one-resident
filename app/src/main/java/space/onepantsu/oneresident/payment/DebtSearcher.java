@@ -49,19 +49,32 @@ public class DebtSearcher {
             Calendar paymentDay = new GregorianCalendar();
             paymentDay.setTime(format.parse(residentsDate));
 
-            Calendar previousDay = paymentDay;
-            paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
+            Calendar previousDay = new GregorianCalendar();
+            previousDay.set(paymentDay.get(Calendar.YEAR),
+                    paymentDay.get(Calendar.MONTH), paymentDay.get(Calendar.DATE));
 
+
+            paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
             if(previousDay.get(Calendar.MONTH) == Calendar.DECEMBER &&
                     paymentDay.get(Calendar.MONTH) == Calendar.JANUARY){
                 paymentDay.roll(Calendar.YEAR, 1);
             }
 
+            Calendar afterPayment = new GregorianCalendar();
+            afterPayment.set(currentCalendar.get(Calendar.YEAR),
+                    currentCalendar.get(Calendar.MONTH), currentCalendar.get(Calendar.DATE));
+            afterPayment.roll(Calendar.DAY_OF_YEAR, -1);
+
             if(currentCalendar.get(Calendar.YEAR) == paymentDay.get(Calendar.YEAR) &&
-                    currentCalendar.get(Calendar.MONTH) == paymentDay.get(Calendar.MONTH) &&
-                    currentCalendar.get(Calendar.DAY_OF_MONTH) == paymentDay.get(Calendar.DAY_OF_MONTH)){
+                currentCalendar.get(Calendar.MONTH) == paymentDay.get(Calendar.MONTH) &&
+                currentCalendar.get(Calendar.DAY_OF_YEAR) == paymentDay.get(Calendar.DAY_OF_YEAR)){
 
                 return increaseDebt(paymentInfo);
+            }
+            else if (afterPayment.after(previousDay) &&
+                    paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
+                changeStatus(paymentInfo, PaymentStatus.NOT_PAID);
+                paymentInfo.currentStatus = String.valueOf(PaymentStatus.NOT_PAID);
             }
         }
         return paymentInfo.currentDebt;
@@ -92,7 +105,20 @@ public class DebtSearcher {
             checkDebtByPaymentInfo(paymentInfo);
         }
         return debt;
+    }
 
+    private void changeStatus(PaymentActivity.PaymentInfo paymentInfo, PaymentStatus status){
+        PaymentDBMS paymentDBMS = new PaymentDBMS(context);
+        SQLiteDatabase db = paymentDBMS.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+        String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
+                " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToNext()) {
+           newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(status));
+            String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
+            db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
+        }
     }
 
     public void changeDate(PaymentActivity.PaymentInfo paymentInfo) throws ParseException {
