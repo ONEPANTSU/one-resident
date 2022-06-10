@@ -138,7 +138,7 @@ public class ResidentActivity extends AppCompatActivity {
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
 
 
-        int maxLength = 26;
+        int maxLength = 27;
 
         /*
         if(!newResident.currentCity.equals("")){

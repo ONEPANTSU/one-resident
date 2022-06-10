@@ -18,13 +18,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@drawable/border_text"
             android:backgroundTint="#e8e9ed"
             android:paddingLeft="60dp"
             android:paddingTop="10dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:text="Some text"
             android:textAlignment="textStart"
             android:textColor="@color/black"
@@ -43,6 +44,7 @@
             android:background="@drawable/delete"
             tools:ignore="MissingConstraints"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             />
 
         <Button
@@ -56,6 +58,7 @@
             android:layout_alignLeft="@id/residentInfo"
             android:layout_centerHorizontal="true"
             android:clickable="false"
+            android:layout_centerVertical="true"
 
              />
 
