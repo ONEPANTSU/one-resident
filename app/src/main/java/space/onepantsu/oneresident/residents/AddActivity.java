@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,14 +18,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
+import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
@@ -36,6 +40,7 @@ import space.onepantsu.oneresident.dialogframe.AddResidentButton;
 import space.onepantsu.oneresident.dialogframe.BackButtonFromAdd;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
+import space.onepantsu.oneresident.service.AlarmReceiver;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -240,7 +245,39 @@ public class AddActivity extends AppCompatActivity {
 
         if(!isDataError){
             addToDB();
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month - 1);
+            calendar.set(Calendar.DAY_OF_MONTH, day);
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 0);
+
+            Calendar current = Calendar.getInstance();
+            current.setTimeInMillis(System.currentTimeMillis());
+            if(calendar.compareTo(current) <= 0){
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.roll(Calendar.SECOND, 10);
+            }
+
+            startAlarm("One::Resident", "Test notification", calendar.getTimeInMillis());
         }
+    }
+
+    private void startAlarm(String title, String text, long startTime){
+
+        Log.i("ALARM", "Start Alarm");
+        AlarmManager alarmManager;
+
+        PendingIntent alarmIntent;
+
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        intent.putExtra("title", title);
+        intent.putExtra("text", text);
+        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
     }
 
 

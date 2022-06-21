@@ -1,10 +1,7 @@
 package space.onepantsu.oneresident;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +9,6 @@ import android.view.View;
 import space.onepantsu.oneresident.history.HistoryActivity;
 import space.onepantsu.oneresident.payment.PaymentActivity;
 import space.onepantsu.oneresident.residents.ResidentActivity;
-import space.onepantsu.oneresident.service.OneService;
 import space.onepantsu.oneresident.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         if(!((OneResidentApp) getApplicationContext()).isAppForeground()){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            startService(new Intent(this, OneService.class));
         }
     }
 

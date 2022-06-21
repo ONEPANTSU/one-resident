@@ -13,9 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneResident">
-        <service
-            android:name=".service.OneService"
-            android:exported="false" />
+        <receiver android:name=".service.AlarmReceiver"/>
         <activity
             android:name=".residents.ChangeResidentActivity"
             android:exported="false" />
@@ -34,6 +32,10 @@
         <activity
             android:name=".residents.ResidentActivity"
             android:exported="false" />
+
+        <activity android:name=".payment.PaymentActivity"
+            android:parentActivityName=".MainActivity"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
