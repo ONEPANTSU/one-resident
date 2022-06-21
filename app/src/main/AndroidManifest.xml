@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="space.onepantsu.oneresident">
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:name=".OneResidentApp"
@@ -11,12 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OneResident">
         <service
-            android:name=".alarm_service.Alarm"
-            android:enabled="true"
-            android:exported="true"></service>
-
-        <activity
-            android:name=".payment.PaymentActivity"
+            android:name=".service.OneService"
             android:exported="false" />
         <activity
             android:name=".residents.ChangeResidentActivity"

@@ -93,7 +93,7 @@ public class DebtSearcher {
             debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
             debt += 1;
             newValues.put(PaymentDB.PaymentTable.DEBT, debt);
-            @SuppressLint("Range") String status = cursor.getString(cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS));
+            String status = cursor.getString(cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS));
             if (status.equals(String.valueOf(PaymentStatus.PAID))) {
                 newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
             }

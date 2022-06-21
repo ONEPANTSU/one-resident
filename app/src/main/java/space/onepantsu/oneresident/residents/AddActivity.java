@@ -1,14 +1,21 @@
 package space.onepantsu.oneresident.residents;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -114,9 +121,13 @@ public class AddActivity extends AppCompatActivity {
         isDataError = true;
     }
 
-    public void addResident() throws IllegalAccessException, InstantiationException {
+    public void addResident() {
 
         isDataError = false;
+
+        int day = 0;
+        int month = 0;
+        int year = 0;
 
         try {
             city = addCity.getText().toString();
@@ -170,7 +181,6 @@ public class AddActivity extends AppCompatActivity {
                             }
                             else {
                                 try{
-                                    int day, month, year;
                                     day = (int) stringDate.charAt(0) * 10 + (int) stringDate.charAt(1) - 528;
                                     month = (int) stringDate.charAt(3) * 10 + (int) stringDate.charAt(4) - 528;
                                     year = (int) stringDate.charAt(6) * 1000 + (int) stringDate.charAt(7) * 100
@@ -178,7 +188,6 @@ public class AddActivity extends AppCompatActivity {
                                     if(day > 31 || day < 1 || month > 12 || month < 1){
                                         throw new Exception();
                                     }
-
                                 }
                                 catch (Exception e){
                                     tryAgain(Error.WRONG_DATE_FORMAT);
@@ -234,6 +243,7 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
+
     private void addToPaymentDB(int id){
         PaymentDBMS dbms = new PaymentDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
@@ -283,7 +293,6 @@ public class AddActivity extends AppCompatActivity {
         }
 
     }
-
 
     private boolean allIsNotEmpty(){
         try {
