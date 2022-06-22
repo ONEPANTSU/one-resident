@@ -52,7 +52,7 @@ public class ResidentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resident);
-        linear = (LinearLayout) findViewById(R.id.residentLinear);
+        linear = findViewById(R.id.residentLinear);
         checkResidents();
     }
 
@@ -68,7 +68,7 @@ public class ResidentActivity extends AppCompatActivity {
                 DataBase.ResidentsTable.COLUMN_DATE, DataBase.ResidentsTable.COLUMN_PERIOD,
                 DataBase.ResidentsTable.COLUMN_PRICE, DataBase.ResidentsTable.COLUMN_COMMENT};
 
-        Cursor cursor = db.query(
+        @SuppressLint("Recycle") Cursor cursor = db.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
                 null,                  // столбцы для условия WHERE
@@ -125,28 +125,18 @@ public class ResidentActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void addResidentsView(ResidentInfo newResident){
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_resident_layout, null);
-        Button deleteField = (Button) view.findViewById(R.id.residentDeleteButton);
+        Button deleteField = view.findViewById(R.id.residentDeleteButton);
 
-        deleteField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acceptDeleting(newResident, v);
-            }
-        });
+        deleteField.setOnClickListener(v -> acceptDeleting(newResident, v));
 
-        Button residentInfoBttn = (Button) view.findViewById(R.id.residentInfo);
+        Button residentInfoBttn = view.findViewById(R.id.residentInfo);
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
 
 
         int maxLength = 27;
 
-        /*
-        if(!newResident.currentCity.equals("")){
-            residentInfoBttnTextBuilder.append("г." + newResident.currentCity + ",\t ");
-        }
-        */
         if(!newResident.currentStreet.equals("")){
-            residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet);
+            residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
 
             int currentLenght = residentInfoBttnTextBuilder.toString().length();
 
@@ -157,10 +147,10 @@ public class ResidentActivity extends AppCompatActivity {
             residentInfoBttnTextBuilder.append("\n");
         }
         if(!newResident.currentHouse.equals("")){
-            residentInfoBttnTextBuilder.append("д." + newResident.currentHouse);
+            residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
         }
         if(newResident.currentFlat > 0){
-            residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
+            residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
         }
         if(!newResident.currentDate.equals("")){
             residentInfoBttnTextBuilder.append("\n");
@@ -173,14 +163,11 @@ public class ResidentActivity extends AppCompatActivity {
 
         residentInfoBttn.setText(residentInfoBttnTextBuilder.toString());
 
-        residentInfoBttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ResidentActivity.this, ResidentInfoActivity.class);
-                intent.putExtra(ResidentInfo.class.getSimpleName(), newResident);
-                startActivity(intent);
-                closeActivity();
-            }
+        residentInfoBttn.setOnClickListener(view1 -> {
+            Intent intent = new Intent(ResidentActivity.this, ResidentInfoActivity.class);
+            intent.putExtra(ResidentInfo.class.getSimpleName(), newResident);
+            startActivity(intent);
+            closeActivity();
         });
 
 

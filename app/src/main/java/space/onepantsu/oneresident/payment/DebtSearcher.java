@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
@@ -19,7 +20,7 @@ import space.onepantsu.oneresident.residents.database.DataBase;
 
 public class DebtSearcher {
 
-    private Context context;
+    private final Context context;
 
     public DebtSearcher(Context context){
         this.context = context;
@@ -31,7 +32,7 @@ public class DebtSearcher {
         SQLiteDatabase db = residentDBMS.getWritableDatabase();
         String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_DATE,
                                 DataBase.ResidentsTable.COLUMN_PERIOD};
-        Cursor cursor = db.query(
+        @SuppressLint("Recycle") Cursor cursor = db.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
                 DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
@@ -47,7 +48,7 @@ public class DebtSearcher {
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
             Calendar currentCalendar = Calendar.getInstance();
             Calendar paymentDay = new GregorianCalendar();
-            paymentDay.setTime(format.parse(residentsDate));
+            paymentDay.setTime(Objects.requireNonNull(format.parse(residentsDate)));
 
             Calendar previousDay = new GregorianCalendar();
             previousDay.set(paymentDay.get(Calendar.YEAR),
@@ -88,7 +89,7 @@ public class DebtSearcher {
         int debt = 0;
         String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
                 " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()) {
             debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
             debt += 1;
@@ -113,7 +114,7 @@ public class DebtSearcher {
         ContentValues newValues = new ContentValues();
         String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
                 " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()) {
            newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(status));
             String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
@@ -126,7 +127,7 @@ public class DebtSearcher {
         SQLiteDatabase db = residentDBMS.getWritableDatabase();
         String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_DATE,
                 DataBase.ResidentsTable.COLUMN_PERIOD};
-        Cursor cursor = db.query(
+        @SuppressLint("Recycle") Cursor cursor = db.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
                 DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
@@ -141,7 +142,7 @@ public class DebtSearcher {
             int residentsPeriod = cursor.getInt(periodColumnIndex);
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
             Calendar paymentDay = new GregorianCalendar();
-            paymentDay.setTime(format.parse(residentsDate));
+            paymentDay.setTime(Objects.requireNonNull(format.parse(residentsDate)));
 
             Calendar previousDay = paymentDay;
             paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
@@ -151,7 +152,7 @@ public class DebtSearcher {
                 paymentDay.roll(Calendar.YEAR, 1);
             }
 
-            String newDate = dateParcing(paymentDay);
+            String newDate = dateParsing(paymentDay);
 
             ContentValues newValues = new ContentValues();
             newValues.put(DataBase.ResidentsTable.COLUMN_DATE, newDate);
@@ -161,22 +162,22 @@ public class DebtSearcher {
         }
     }
 
-    private String dateParcing(Calendar date){
+    private String dateParsing(Calendar date){
         StringBuilder parsedBuilder = new StringBuilder();
         int day = date.get(Calendar.DATE);
         int month = date.get(Calendar.MONTH) + 1;
         int year = date.get(Calendar.YEAR);
         if(day < 10){
-            parsedBuilder.append("0" + day + ".");
+            parsedBuilder.append("0").append(day).append(".");
         }
         else{
-            parsedBuilder.append(day + ".");
+            parsedBuilder.append(day).append(".");
         }
         if(month < 10){
-            parsedBuilder.append("0" + month + ".");
+            parsedBuilder.append("0").append(month).append(".");
         }
         else{
-            parsedBuilder.append(month + ".");
+            parsedBuilder.append(month).append(".");
         }
         parsedBuilder.append(year);
 

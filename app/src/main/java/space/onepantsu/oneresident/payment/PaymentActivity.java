@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.Calendar;
 
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
@@ -37,7 +36,7 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-        linear = (LinearLayout) findViewById(R.id.residentLinear);
+        linear = findViewById(R.id.residentLinear);
         checkPayment();
     }
 
@@ -57,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
         String[] projection = {
                 PaymentDB.PaymentTable._ID,  PaymentDB.PaymentTable.STATUS, PaymentDB.PaymentTable.DEBT};
 
-        Cursor cursor = db.query(
+        @SuppressLint("Recycle") Cursor cursor = db.query(
                 PaymentDB.PaymentTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
                 null,                  // столбцы для условия WHERE
@@ -92,27 +91,18 @@ public class PaymentActivity extends AppCompatActivity {
     private void addPaymentView(PaymentInfo paymentInfo) throws ParseException {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
-        TextView paymentText = (TextView) view.findViewById(R.id.paymentInfo);
+        TextView paymentText = view.findViewById(R.id.paymentInfo);
 
         DebtSearcher debtSearcher = new DebtSearcher(this);
         paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
 
 
-        StringBuilder paymentTextBuilder = new StringBuilder();
+        String paymentTextBuilder = getResidentInfo(paymentInfo.currentID) + "\nSTATUS:\t" +
+                paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
+        paymentText.setText(paymentTextBuilder);
 
-        paymentTextBuilder.append(getResidentInfo(paymentInfo.currentID) +
-                "\nSTATUS:\t" + paymentInfo.currentStatus +
-                "\nDEBT:\t" + paymentInfo.currentDebt);
-
-        paymentText.setText(paymentTextBuilder.toString());
-
-        Button paidButton = (Button) view.findViewById(R.id.paidButton);
-        paidButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                wasPaid(paymentInfo, v);
-            }
-        });
+        Button paidButton = view.findViewById(R.id.paidButton);
+        paidButton.setOnClickListener(v -> wasPaid(paymentInfo));
         if(paymentInfo.currentDebt == 0){
             paidButton.setClickable(false);
         }
@@ -127,7 +117,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         String selectQuery = "SELECT  * FROM " + DataBase.ResidentsTable.TABLE_NAME +
                 " WHERE " + DataBase.ResidentsTable._ID + " = " + id;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
 
         int idColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable._ID);
         int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
@@ -168,7 +158,7 @@ public class PaymentActivity extends AppCompatActivity {
                 int maxLength = 26;
 
                 if(!newResident.currentStreet.equals("")){
-                    residentInfoBttnTextBuilder.append("ул." + newResident.currentStreet);
+                    residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
 
                     int currentLenght = residentInfoBttnTextBuilder.toString().length();
 
@@ -179,10 +169,10 @@ public class PaymentActivity extends AppCompatActivity {
                     residentInfoBttnTextBuilder.append("\n");
                 }
                 if(!newResident.currentHouse.equals("")){
-                    residentInfoBttnTextBuilder.append("д." + newResident.currentHouse);
+                    residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
                 }
                 if(newResident.currentFlat > 0){
-                    residentInfoBttnTextBuilder.append(",\t кв." + newResident.currentFlat);
+                    residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
                 }
                 if(!newResident.currentDate.equals("")){
                     residentInfoBttnTextBuilder.append("\n");
@@ -199,14 +189,14 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
-    public void wasPaid(PaymentInfo paymentInfo, View view){
+    public void wasPaid(PaymentInfo paymentInfo){
         PaymentDBMS dbms = new PaymentDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues newValues = new ContentValues();
 
         String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
                 " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()) {
             @SuppressLint("Range") int debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
 

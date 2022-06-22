@@ -32,7 +32,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
     EditText city, street, house, level, flat,
             surname, name, secondname, phone, date, period, price, comment;
 
-    Map<String, String> previosValues = new HashMap<String, String>();
+    Map<String, String> previosValues = new HashMap<>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -41,31 +41,31 @@ public class ChangeResidentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_resident);
         Bundle arguments = getIntent().getExtras();
 
-        city = (EditText) findViewById(R.id.textCity);
-        street = (EditText) findViewById(R.id.textStreet);
-        house = (EditText) findViewById(R.id.textHouse);
-        level = (EditText) findViewById(R.id.textLevel);
-        flat = (EditText) findViewById(R.id.textFlat);
-        surname = (EditText) findViewById(R.id.textSurname);
-        name = (EditText) findViewById(R.id.textName);
-        secondname = (EditText) findViewById(R.id.textSecondName);
-        phone = (EditText) findViewById(R.id.textPhone);
-        date = (EditText) findViewById(R.id.textDate);
-        period = (EditText) findViewById(R.id.textPeriod);
-        price = (EditText) findViewById(R.id.textPrice);
-        comment = (EditText) findViewById(R.id.textComment);
+        city = findViewById(R.id.textCity);
+        street = findViewById(R.id.textStreet);
+        house = findViewById(R.id.textHouse);
+        level = findViewById(R.id.textLevel);
+        flat = findViewById(R.id.textFlat);
+        surname = findViewById(R.id.textSurname);
+        name = findViewById(R.id.textName);
+        secondname = findViewById(R.id.textSecondName);
+        phone = findViewById(R.id.textPhone);
+        date = findViewById(R.id.textDate);
+        period = findViewById(R.id.textPeriod);
+        price = findViewById(R.id.textPrice);
+        comment = findViewById(R.id.textComment);
 
         if (arguments != null) {
             resident = (ResidentActivity.ResidentInfo)
                     arguments.getSerializable(ResidentActivity.ResidentInfo.class.getSimpleName());
 
-            if(resident.currentCity != "" && resident.currentCity != null){
+            if(!resident.currentCity.equals("")){
                 city.setText(resident.currentCity);
             }
-            if(resident.currentStreet != "" && resident.currentStreet != null){
+            if(!resident.currentStreet.equals("")){
                 street.setText(resident.currentStreet);
             }
-            if(resident.currentHouse != "" && resident.currentHouse != null) {
+            if(!resident.currentHouse.equals("")) {
                 house.setText(resident.currentHouse);
             }
             if(resident.currentLevel != null && resident.currentLevel != 0) {
@@ -76,19 +76,19 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 String flatValue = resident.currentFlat.toString();
                 flat.setText(flatValue);
             }
-            if(resident.currentSurname != "" && resident.currentSurname != null) {
+            if(!resident.currentSurname.equals("")) {
                 surname.setText(resident.currentSurname);
             }
-            if(resident.currentName != "" && resident.currentName != null) {
+            if(!resident.currentName.equals("")) {
                 name.setText(resident.currentName);
             }
-            if(resident.currentSecondname != "" && resident.currentSecondname != null) {
+            if(!resident.currentSecondname.equals("")) {
                 secondname.setText(resident.currentSecondname);
             }
-            if(resident.currentPhone != "" && resident.currentPhone != null) {
+            if(!resident.currentPhone.equals("")) {
                 phone.setText(resident.currentPhone);
             }
-            if(resident.currentDate != "" && resident.currentDate != null) {
+            if(!resident.currentDate.equals("")) {
                 date.setText(resident.currentDate);
             }
             if(resident.currentPeriod != null && resident.currentPeriod != 0) {
@@ -99,7 +99,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 String priceValue = resident.currentPrice.toString();
                 price.setText(priceValue);
             }
-            if(resident.currentComment != "" && resident.currentComment != null) {
+            if(!resident.currentComment.equals("")) {
                 comment.setText(resident.currentComment);
             }
         }
@@ -184,12 +184,10 @@ public class ChangeResidentActivity extends AppCompatActivity {
             }
             else{
                     try {
-                        int day, month, year;
+                        int day, month;
                         System.out.println(stringDate.charAt(0) * 10);
                         day = stringDate.charAt(0) * 10 + stringDate.charAt(1) - 528;
                         month = stringDate.charAt(3)* 10 + stringDate.charAt(4) - 528;
-                        year = stringDate.charAt(6) * 1000 + stringDate.charAt(7) * 100
-                                + stringDate.charAt(8) * 10 + stringDate.charAt(9) - 53328;
                         if (day > 31 || day < 1 || month > 12 || month < 1) {
                             throw new Exception();
                         }
@@ -215,7 +213,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
             newValues.put(DataBase.ResidentsTable.COLUMN_SECONDNAME, secondname.getText().toString());
             newValues.put(DataBase.ResidentsTable.COLUMN_PHONE, phone.getText().toString());
             newValues.put(DataBase.ResidentsTable.COLUMN_DATE, date.getText().toString());
-            if(period.getText().toString() != ""){
+            if(!period.getText().toString().equals("")){
                 newValues.put(DataBase.ResidentsTable.COLUMN_PERIOD, period.getText().toString());
             }
             else{

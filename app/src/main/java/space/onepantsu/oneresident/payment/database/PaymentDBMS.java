@@ -8,8 +8,6 @@ import android.util.Log;
 
 public class PaymentDBMS extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = space.onepantsu.oneresident.residents.database.DBMS.class.getSimpleName();
-
     /**
      * Имя файла базы данных
      */

@@ -1,11 +1,9 @@
 package space.onepantsu.oneresident.service;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,6 +19,8 @@ import space.onepantsu.oneresident.payment.PaymentActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    private static final String[] randomTitles = new String[] {"Час расплаты!", "Пора платить по счетам!",
+                "Кажется, вам кто-то должен кругленькую сумму!", "Пора собирать дань!"};
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -48,8 +48,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             NotificationCompat.Builder builder =
                     new NotificationCompat.Builder(context, CHANNEL_ID)
-                            .setContentTitle("ONE::Resident")
-                            .setContentText("Notify...")
+                            .setContentTitle(randomTitles[(int) (Math.random() * randomTitles.length)])
+                            .setContentText(intent.getStringExtra("text"))
                             .setSmallIcon(R.drawable.house_block);
 
             Intent resultIntent = new Intent(context, PaymentActivity.class);

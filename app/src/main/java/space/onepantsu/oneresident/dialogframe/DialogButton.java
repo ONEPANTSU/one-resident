@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 
 public class DialogButton {
     boolean isAccept;
-    void setDialog(DialogInterface dialog){};
-    void funcOnClick(){};
-
+    void setDialog(DialogInterface dialog){}
+    void funcOnClick(){}
 }

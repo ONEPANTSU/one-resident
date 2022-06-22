@@ -20,11 +20,6 @@ public class DeleteResidentButton extends AcceptButton{
     @Override
     public void funcOnClick() {
         super.funcOnClick();
-        try {
-            activity.deleteResident(view, resident);
-        }
-        catch (Exception e){
-            e.getCause();
-        }
+        activity.deleteResident(view, resident);
     }
 }

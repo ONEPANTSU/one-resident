@@ -25,27 +25,27 @@ public class ResidentInfoActivity extends AppCompatActivity {
             resident = (ResidentActivity.ResidentInfo)
                     arguments.getSerializable(ResidentActivity.ResidentInfo.class.getSimpleName());
 
-            TextView city = (TextView) findViewById(R.id.textCity);
-            TextView street = (TextView) findViewById(R.id.textStreet);
-            TextView house = (TextView) findViewById(R.id.textHouse);
-            TextView level = (TextView) findViewById(R.id.textLevel);
-            TextView flat = (TextView) findViewById(R.id.textFlat);
-            TextView surname = (TextView) findViewById(R.id.textSurname);
-            TextView name = (TextView) findViewById(R.id.textName);
-            TextView secondname = (TextView) findViewById(R.id.textSecondName);
-            TextView phone = (TextView) findViewById(R.id.textPhone);
-            TextView date = (TextView) findViewById(R.id.textDate);
-            TextView period = (TextView) findViewById(R.id.textPeriod);
-            TextView price = (TextView) findViewById(R.id.textPrice);
-            TextView comment = (TextView) findViewById(R.id.textComment);
+            TextView city = findViewById(R.id.textCity);
+            TextView street = findViewById(R.id.textStreet);
+            TextView house = findViewById(R.id.textHouse);
+            TextView level = findViewById(R.id.textLevel);
+            TextView flat = findViewById(R.id.textFlat);
+            TextView surname = findViewById(R.id.textSurname);
+            TextView name = findViewById(R.id.textName);
+            TextView secondname = findViewById(R.id.textSecondName);
+            TextView phone = findViewById(R.id.textPhone);
+            TextView date = findViewById(R.id.textDate);
+            TextView period = findViewById(R.id.textPeriod);
+            TextView price = findViewById(R.id.textPrice);
+            TextView comment = findViewById(R.id.textComment);
 
-            if(resident.currentCity != "" && resident.currentCity != null){
+            if(!resident.currentCity.equals("")){
                 city.setText(resident.currentCity);
             }
-            if(resident.currentStreet != "" && resident.currentStreet != null){
+            if(!resident.currentStreet.equals("")){
                 street.setText(resident.currentStreet);
             }
-            if(resident.currentHouse != "" && resident.currentHouse != null) {
+            if(!resident.currentHouse.equals("")) {
                 house.setText(resident.currentHouse);
             }
             if(resident.currentLevel != null && resident.currentLevel != 0) {
@@ -56,19 +56,19 @@ public class ResidentInfoActivity extends AppCompatActivity {
                 String flatValue = resident.currentFlat.toString();
                 flat.setText(flatValue);
             }
-            if(resident.currentSurname != "" && resident.currentSurname != null) {
+            if(!resident.currentSurname.equals("")) {
                 surname.setText(resident.currentSurname);
             }
-            if(resident.currentName != "" && resident.currentName != null) {
+            if(!resident.currentName.equals("")) {
                 name.setText(resident.currentName);
             }
-            if(resident.currentSecondname != "" && resident.currentSecondname != null) {
+            if(!resident.currentSecondname.equals("")) {
                 secondname.setText(resident.currentSecondname);
             }
-            if(resident.currentPhone != "" && resident.currentPhone != null) {
+            if(!resident.currentPhone.equals("")) {
                 phone.setText(resident.currentPhone);
             }
-            if(resident.currentDate != "" && resident.currentDate != null) {
+            if(!resident.currentDate.equals("")) {
                 date.setText(resident.currentDate);
             }
             if(resident.currentPeriod != null && resident.currentPeriod != 0) {
@@ -79,7 +79,7 @@ public class ResidentInfoActivity extends AppCompatActivity {
                 String priceValue = resident.currentPrice.toString();
                 price.setText(priceValue);
             }
-            if(resident.currentComment != "" && resident.currentComment != null) {
+            if(!resident.currentComment.equals("")) {
                 comment.setText(resident.currentComment);
             }
         }

@@ -1,34 +1,25 @@
 package space.onepantsu.oneresident.residents;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
-import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
@@ -45,6 +36,8 @@ import space.onepantsu.oneresident.service.AlarmReceiver;
 public class AddActivity extends AppCompatActivity {
 
     private boolean isDataError;
+
+    private boolean isDebt = false;
 
     private EditText addCity;
     private EditText addStreet;
@@ -80,19 +73,19 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        addCity = (EditText) findViewById(R.id.editTextAddCity);
-        addStreet = (EditText) findViewById(R.id.editTextAddStreet);
-        addHouse = (EditText) findViewById(R.id.editTextAddHouse);
-        addLevel = (EditText) findViewById(R.id.editTextAddLevel);
-        addFlat = (EditText) findViewById(R.id.editTextAddFlat);
-        addSurname = (EditText) findViewById(R.id.editTextAddSurname);
-        addName = (EditText) findViewById(R.id.editTextAddName);
-        addSecondName = (EditText) findViewById(R.id.editTextAddSecondName);
-        addPhone = (EditText) findViewById(R.id.editTextAddPhone);
-        addDate = (EditText) findViewById(R.id.editTextAddDate);
-        addPeriod =(EditText) findViewById(R.id.editTextAddPeriod);
-        addPrice = (EditText) findViewById(R.id.editTextAddPrice);
-        addComment = (EditText) findViewById(R.id.editTextAddComment);
+        addCity = findViewById(R.id.editTextAddCity);
+        addStreet = findViewById(R.id.editTextAddStreet);
+        addHouse = findViewById(R.id.editTextAddHouse);
+        addLevel = findViewById(R.id.editTextAddLevel);
+        addFlat = findViewById(R.id.editTextAddFlat);
+        addSurname = findViewById(R.id.editTextAddSurname);
+        addName = findViewById(R.id.editTextAddName);
+        addSecondName = findViewById(R.id.editTextAddSecondName);
+        addPhone = findViewById(R.id.editTextAddPhone);
+        addDate = findViewById(R.id.editTextAddDate);
+        addPeriod = findViewById(R.id.editTextAddPeriod);
+        addPrice = findViewById(R.id.editTextAddPrice);
+        addComment = findViewById(R.id.editTextAddComment);
 
     }
 
@@ -174,7 +167,6 @@ public class AddActivity extends AppCompatActivity {
                             phone = addPhone.getText().toString();
                         }
                         catch (Exception ignored){}
-                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
                         try{
                             String stringDate = addDate.getText().toString();
                             if(stringDate.equals("")){
@@ -257,13 +249,15 @@ public class AddActivity extends AppCompatActivity {
             if(calendar.compareTo(current) <= 0){
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 calendar.roll(Calendar.SECOND, 10);
+                isDebt = true;
             }
 
-            startAlarm("One::Resident", "Test notification", calendar.getTimeInMillis());
+            startAlarm(calendar.getTimeInMillis());
         }
     }
 
-    private void startAlarm(String title, String text, long startTime){
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private void startAlarm(long startTime){
 
         Log.i("ALARM", "Start Alarm");
         AlarmManager alarmManager;
@@ -273,8 +267,7 @@ public class AddActivity extends AppCompatActivity {
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-        intent.putExtra("title", title);
-        intent.putExtra("text", text);
+        intent.putExtra("text", "Узнайте, кто должен внести оплату!");
         alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
@@ -287,8 +280,15 @@ public class AddActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(PaymentDB.PaymentTable._ID, id);
         values.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
-        values.put(PaymentDB.PaymentTable.DEBT, 0);
-        long newRowId = db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
+
+        if (isDebt){
+            values.put(PaymentDB.PaymentTable.DEBT, 1);
+        }
+        else {
+            values.put(PaymentDB.PaymentTable.DEBT, 0);
+        }
+
+        db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
 
     }
 
@@ -361,8 +361,7 @@ public class AddActivity extends AppCompatActivity {
                         }
                         catch (Exception ignored){}
                         try{
-                            String stringDate = addDate.getText().toString();
-                                date = stringDate;
+                            date = addDate.getText().toString();
                                 try{
                                     period = Integer.parseInt(addPeriod.getText().toString());
                                 }
