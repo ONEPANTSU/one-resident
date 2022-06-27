@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,9 @@ import space.onepantsu.oneresident.residents.database.DataBase;
 public class DebtSearcher {
 
     private final Context context;
+
+    private Calendar newAlarm;
+    public boolean wasIncreased = false;
 
     public DebtSearcher(Context context){
         this.context = context;
@@ -69,7 +73,7 @@ public class DebtSearcher {
             if(currentCalendar.get(Calendar.YEAR) == paymentDay.get(Calendar.YEAR) &&
                 currentCalendar.get(Calendar.MONTH) == paymentDay.get(Calendar.MONTH) &&
                 currentCalendar.get(Calendar.DAY_OF_YEAR) == paymentDay.get(Calendar.DAY_OF_YEAR)){
-
+                wasIncreased = true;
                 return increaseDebt(paymentInfo);
             }
             else if (afterPayment.after(previousDay) &&
@@ -145,12 +149,20 @@ public class DebtSearcher {
             paymentDay.setTime(Objects.requireNonNull(format.parse(residentsDate)));
 
             Calendar previousDay = paymentDay;
-            paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
+
+            if(residentsPeriod < 30 || residentsPeriod > 31){
+                paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
+            }
+            else{
+                paymentDay.roll(Calendar.MONTH, 1);
+            }
 
             if(previousDay.get(Calendar.MONTH) == Calendar.DECEMBER &&
                     paymentDay.get(Calendar.MONTH) == Calendar.JANUARY){
                 paymentDay.roll(Calendar.YEAR, 1);
             }
+
+            newAlarm = paymentDay;
 
             String newDate = dateParsing(paymentDay);
 
@@ -160,6 +172,11 @@ public class DebtSearcher {
             db.update(DataBase.ResidentsTable.TABLE_NAME, newValues, where, null);
 
         }
+    }
+
+
+    public Calendar getNewAlarm(){
+        return newAlarm;
     }
 
     private String dateParsing(Calendar date){

@@ -37,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
 
     private boolean isDataError;
 
-    private boolean isDebt = true;
+    private boolean isDebt = false;
 
     private EditText addCity;
     private EditText addStreet;
@@ -236,7 +236,6 @@ public class AddActivity extends AppCompatActivity {
         }
 
         if(!isDataError){
-            addToDB();
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month - 1);
@@ -253,6 +252,9 @@ public class AddActivity extends AppCompatActivity {
             }
 
             startAlarm(calendar.getTimeInMillis());
+
+
+            addToDB();
         }
     }
 

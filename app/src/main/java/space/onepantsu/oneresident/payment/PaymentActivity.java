@@ -5,11 +5,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Calendar;
 
 import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
@@ -30,6 +35,7 @@ import space.onepantsu.oneresident.residents.ChangeResidentActivity;
 import space.onepantsu.oneresident.residents.ResidentActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
+import space.onepantsu.oneresident.service.AlarmReceiver;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -96,7 +102,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         DebtSearcher debtSearcher = new DebtSearcher(this);
         paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
-
+        if(debtSearcher.wasIncreased){
+            Calendar newAlarm = debtSearcher.getNewAlarm();
+            startNewAlarm(newAlarm.getTimeInMillis());
+        }
 
         String paymentTextBuilder = getResidentInfo(paymentInfo.currentID) + "\nSTATUS:\t" +
                 paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
@@ -270,7 +279,12 @@ public class PaymentActivity extends AppCompatActivity {
         PaymentDBMS dbms = new PaymentDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-
+        DebtSearcher debtSearcher = new DebtSearcher(this);
+        try {
+            debtSearcher.changeDate(paymentInfo);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
                 " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
@@ -290,6 +304,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             try {
                 db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
+
                 Toast.makeText(this, "Оплата успешно произведена", Toast.LENGTH_SHORT).show();
                 finish();
                 overridePendingTransition(0, 0);
@@ -304,6 +319,26 @@ public class PaymentActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private void startNewAlarm(long startTime){
+
+        Log.i("ALARM", "Start Alarm");
+        AlarmManager alarmManager;
+
+        PendingIntent alarmIntent;
+
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        intent.putExtra("text", "Узнайте, кто должен внести оплату!");
+        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
+    }
+
 
     public void goBack(View view){
         Intent intent = new Intent(this, MainActivity.class);

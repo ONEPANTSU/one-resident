@@ -5,20 +5,29 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.payment.PaymentActivity;
+import space.onepantsu.oneresident.payment.database.PaymentDB;
+import space.onepantsu.oneresident.payment.database.PaymentDBMS;
+import space.onepantsu.oneresident.payment.database.PaymentStatus;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
@@ -26,6 +35,7 @@ import space.onepantsu.oneresident.dialogframe.BackButtonFromChange;
 import space.onepantsu.oneresident.dialogframe.ChangeResidentButton;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
+import space.onepantsu.oneresident.service.AlarmReceiver;
 
 public class ChangeResidentActivity extends AppCompatActivity {
     boolean isDataError = false;
@@ -156,6 +166,9 @@ public class ChangeResidentActivity extends AppCompatActivity {
         DBMS dbms = new DBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues newValues = new ContentValues();
+
+        int day, month, year;
+
         try {
             String stringDate = date.getText().toString();
 
@@ -185,10 +198,11 @@ public class ChangeResidentActivity extends AppCompatActivity {
             }
             else{
                     try {
-                        int day, month;
                         System.out.println(stringDate.charAt(0) * 10);
                         day = stringDate.charAt(0) * 10 + stringDate.charAt(1) - 528;
                         month = stringDate.charAt(3)* 10 + stringDate.charAt(4) - 528;
+                        year = (int) stringDate.charAt(6) * 1000 + (int) stringDate.charAt(7) * 100
+                                + (int) stringDate.charAt(8) * 10 + (int) stringDate.charAt(9) - 53328;
                         if (day > 31 || day < 1 || month > 12 || month < 1) {
                             throw new Exception();
                         }
@@ -227,6 +241,16 @@ public class ChangeResidentActivity extends AppCompatActivity {
 
             try {
                 db.update(DataBase.ResidentsTable.TABLE_NAME, newValues, where, null);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month - 1);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                calendar.set(Calendar.HOUR_OF_DAY, 12);
+                calendar.set(Calendar.MINUTE, 0);
+
+                startNewAlarm(calendar.getTimeInMillis());
+
                 Toast.makeText(this, "Арендатор успешно изменён", Toast.LENGTH_SHORT).show();
                 back();
             } catch (Exception e) {
@@ -263,6 +287,56 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 !Objects.equals(previosValues.get("secondname"), secondname.getText().toString()) ||
                 !Objects.equals(previosValues.get("house"), house.getText().toString()) ||
                 !Objects.equals(previosValues.get("street"), street.getText().toString());
+    }
+
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private void startNewAlarm(long startTime) {
+        PaymentDBMS dbms = new PaymentDBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+        String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
+                " WHERE " + PaymentDB.PaymentTable._ID + " = " + resident.currentID;
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToNext()) {
+            @SuppressLint("Range") int debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(startTime);
+
+            Calendar current = Calendar.getInstance();
+            current.setTimeInMillis(System.currentTimeMillis());
+
+            if (calendar.compareTo(current) <= 0) {
+                newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
+                debt++;
+                newValues.put(PaymentDB.PaymentTable.DEBT, debt);
+
+                String where = PaymentDB.PaymentTable._ID + "=" + resident.currentID;
+
+                try {
+                    db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
+                } catch (Exception e) {
+                    InfoButton dialogButton = new InfoButton();
+                    DialogFrame warning = new DialogFrame("Ошибка при изменении даты", "", dialogButton);
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    warning.show(transaction, "dialog");
+                }
+            }
+        }
+        Log.i("ALARM", "Start Alarm");
+        AlarmManager alarmManager;
+
+        PendingIntent alarmIntent;
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        intent.putExtra("text", "Узнайте, кто должен внести оплату!");
+        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) startTime, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
     }
 
     public void goBack(View view){
