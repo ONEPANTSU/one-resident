@@ -11,7 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +26,7 @@ import space.onepantsu.oneresident.dialogframe.InfoButton;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
+import space.onepantsu.oneresident.residents.ChangeResidentActivity;
 import space.onepantsu.oneresident.residents.ResidentActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
@@ -87,7 +88,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
     private void addPaymentView(PaymentInfo paymentInfo) throws ParseException {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
@@ -101,13 +102,90 @@ public class PaymentActivity extends AppCompatActivity {
                 paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
         paymentText.setText(paymentTextBuilder);
 
-        Button paidButton = view.findViewById(R.id.paidButton);
+        ImageButton paidButton = view.findViewById(R.id.paidButton);
         paidButton.setOnClickListener(v -> wasPaid(paymentInfo));
-        if(paymentInfo.currentDebt == 0){
+        if(paymentInfo.currentDebt == 0) {
             paidButton.setClickable(false);
+            // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ УЖЕ ОПЛАЧЕНО)
+            paidButton.setImageDrawable(getDrawable(R.drawable.house_block));
+        }
+        else{
+            // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ НАДО ОПЛАТИТЬ)
+            paidButton.setImageDrawable(getDrawable(R.drawable.house_block));
         }
 
+
+        ImageButton changeDateButton = view.findViewById(R.id.changeDateButton);
+        changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
+
         linear.addView(view);
+    }
+
+    private void changeDate(PaymentInfo paymentInfo){
+        ResidentActivity.ResidentInfo resident = new ResidentActivity.ResidentInfo();
+
+        DBMS residentDBMS = new DBMS(this);
+        SQLiteDatabase db = residentDBMS.getWritableDatabase();
+        String[] projection = {
+                DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_CITY,
+                DataBase.ResidentsTable.COLUMN_STREET, DataBase.ResidentsTable.COLUMN_HOUSE,
+                DataBase.ResidentsTable.COLUMN_LEVEL, DataBase.ResidentsTable.COLUMN_FLAT,
+                DataBase.ResidentsTable.COLUMN_SURNAME, DataBase.ResidentsTable.COLUMN_NAME,
+                DataBase.ResidentsTable.COLUMN_SECONDNAME, DataBase.ResidentsTable.COLUMN_PHONE,
+                DataBase.ResidentsTable.COLUMN_DATE, DataBase.ResidentsTable.COLUMN_PERIOD,
+                DataBase.ResidentsTable.COLUMN_PRICE, DataBase.ResidentsTable.COLUMN_COMMENT};
+
+        @SuppressLint("Recycle") Cursor cursor = db.query(
+                DataBase.ResidentsTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
+                new String[] {String.valueOf(paymentInfo.currentID)},                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+
+        int idColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable._ID);
+        int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
+        int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
+        int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
+        int levelColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_LEVEL);
+        int flatColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_FLAT);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int secondnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SECONDNAME);
+        int phoneColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PHONE);
+        int dateColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_DATE);
+        int periodColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PERIOD);
+        int priceColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PRICE);
+        int commentColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_COMMENT);
+
+        while (cursor.moveToNext()) {
+            try {
+                resident.currentID = cursor.getInt(idColumnIndex);
+                resident.currentCity = cursor.getString(cityColumnIndex);
+                resident.currentStreet = cursor.getString(streetColumnIndex);
+                resident.currentHouse = cursor.getString(houseColumnIndex);
+                resident.currentLevel = cursor.getInt(levelColumnIndex);
+                resident.currentFlat = cursor.getInt(flatColumnIndex);
+                resident.currentSurname = cursor.getString(surnameColumnIndex);
+                resident.currentName = cursor.getString(nameColumnIndex);
+                resident.currentSecondname = cursor.getString(secondnameColumnIndex);
+                resident.currentPhone = cursor.getString(phoneColumnIndex);
+                resident.currentDate = cursor.getString(dateColumnIndex);
+                resident.currentPeriod = cursor.getInt(periodColumnIndex);
+                resident.currentPrice = cursor.getInt(priceColumnIndex);
+                resident.currentComment = cursor.getString(commentColumnIndex);
+
+            }
+            catch (Exception e){
+                System.out.println("Ошибка при чтении строки");
+            }
+        }
+        Intent intent = new Intent(PaymentActivity.this, ChangeResidentActivity.class);
+        intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), resident);
+        intent.putExtra("FROM", "PaymentActivity");
+        startActivity(intent);
+        closeActivity();
     }
 
     private String getResidentInfo(int id){
@@ -187,7 +265,6 @@ public class PaymentActivity extends AppCompatActivity {
         }
         return "";
     }
-
 
     public void wasPaid(PaymentInfo paymentInfo){
         PaymentDBMS dbms = new PaymentDBMS(this);

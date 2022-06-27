@@ -37,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
 
     private boolean isDataError;
 
-    private boolean isDebt = false;
+    private boolean isDebt = true;
 
     private EditText addCity;
     private EditText addStreet;

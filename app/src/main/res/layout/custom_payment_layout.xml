@@ -15,13 +15,23 @@
             android:text="Some text"
             android:textAlignment="textStart"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/paidButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
             android:text="+"
             tools:ignore="MissingConstraints" />
+
+
+        <ImageButton
+            android:id="@+id/changeDateButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="270dp"
+            android:text="+"
+            tools:ignore="MissingConstraints" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

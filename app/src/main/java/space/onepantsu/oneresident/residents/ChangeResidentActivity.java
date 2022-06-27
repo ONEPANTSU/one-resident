@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.payment.PaymentActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
 import space.onepantsu.oneresident.dialogframe.AcceptButton;
@@ -279,7 +280,13 @@ public class ChangeResidentActivity extends AppCompatActivity {
     }
 
     public void back(){
-        Intent intent = new Intent(this, ResidentActivity.class);
+        Intent intent;
+        if( getIntent().getExtras().getSerializable("FROM").equals("PaymentActivity")){
+            intent = new Intent(this, PaymentActivity.class);
+        }
+        else{
+            intent = new Intent(this, ResidentInfoActivity.class);
+        }
         startActivity(intent);
         closeActivity();
     }

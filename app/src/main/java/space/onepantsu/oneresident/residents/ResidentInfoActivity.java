@@ -90,6 +90,7 @@ public class ResidentInfoActivity extends AppCompatActivity {
     public void changeResident(View view){
         Intent intent = new Intent(ResidentInfoActivity.this, ChangeResidentActivity.class);
         intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), resident);
+        intent.putExtra("FROM", "ResidentActivity");
         startActivity(intent);
         closeActivity();
     }
