@@ -296,7 +296,7 @@ public class AddActivity extends AppCompatActivity {
         db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
     }
 
-    private void addToHistoryDB(int id){
+    private void addToHistoryDB(int id, String name, String surname){
         HistoryDBMS dbms = new HistoryDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -321,6 +321,8 @@ public class AddActivity extends AppCompatActivity {
 
         values.put(HistoryDB.HistoryTable.DATE, date);
         values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+        values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+        values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
         values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.ADDED_RESIDENT));
 
         db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
@@ -357,10 +359,12 @@ public class AddActivity extends AppCompatActivity {
             Cursor cursor = db.rawQuery(selectQuery, null);
             cursor.moveToLast();
             @SuppressLint("Range") int residentID = cursor.getInt(cursor.getColumnIndex(DataBase.ResidentsTable._ID));
+            @SuppressLint("Range") String residentName = cursor.getString(cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME));
+            @SuppressLint("Range") String residentSurname = cursor.getString(cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME));
             cursor.close();
             addToPaymentDB(residentID);
 
-            addToHistoryDB(residentID);
+            addToHistoryDB(residentID, residentName, residentSurname);
 
             back();
         }

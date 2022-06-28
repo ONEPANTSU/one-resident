@@ -38,6 +38,8 @@ public class HistoryActivity extends AppCompatActivity {
     public static class HistoryInfo implements Serializable {
         public int currentID;
         public String currentDate;
+        public String currentResidentName;
+        public String currentResidentSurname;
         public int currentResidentID;
         public HistoryType currentType;
     }
@@ -48,7 +50,8 @@ public class HistoryActivity extends AppCompatActivity {
         SQLiteDatabase db = dbms.getReadableDatabase();
 
         String[] projection = { HistoryDB.HistoryTable._ID, HistoryDB.HistoryTable.DATE,
-                                HistoryDB.HistoryTable.RESIDENT_ID, HistoryDB.HistoryTable.TYPE };
+                                HistoryDB.HistoryTable.RESIDENT_ID, HistoryDB.HistoryTable.RESIDENT_NAME,
+                                HistoryDB.HistoryTable.RESIDENT_SURNAME, HistoryDB.HistoryTable.TYPE };
 
         @SuppressLint("Recycle") Cursor cursor = db.query(
                 HistoryDB.HistoryTable.TABLE_NAME,   // таблица
@@ -62,6 +65,8 @@ public class HistoryActivity extends AppCompatActivity {
         int idColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable._ID);
         int dataColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.DATE);
         int residentIDColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_ID);
+        int residentNameColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_NAME);
+        int residentSurnameColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_SURNAME);
         int typeColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.TYPE);
 
         while (cursor.moveToNext()) {
@@ -70,6 +75,8 @@ public class HistoryActivity extends AppCompatActivity {
 
                 historyInfo.currentID = cursor.getInt(idColumnIndex);
                 historyInfo.currentDate = cursor.getString(dataColumnIndex);
+                historyInfo.currentResidentName = cursor.getString(residentNameColumnIndex);
+                historyInfo.currentResidentSurname = cursor.getString(residentSurnameColumnIndex);
                 historyInfo.currentResidentID = cursor.getInt(residentIDColumnIndex);
                 historyInfo.currentType = HistoryType.valueOf(cursor.getString(typeColumnIndex));
 
@@ -100,19 +107,19 @@ public class HistoryActivity extends AppCompatActivity {
 
         String type = "";
 
-        ResidentActivity.ResidentInfo residentInfo = getResidentInfoByID(historyInfo.currentResidentID);
+        //ResidentActivity.ResidentInfo residentInfo = getResidentInfoByID(historyInfo.currentResidentID);
 
         switch (historyInfo.currentType.toString()){
             case "INCREASED_DEBT": type = "Арендатору необходимо внести оплату"; break;
             case "WAS_PAID": type = "Арендатор внес оплата"; break;
-            case "CHANGED_DATE": type = "Перенос даты оплаты арендатора на " + residentInfo.currentDate; break;
+            //case "CHANGED_DATE": type = "Перенос даты оплаты арендатора на " + residentInfo.currentDate; break;
             case "DELETED_RESIDENT": type = "Арендатор был удалён"; break;
             case "ADDED_RESIDENT": type = "Арендатор был дабвлен"; break;
             default: break;
         }
 
-        return historyInfo.currentDate + "\t" + residentInfo.currentSurname + " "
-                + residentInfo.currentName + "\n" + type;
+        return historyInfo.currentDate + "\t" + historyInfo.currentResidentSurname + " "
+                + historyInfo.currentResidentName + "\n" + type;
     }
 
     private ResidentActivity.ResidentInfo getResidentInfoByID(int id){

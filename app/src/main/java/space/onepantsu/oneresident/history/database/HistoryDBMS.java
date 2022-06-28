@@ -40,6 +40,8 @@ public class HistoryDBMS extends SQLiteOpenHelper {
                 + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + HistoryDB.HistoryTable.DATE + " DATE NOT NULL, "
                 + HistoryDB.HistoryTable.RESIDENT_ID + " INTEGER NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_NAME + " TEXT NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_SURNAME + " TEXT NOT NULL, "
                 + HistoryDB.HistoryTable.TYPE + " TEXT NOT NULL) ";
 
         // Запускаем создание таблицы
