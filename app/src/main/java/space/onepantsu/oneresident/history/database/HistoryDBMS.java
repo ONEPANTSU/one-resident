@@ -40,7 +40,7 @@ public class HistoryDBMS extends SQLiteOpenHelper {
                 + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY, "
                 + HistoryDB.HistoryTable.DATA+ " DATE NOT NULL, "
                 + HistoryDB.HistoryTable.RESIDENT_ID + " INTEGER NOT NULL, "
-                + HistoryDB.HistoryTable.TYPE + " INTEGER NOT NULL) ";
+                + HistoryDB.HistoryTable.TYPE + " TEXT NOT NULL) ";
 
         // Запускаем создание таблицы
         db.execSQL(SQL_CREATE_HISTORY_TABLE);

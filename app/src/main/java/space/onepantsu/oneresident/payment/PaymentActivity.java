@@ -39,6 +39,8 @@ import space.onepantsu.oneresident.service.AlarmReceiver;
 
 public class PaymentActivity extends AppCompatActivity {
 
+    LinearLayout linear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,6 @@ public class PaymentActivity extends AppCompatActivity {
         linear = findViewById(R.id.residentLinear);
         checkPayment();
     }
-
-    LinearLayout linear;
 
     PaymentDBMS dbms = new PaymentDBMS(this);
 
@@ -338,7 +338,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
     }
-
 
     public void goBack(View view){
         Intent intent = new Intent(this, MainActivity.class);
