@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".residents.ChangeResidentActivity">
+
+    <RelativeLayout
+        android:layout_height="75dp"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backButtonFromResidentActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/arrow2" />
+
+
+
+        <ImageButton
+            android:id="@+id/buttonAdd"
+            android:onClick="acceptChanges"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#fafafa"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/save"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewMakeChanges"
+                style="@style/header_section_changeRS"
+                android:text="Внесите изменения" />
+            <!-- CITY-->
+            <TextView
+                android:id="@+id/textViewCity"
+                style="@style/text_headerField_changeRS"
+                android:text="Город" />
+
+            <EditText
+                android:id="@+id/textCity"
+                style="@style/text_field_changeRS"
+                android:hint="Город"
+                android:inputType="textPersonName" />
+            <!-- STREET-->
+            <TextView
+                android:id="@+id/textViewStreet"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/street" />
+
+            <EditText
+                android:id="@+id/textStreet"
+                style="@style/text_field_changeRS"
+                android:hint="Улица"
+                android:inputType="textPersonName" />
+            <!-- HOUSE-->
+            <TextView
+                android:id="@+id/textViewHouse"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/house" />
+
+            <EditText
+                android:id="@+id/textHouse"
+                style="@style/text_field_changeRS"
+                android:hint="Дом"
+                android:inputType="textPersonName" />
+            <!-- LEVEL-->
+            <TextView
+                android:id="@+id/textViewLevel"
+                style="@style/text_headerField_changeRS"
+                android:text="Этаж" />
+
+            <EditText
+                android:id="@+id/textLevel"
+                style="@style/text_field_changeRS"
+                android:hint="Этаж"
+                android:inputType="number" />
+            <!-- FLAT-->
+            <TextView
+                android:id="@+id/textViewFlat"
+                style="@style/text_headerField_changeRS"
+                android:text="Квартира" />
+
+            <EditText
+                android:id="@+id/textFlat"
+                style="@style/text_field_changeRS"
+                android:hint="Квартира"
+                android:inputType="number" />
+
+            <!-- SURNAME-->
+            <TextView
+                android:id="@+id/textViewSurname"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/surname" />
+
+            <EditText
+                android:id="@+id/textSurname"
+                style="@style/text_field_changeRS"
+                android:hint="*Фамилия"
+                android:inputType="textPersonName" />
+            <!-- NAME-->
+            <TextView
+                android:id="@+id/textViewName"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/textName"
+                style="@style/text_field_changeRS"
+                android:hint="*Имя"
+                android:inputType="textPersonName" />
+            <!-- SECONDNAME-->
+            <TextView
+                android:id="@+id/textViewSecondName"
+                style="@style/text_headerField_changeRS"
+                android:text="Отчество" />
+
+            <EditText
+                android:id="@+id/textSecondName"
+                style="@style/text_field_changeRS"
+                android:hint="Отчество"
+                android:inputType="textPersonName" />
+            <!-- PHONE-->
+            <TextView
+                android:id="@+id/textViewPhone"
+                style="@style/text_headerField_changeRS"
+                android:text="Номер телефона" />
+
+            <EditText
+                android:id="@+id/textPhone"
+                style="@style/text_field_changeRS"
+                android:hint="Номер телефона"
+                android:inputType="phone" />
+            <!-- DATE-->
+            <TextView
+                android:id="@+id/textViewDate"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/date" />
+
+            <EditText
+                android:id="@+id/textDate"
+                style="@style/text_field_changeRS"
+                android:hint="*Дата начала аренды (дд.мм.гггг)"
+                android:inputType="date" />
+            <!-- PERIOD-->
+            <TextView
+                android:id="@+id/textViewPeriod"
+                style="@style/text_headerField_changeRS"
+                android:text="Период внесения арендной платы" />
+
+            <EditText
+                android:id="@+id/textPeriod"
+                style="@style/text_field_changeRS"
+                android:hint="Период внесения арендной платы"
+                android:inputType="number" />
+            <!-- PRICE-->
+            <TextView
+                android:id="@+id/textViewPrice"
+                style="@style/text_headerField_changeRS"
+                android:text="@string/cost" />
+
+            <EditText
+                android:id="@+id/textPrice"
+                style="@style/text_field_changeRS"
+                android:hint="*Стоимость арендной платы"
+                android:inputType="number" />
+            <!-- COMMENT-->
+            <TextView
+                android:id="@+id/textViewComment"
+                style="@style/text_headerField_changeRS"
+                android:text="Комментарий" />
+
+            <EditText
+                android:id="@+id/textComment"
+                style="@style/text_field_changeRS"
+                android:layout_marginBottom="25dp"
+                android:hint="Комментарий"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
