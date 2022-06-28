@@ -220,6 +220,38 @@ public class ResidentActivity extends AppCompatActivity {
         }
     }
 
+    public void deleteToHistoryDB(int id, String name, String surname){
+        HistoryDBMS dbms = new HistoryDBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        String month;
+        if(calendar.get(Calendar.MONTH) + 1 < 10) {
+            month = "0" + (calendar.get(Calendar.MONTH) + 1);
+        }
+        else{
+            month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        }
+        String day;
+        if(calendar.get(Calendar.DATE) < 10) {
+            day = "0" + calendar.get(Calendar.DATE);
+        }
+        else {
+            day = String.valueOf(calendar.get(Calendar.DATE));
+        }
+        String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+        values.put(HistoryDB.HistoryTable.DATE, date);
+        values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+        values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+        values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+        values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.DELETED_RESIDENT));
+
+        db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
+    }
+
     public void onAddActivity(View view){
         Intent intent = new Intent(this, AddActivity.class);
         startActivity(intent);

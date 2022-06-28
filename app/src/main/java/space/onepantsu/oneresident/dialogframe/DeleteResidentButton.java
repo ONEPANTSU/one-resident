@@ -20,6 +20,7 @@ public class DeleteResidentButton extends AcceptButton{
     @Override
     public void funcOnClick() {
         super.funcOnClick();
+        activity.deleteToHistoryDB(resident.currentID, resident.currentName, resident.currentSurname);
         activity.deleteResident(view, resident);
     }
 }
