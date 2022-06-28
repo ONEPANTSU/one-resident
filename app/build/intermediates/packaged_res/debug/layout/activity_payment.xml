@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".payment.PaymentActivity">
+
+    <LinearLayout
+        android:layout_height="80dp"
+        android:layout_width="70dp"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/backButtonFromResidentActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_weight="1"
+            android:background="#fafafa"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/arrow2"
+            />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/residentLinear"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
