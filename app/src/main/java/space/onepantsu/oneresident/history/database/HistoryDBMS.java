@@ -1,17 +1,20 @@
-package space.onepantsu.oneresident.payment.database;
+package space.onepantsu.oneresident.history.database;
 
-import static space.onepantsu.oneresident.payment.database.PaymentDB.PaymentTable.TABLE_NAME;
+import static space.onepantsu.oneresident.history.database.HistoryDB.HistoryTable.TABLE_NAME;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class PaymentDBMS extends SQLiteOpenHelper {
+import space.onepantsu.oneresident.payment.database.PaymentDB;
+
+public class HistoryDBMS extends SQLiteOpenHelper {
 
     /**
      * Имя файла базы данных
      */
-    private static final String DATABASE_NAME = "payment.db";
+    private static final String DATABASE_NAME = "history.db";
 
     /**
      * Версия базы данных. При изменении схемы увеличить на единицу
@@ -23,7 +26,7 @@ public class PaymentDBMS extends SQLiteOpenHelper {
      *
      * @param context Контекст приложения
      */
-    public PaymentDBMS(Context context) {
+    public HistoryDBMS(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -33,13 +36,14 @@ public class PaymentDBMS extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Строка для создания таблицы
-        String SQL_CREATE_PAYMENT_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
-                + PaymentDB.PaymentTable._ID + " INTEGER PRIMARY KEY, "
-                + PaymentDB.PaymentTable.STATUS + " INTEGER NOT NULL, "
-                + PaymentDB.PaymentTable.DEBT + " INTEGER NOT NULL) ";
+        String SQL_CREATE_HISTORY_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
+                + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY, "
+                + HistoryDB.HistoryTable.DATA+ " DATE NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_ID + " INTEGER NOT NULL, "
+                + HistoryDB.HistoryTable.TYPE + " INTEGER NOT NULL) ";
 
         // Запускаем создание таблицы
-        db.execSQL(SQL_CREATE_PAYMENT_TABLE);
+        db.execSQL(SQL_CREATE_HISTORY_TABLE);
     }
 
     /**
@@ -56,4 +60,3 @@ public class PaymentDBMS extends SQLiteOpenHelper {
         onCreate(db);
     }
 }
-
