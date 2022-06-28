@@ -28,6 +28,9 @@ import space.onepantsu.oneresident.MainActivity;
 import space.onepantsu.oneresident.R;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
+import space.onepantsu.oneresident.history.database.HistoryDB;
+import space.onepantsu.oneresident.history.database.HistoryDBMS;
+import space.onepantsu.oneresident.history.database.HistoryType;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
@@ -103,6 +106,7 @@ public class PaymentActivity extends AppCompatActivity {
         DebtSearcher debtSearcher = new DebtSearcher(this);
         paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
         if(debtSearcher.wasIncreased){
+            debtToHistoryDB(paymentInfo.currentID);
             Calendar newAlarm = debtSearcher.getNewAlarm();
             startNewAlarm(newAlarm.getTimeInMillis());
         }
@@ -305,6 +309,8 @@ public class PaymentActivity extends AppCompatActivity {
             try {
                 db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
 
+                payToHistoryDB(paymentInfo.currentID);
+
                 Toast.makeText(this, "Оплата успешно произведена", Toast.LENGTH_SHORT).show();
                 finish();
                 overridePendingTransition(0, 0);
@@ -320,7 +326,107 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
+    public void debtToHistoryDB(int id){
 
+        DBMS residentDBMS = new DBMS(this);
+        SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
+                DataBase.ResidentsTable.COLUMN_SURNAME};
+        @SuppressLint("Recycle") Cursor cursor = residentDB.query(
+                DataBase.ResidentsTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
+                new String[] {String.valueOf(id)},                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        if(cursor.moveToNext()) {
+            String name = cursor.getString(nameColumnIndex);
+            String surname = cursor.getString(surnameColumnIndex);
+
+
+            HistoryDBMS dbms = new HistoryDBMS(this);
+            SQLiteDatabase db = dbms.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            String month;
+            if (calendar.get(Calendar.MONTH) + 1 < 10) {
+                month = "0" + (calendar.get(Calendar.MONTH) + 1);
+            } else {
+                month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+            }
+            String day;
+            if (calendar.get(Calendar.DATE) < 10) {
+                day = "0" + calendar.get(Calendar.DATE);
+            } else {
+                day = String.valueOf(calendar.get(Calendar.DATE));
+            }
+            String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+            values.put(HistoryDB.HistoryTable.DATE, date);
+            values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+            values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+            values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.INCREASED_DEBT));
+
+            db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
+        }
+    }
+
+    public void payToHistoryDB(int id){
+
+        DBMS residentDBMS = new DBMS(this);
+        SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
+                DataBase.ResidentsTable.COLUMN_SURNAME};
+        @SuppressLint("Recycle") Cursor cursor = residentDB.query(
+                DataBase.ResidentsTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
+                new String[] {String.valueOf(id)},                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        if(cursor.moveToNext()) {
+            String name = cursor.getString(nameColumnIndex);
+            String surname = cursor.getString(surnameColumnIndex);
+
+
+            HistoryDBMS dbms = new HistoryDBMS(this);
+            SQLiteDatabase db = dbms.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            String month;
+            if (calendar.get(Calendar.MONTH) + 1 < 10) {
+                month = "0" + (calendar.get(Calendar.MONTH) + 1);
+            } else {
+                month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+            }
+            String day;
+            if (calendar.get(Calendar.DATE) < 10) {
+                day = "0" + calendar.get(Calendar.DATE);
+            } else {
+                day = String.valueOf(calendar.get(Calendar.DATE));
+            }
+            String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+            values.put(HistoryDB.HistoryTable.DATE, date);
+            values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+            values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+            values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.WAS_PAID));
+
+            db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
+        }
+    }
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private void startNewAlarm(long startTime){

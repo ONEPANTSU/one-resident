@@ -366,9 +366,65 @@ public class AddActivity extends AppCompatActivity {
 
             addToHistoryDB(residentID, residentName, residentSurname);
 
+            if(isDebt){
+                debtToHistoryDB(residentID);
+            }
+
             back();
         }
 
+    }
+
+
+    public void debtToHistoryDB(int id){
+
+        DBMS residentDBMS = new DBMS(this);
+        SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
+                DataBase.ResidentsTable.COLUMN_SURNAME};
+        @SuppressLint("Recycle") Cursor cursor = residentDB.query(
+                DataBase.ResidentsTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
+                new String[] {String.valueOf(id)},                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        if(cursor.moveToNext()) {
+            String name = cursor.getString(nameColumnIndex);
+            String surname = cursor.getString(surnameColumnIndex);
+
+
+            HistoryDBMS dbms = new HistoryDBMS(this);
+            SQLiteDatabase db = dbms.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            String month;
+            if (calendar.get(Calendar.MONTH) + 1 < 10) {
+                month = "0" + (calendar.get(Calendar.MONTH) + 1);
+            } else {
+                month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+            }
+            String day;
+            if (calendar.get(Calendar.DATE) < 10) {
+                day = "0" + calendar.get(Calendar.DATE);
+            } else {
+                day = String.valueOf(calendar.get(Calendar.DATE));
+            }
+            String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+            values.put(HistoryDB.HistoryTable.DATE, date);
+            values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+            values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+            values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.INCREASED_DEBT));
+
+            db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
+        }
     }
 
     private boolean allIsNotEmpty(){

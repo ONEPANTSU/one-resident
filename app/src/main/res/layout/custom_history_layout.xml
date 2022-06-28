@@ -14,6 +14,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/historyInfo"
             android:text="Some text"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:textAlignment="textStart"/>
 
     </RelativeLayout>
