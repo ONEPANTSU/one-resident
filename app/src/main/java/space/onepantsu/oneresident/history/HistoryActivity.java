@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -171,6 +172,16 @@ public class HistoryActivity extends AppCompatActivity {
         }
 
         return residentInfo;
+    }
+
+    public void clearHistory(View view){
+        SQLiteDatabase db = dbms.getReadableDatabase();
+        db.delete(HistoryDB.HistoryTable.TABLE_NAME, null, null);
+        Toast.makeText(this, "История оплаты была очищена", Toast.LENGTH_SHORT).show();
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
     public void goBack(View view){
