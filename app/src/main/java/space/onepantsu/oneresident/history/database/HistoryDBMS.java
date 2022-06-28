@@ -37,8 +37,8 @@ public class HistoryDBMS extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // Строка для создания таблицы
         String SQL_CREATE_HISTORY_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
-                + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY, "
-                + HistoryDB.HistoryTable.DATA+ " DATE NOT NULL, "
+                + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + HistoryDB.HistoryTable.DATE + " DATE NOT NULL, "
                 + HistoryDB.HistoryTable.RESIDENT_ID + " INTEGER NOT NULL, "
                 + HistoryDB.HistoryTable.TYPE + " TEXT NOT NULL) ";
 

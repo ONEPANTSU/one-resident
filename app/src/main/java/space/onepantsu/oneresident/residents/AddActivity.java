@@ -21,6 +21,9 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.history.database.HistoryDB;
+import space.onepantsu.oneresident.history.database.HistoryDBMS;
+import space.onepantsu.oneresident.history.database.HistoryType;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
@@ -291,7 +294,36 @@ public class AddActivity extends AppCompatActivity {
         }
 
         db.insert(PaymentDB.PaymentTable.TABLE_NAME, null, values);
+    }
 
+    private void addToHistoryDB(int id){
+        HistoryDBMS dbms = new HistoryDBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        String month;
+        if(calendar.get(Calendar.MONTH) + 1 < 10) {
+            month = "0" + (calendar.get(Calendar.MONTH) + 1);
+        }
+        else{
+            month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        }
+        String day;
+        if(calendar.get(Calendar.DATE) < 10) {
+            day = "0" + calendar.get(Calendar.DATE);
+        }
+        else {
+            day = String.valueOf(calendar.get(Calendar.DATE));
+        }
+            String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+        values.put(HistoryDB.HistoryTable.DATE, date);
+        values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+        values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.ADDED_RESIDENT));
+
+        db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
     }
 
     public void addToDB(){
@@ -327,6 +359,8 @@ public class AddActivity extends AppCompatActivity {
             @SuppressLint("Range") int residentID = cursor.getInt(cursor.getColumnIndex(DataBase.ResidentsTable._ID));
             cursor.close();
             addToPaymentDB(residentID);
+
+            addToHistoryDB(residentID);
 
             back();
         }

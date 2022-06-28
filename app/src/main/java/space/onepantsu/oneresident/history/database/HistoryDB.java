@@ -11,7 +11,7 @@ public class HistoryDB {
 
         public final static String _ID = BaseColumns._ID;
 
-        public final static String DATA = "data";
+        public final static String DATE = "date";
         public final static String RESIDENT_ID = "residentID";
         public final static String TYPE = "type";
 

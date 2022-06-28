@@ -31,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        linear = findViewById(R.id.residentLinear);
+        linear = findViewById(R.id.historyLinear);
         checkHistory();
     }
 
@@ -47,7 +47,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         SQLiteDatabase db = dbms.getReadableDatabase();
 
-        String[] projection = { HistoryDB.HistoryTable._ID, HistoryDB.HistoryTable.DATA,
+        String[] projection = { HistoryDB.HistoryTable._ID, HistoryDB.HistoryTable.DATE,
                                 HistoryDB.HistoryTable.RESIDENT_ID, HistoryDB.HistoryTable.TYPE };
 
         @SuppressLint("Recycle") Cursor cursor = db.query(
@@ -57,10 +57,10 @@ public class HistoryActivity extends AppCompatActivity {
                 null,                  // значения для условия WHERE
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
-                null);                   // порядок сортировки
+                HistoryDB.HistoryTable._ID + " DESC");                   // порядок сортировки
 
         int idColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable._ID);
-        int dataColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.DATA);
+        int dataColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.DATE);
         int residentIDColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_ID);
         int typeColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.TYPE);
 
@@ -93,7 +93,6 @@ public class HistoryActivity extends AppCompatActivity {
 
         paymentText.setText(paymentTextBuilder);
 
-
         linear.addView(view);
     }
 
@@ -106,14 +105,14 @@ public class HistoryActivity extends AppCompatActivity {
         switch (historyInfo.currentType.toString()){
             case "INCREASED_DEBT": type = "Арендатору необходимо внести оплату"; break;
             case "WAS_PAID": type = "Арендатор внес оплата"; break;
-            case "CHANGED_DATA": type = "Перенос даты оплаты арендатора на " + residentInfo.currentDate; break;
+            case "CHANGED_DATE": type = "Перенос даты оплаты арендатора на " + residentInfo.currentDate; break;
             case "DELETED_RESIDENT": type = "Арендатор был удалён"; break;
             case "ADDED_RESIDENT": type = "Арендатор был дабвлен"; break;
             default: break;
         }
 
         return historyInfo.currentDate + "\t" + residentInfo.currentSurname + " "
-                + residentInfo.currentName + "\n          \t" + type;
+                + residentInfo.currentName + "\n" + type;
     }
 
     private ResidentActivity.ResidentInfo getResidentInfoByID(int id){
