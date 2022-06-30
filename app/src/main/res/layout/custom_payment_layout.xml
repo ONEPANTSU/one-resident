@@ -28,21 +28,31 @@
             android:textSize="15dp"
             tools:ignore="MissingConstraints"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/paidButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/house_mini"
+            android:layout_alignLeft="@id/paymentInfo"
             android:text="+"
             tools:ignore="MissingConstraints" />
 
 
-        <ImageButton
-            android:id="@+id/changeDateButton"
-            android:layout_width="50dp"
+        <Button
+            android:id="@+id/toPayButton"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="270dp"
-            android:text="+"
+
+            android:textColor="#fbf9fa "
+            android:text="Внесена оплата"
+            android:layout_marginRight="10dp"
+            android:layout_alignRight="@id/paymentInfo"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
             tools:ignore="MissingConstraints" />
 
     </RelativeLayout>

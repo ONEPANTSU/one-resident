@@ -12,10 +12,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,7 +100,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
+    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables", "ResourceAsColor"})
     private void addPaymentView(PaymentInfo paymentInfo) throws ParseException {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
@@ -111,25 +114,30 @@ public class PaymentActivity extends AppCompatActivity {
             startNewAlarm(newAlarm.getTimeInMillis());
         }
 
-        String paymentTextBuilder = getResidentInfo(paymentInfo.currentID) + "\nSTATUS:\t" +
-                paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
+        //String paymentTextBuilder = getResidentInfo(paymentInfo.currentID) + "\nSTATUS:\t" +
+                //paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
+        String paymentTextBuilder = getResidentInfo(paymentInfo.currentID);
         paymentText.setText(paymentTextBuilder);
 
-        ImageButton paidButton = view.findViewById(R.id.paidButton);
-        paidButton.setOnClickListener(v -> wasPaid(paymentInfo));
+        //ImageView paidButton = view.findViewById(R.id.paidButton);
+
+        Button toPayButton = view.findViewById(R.id.toPayButton);
+        toPayButton.setOnClickListener(v -> wasPaid(paymentInfo));
         if(paymentInfo.currentDebt == 0) {
-            paidButton.setClickable(false);
+            toPayButton.setClickable(false);
             // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ УЖЕ ОПЛАЧЕНО)
-            paidButton.setImageDrawable(getDrawable(R.drawable.house_block));
+           // paidButton.setImageDrawable(getDrawable(R.drawable.checkbox));
+            toPayButton.setBackground(getDrawable(R.drawable.background_paybutton_payed));
+            toPayButton.setText("Оплачено");
         }
         else{
             // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ НАДО ОПЛАТИТЬ)
-            paidButton.setImageDrawable(getDrawable(R.drawable.house_block));
+            //paidButton.setImageDrawable(getDrawable(R.drawable.checkbox_grey));
+            toPayButton.setBackground(getDrawable(R.drawable.background_paybutton));
+            toPayButton.setText("Оплатить");
+
         }
 
-
-        ImageButton changeDateButton = view.findViewById(R.id.changeDateButton);
-        changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
 
         linear.addView(view);
     }

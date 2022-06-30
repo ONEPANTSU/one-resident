@@ -3,36 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/house_block.xml" value="0.1545" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/house_mini.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_add.xml" value="0.264" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.1" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_history.xml" value="0.152" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_history.xml" value="0.25" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_payment.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.2359375" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_history_layout.xml" value="0.1" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_payment_layout.xml" value="0.536" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_payment_layout.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.32653061224489793" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable-v24/house.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/arrow.xml" value="0.11" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/arrow2.xml" value="0.1885" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/background_paybutton.xml" value="0.1275" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/background_paybutton_payed.xml" value="0.1275" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/border_bottom_text.xml" value="0.1825" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/border_text.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/boreder_text.xml" value="0.1365" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/checkbox.xml" value="0.1345" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/checkbox_grey.xml" value="0.1275" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/delete.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/edit.xml" value="0.2195" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/edit_for_payment.xml" value="0.1345" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/history_payment.xml" value="0.1275" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/house_block.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/house_mini.xml" value="0.1275" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1275" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/logo.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/payment.xml" value="0.123" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/plus.xml" value="0.1975" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/resident.xml" value="0.213" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/round_custom_resident.xml" value="0.195" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/round_style.xml" value="0.1365" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/rub.xml" value="0.1345" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/save.xml" value="0.2195" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/settings.xml" value="0.1275" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_add.xml" value="0.2" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_history.xml" value="0.1721014492753623" />
@@ -41,12 +48,13 @@
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_history_layout.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_payment_layout.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.2" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
