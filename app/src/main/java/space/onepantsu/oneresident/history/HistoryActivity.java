@@ -116,7 +116,7 @@ public class HistoryActivity extends AppCompatActivity {
             default: break;
         }
 
-        return historyInfo.currentDate + "\t" + historyInfo.currentResidentSurname + " "
+        return historyInfo.currentDate + "\n" + historyInfo.currentResidentSurname + " "
                 + historyInfo.currentResidentName + "\n" + type;
     }
 
