@@ -6,4 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".history.HistoryActivity">
 
+    <RelativeLayout
+        android:layout_height="75dp"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/backButtonFromHistoryActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/arrow2"
+            />
+
+        <ImageButton
+            android:id="@+id/deleteAllFromHistoryActivity"
+            android:onClick="deleteDialog"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#fafafa"
+
+            app:srcCompat="@drawable/delete_for_history"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical">
+
+        <LinearLayout
+            android:id="@+id/historyLinear"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

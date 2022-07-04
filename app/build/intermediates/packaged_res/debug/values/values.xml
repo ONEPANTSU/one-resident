@@ -4,6 +4,7 @@
     <color name="bg_custom">#3700b3</color>
     <color name="black">#FF000000</color>
     <color name="defolt">#143880</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -13,10 +14,10 @@
     <color name="white">#FFFFFFFF</color>
     <dimen name="fab_margin">16dp</dimen>
     <item name="textView2" type="id"/>
-    <string name="app_name">OneResident</string>
+    <string name="app_name">ONE::Resident</string>
     <string name="city"><font color="#C20800">*</font>Город</string>
     <string name="cost"><font color="#C20800">*</font>Стоимость арендной платы</string>
-    <string name="date"><font color="#C20800">*</font>Дата начала аренды (дд.мм.гггг)</string>
+    <string name="date"><font color="#C20800">*</font>Дата следующего платежа (дд.мм.гггг)</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -30,17 +31,17 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_payment">PaymentActivity</string>
     <style name="Theme.OneResident" parent="Theme.AppCompat.Light.NoActionBar">
-        
+        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        
+        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        
+        <!-- Status bar color. -->
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        
+        <!-- Customize your theme here. -->
     </style>
     <style name="Theme.OneResident.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.OneResident.NoActionBar">

@@ -38,5 +38,9 @@
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_resident_layout.xml",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_resident_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_history_layout.xml",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_history_layout.xml"
     }
 ]

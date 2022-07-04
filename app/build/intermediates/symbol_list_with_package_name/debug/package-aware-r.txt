@@ -1321,6 +1321,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2490,6 +2491,8 @@ drawable arrow
 drawable arrow2
 drawable avd_hide_password
 drawable avd_show_password
+drawable background_paybutton
+drawable background_paybutton_payed
 drawable border_bottom_text
 drawable border_text
 drawable btn_checkbox_checked_mtrl
@@ -2500,19 +2503,25 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable checkbox
+drawable checkbox_grey
+drawable clock
 drawable delete
+drawable delete_for_history
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit
+drawable edit_for_payment
 drawable history_payment
+drawable history_payment__button
+drawable history_payment_image_
 drawable house_block
 drawable house_mini
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
-drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
@@ -2667,7 +2676,9 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backButtonFromHistoryActivity
 id backButtonFromResidentActivity
+id backButtonFromSettingsActivity
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -2682,6 +2693,7 @@ id bounceStart
 id button3
 id buttonAdd
 id buttonPanel
+id buttonSave
 id cache_measures
 id callMeasure
 id cancel_button
@@ -2728,6 +2740,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteAllFromHistoryActivity
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -2802,6 +2815,8 @@ id guideline
 id header_title
 id hideable
 id historyButton
+id historyInfo
+id historyLinear
 id home
 id homeAsUp
 id honorRequest
@@ -2982,6 +2997,8 @@ id select_dialog_listview
 id selected
 id selection_type
 id settingsButton
+id settingsEditTime
+id settingsTextTime
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3091,6 +3108,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toPayButton
 id toggle
 id top
 id topPanel
@@ -3220,6 +3238,7 @@ layout activity_resident
 layout activity_resident_info
 layout activity_settings
 layout custom_dialog
+layout custom_history_layout
 layout custom_payment_layout
 layout custom_resident_layout
 layout design_bottom_navigation_item

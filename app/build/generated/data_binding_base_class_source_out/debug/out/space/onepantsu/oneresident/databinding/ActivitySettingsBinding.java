@@ -4,20 +4,54 @@ package space.onepantsu.oneresident.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 import space.onepantsu.oneresident.R;
 
 public final class ActivitySettingsBinding implements ViewBinding {
   @NonNull
   private final ConstraintLayout rootView;
 
-  private ActivitySettingsBinding(@NonNull ConstraintLayout rootView) {
+  @NonNull
+  public final ImageButton backButtonFromSettingsActivity;
+
+  @NonNull
+  public final Button buttonSave;
+
+  @NonNull
+  public final LinearLayout linearLayout;
+
+  @NonNull
+  public final LinearLayout residentLinear;
+
+  @NonNull
+  public final EditText settingsEditTime;
+
+  @NonNull
+  public final TextView settingsTextTime;
+
+  private ActivitySettingsBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ImageButton backButtonFromSettingsActivity, @NonNull Button buttonSave,
+      @NonNull LinearLayout linearLayout, @NonNull LinearLayout residentLinear,
+      @NonNull EditText settingsEditTime, @NonNull TextView settingsTextTime) {
     this.rootView = rootView;
+    this.backButtonFromSettingsActivity = backButtonFromSettingsActivity;
+    this.buttonSave = buttonSave;
+    this.linearLayout = linearLayout;
+    this.residentLinear = residentLinear;
+    this.settingsEditTime = settingsEditTime;
+    this.settingsTextTime = settingsTextTime;
   }
 
   @Override
@@ -43,10 +77,51 @@ public final class ActivitySettingsBinding implements ViewBinding {
 
   @NonNull
   public static ActivitySettingsBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.backButtonFromSettingsActivity;
+      ImageButton backButtonFromSettingsActivity = ViewBindings.findChildViewById(rootView, id);
+      if (backButtonFromSettingsActivity == null) {
+        break missingId;
+      }
 
-    return new ActivitySettingsBinding((ConstraintLayout) rootView);
+      id = R.id.buttonSave;
+      Button buttonSave = ViewBindings.findChildViewById(rootView, id);
+      if (buttonSave == null) {
+        break missingId;
+      }
+
+      id = R.id.linearLayout;
+      LinearLayout linearLayout = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.residentLinear;
+      LinearLayout residentLinear = ViewBindings.findChildViewById(rootView, id);
+      if (residentLinear == null) {
+        break missingId;
+      }
+
+      id = R.id.settingsEditTime;
+      EditText settingsEditTime = ViewBindings.findChildViewById(rootView, id);
+      if (settingsEditTime == null) {
+        break missingId;
+      }
+
+      id = R.id.settingsTextTime;
+      TextView settingsTextTime = ViewBindings.findChildViewById(rootView, id);
+      if (settingsTextTime == null) {
+        break missingId;
+      }
+
+      return new ActivitySettingsBinding((ConstraintLayout) rootView,
+          backButtonFromSettingsActivity, buttonSave, linearLayout, residentLinear,
+          settingsEditTime, settingsTextTime);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

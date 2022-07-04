@@ -231,7 +231,7 @@
             <TextView
                 android:id="@+id/textViewDate"
                 style="@style/text_headerField_RS_info"
-                android:text="Дата начала аренды" />
+                android:text="Дата следующего платежа" />
             <TextView
                 android:id="@+id/textDate"
                 android:layout_width="match_parent"

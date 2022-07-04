@@ -4,36 +4,36 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_custom_resident_layout.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_resident_layout.xml"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph2.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\navigation\\nav_graph2.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_resident_info.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_resident_info.xml"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_resident.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_resident.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_background_paybutton_payed.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\background_paybutton_payed.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_resident.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\resident.xml"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_delete_for_history.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\delete_for_history.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_edit.xml.flat",
@@ -44,16 +44,8 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_payment.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
-    },
-    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_history.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_history.xml"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_border_bottom_text.xml.flat",
@@ -64,6 +56,14 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\round_custom_resident.xml"
     },
     {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_history_payment_image_.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\history_payment_image_.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_arrow2.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\arrow2.xml"
     },
@@ -72,40 +72,76 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_add.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_add.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_logo.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\logo.xml"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\ic_launcher_foreground.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_history_payment.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\history_payment.xml"
     },
     {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_border_text.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\border_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_save.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\save.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_payment.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_custom_resident_layout.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_resident_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_resident.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_resident.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_resident.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\resident.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_custom_history_layout.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_history_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_clock.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\clock.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_logo.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\logo.xml"
+    },
+    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_round_style.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\round_style.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_history_payment__button.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\history_payment__button.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_arrow.xml.flat",
@@ -124,24 +160,16 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\plus.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_checkbox.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\checkbox.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_house_block.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\house_block.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_border_text.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\border_text.xml"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_save.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\save.xml"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_background_paybutton.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\background_paybutton.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_delete.xml.flat",
@@ -152,6 +180,18 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_change_resident.xml"
     },
     {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_edit_for_payment.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\edit_for_payment.xml"
+    },
+    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
@@ -160,15 +200,11 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\navigation\\nav_graph.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_checkbox_grey.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\checkbox_grey.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_house_mini.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\house_mini.xml"
-    },
-    {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_payment.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\payment.xml"
     }
 ]

@@ -4,8 +4,7 @@ package space.onepantsu.oneresident.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,21 +20,25 @@ public final class CustomPaymentLayoutBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageButton changeDateButton;
+  public final Button changeDateButton;
 
   @NonNull
-  public final ImageButton paidButton;
+  public final Button paidButton;
 
   @NonNull
-  public final TextView paymentInfo;
+  public final Button paymentInfo;
+
+  @NonNull
+  public final Button toPayButton;
 
   private CustomPaymentLayoutBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageButton changeDateButton, @NonNull ImageButton paidButton,
-      @NonNull TextView paymentInfo) {
+      @NonNull Button changeDateButton, @NonNull Button paidButton, @NonNull Button paymentInfo,
+      @NonNull Button toPayButton) {
     this.rootView = rootView;
     this.changeDateButton = changeDateButton;
     this.paidButton = paidButton;
     this.paymentInfo = paymentInfo;
+    this.toPayButton = toPayButton;
   }
 
   @Override
@@ -66,25 +69,31 @@ public final class CustomPaymentLayoutBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.changeDateButton;
-      ImageButton changeDateButton = ViewBindings.findChildViewById(rootView, id);
+      Button changeDateButton = ViewBindings.findChildViewById(rootView, id);
       if (changeDateButton == null) {
         break missingId;
       }
 
       id = R.id.paidButton;
-      ImageButton paidButton = ViewBindings.findChildViewById(rootView, id);
+      Button paidButton = ViewBindings.findChildViewById(rootView, id);
       if (paidButton == null) {
         break missingId;
       }
 
       id = R.id.paymentInfo;
-      TextView paymentInfo = ViewBindings.findChildViewById(rootView, id);
+      Button paymentInfo = ViewBindings.findChildViewById(rootView, id);
       if (paymentInfo == null) {
         break missingId;
       }
 
+      id = R.id.toPayButton;
+      Button toPayButton = ViewBindings.findChildViewById(rootView, id);
+      if (toPayButton == null) {
+        break missingId;
+      }
+
       return new CustomPaymentLayoutBinding((ConstraintLayout) rootView, changeDateButton,
-          paidButton, paymentInfo);
+          paidButton, paymentInfo, toPayButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
