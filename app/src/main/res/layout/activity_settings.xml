@@ -6,4 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".settings.SettingsActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/backButtonFromSettingsActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/arrow2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#fafafa"
+            />
+        <!--Сделать прозрачность блока кнопок при скролинге -->
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_style"
+            android:backgroundTint="@color/defolt"
+            android:onClick="acceptChanges"
+            android:text="Сохранить"
+            android:textColor="@color/white"
+            android:alpha="0.9"
+            />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical">
+
+        <LinearLayout
+            android:id="@+id/residentLinear"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settingsTextTime"
+                style="@style/text_headerField"
+                android:text="Время получения уведомлений (чч:мм)"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/settingsEditTime"
+                style="@style/text_field"
+                android:hint="12:00"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
