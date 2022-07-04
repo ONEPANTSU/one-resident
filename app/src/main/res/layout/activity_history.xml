@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_height="80dp"
-        android:layout_width="70dp"
+        android:layout_width="140dp"
         tools:ignore="MissingConstraints"
         android:orientation="horizontal">
 
@@ -26,7 +26,22 @@
             app:srcCompat="@drawable/arrow2"
             />
 
+        <ImageButton
+            android:id="@+id/deleteAllFromHistoryActivity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_weight="1"
+            android:background="#fafafa"
+            android:onClick="clearHistory"
+            app:srcCompat="@drawable/arrow2"
+            />
+
     </LinearLayout>
+
+
 
     <ScrollView
         android:layout_marginTop="80dp"
