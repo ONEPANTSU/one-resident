@@ -137,8 +137,6 @@ public class PaymentActivity extends AppCompatActivity {
             toPayButton.setText("Оплатить");
 
         }
-
-
         linear.addView(view);
     }
 
@@ -294,6 +292,7 @@ public class PaymentActivity extends AppCompatActivity {
         DebtSearcher debtSearcher = new DebtSearcher(this);
         try {
             debtSearcher.changeDate(paymentInfo);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -305,6 +304,17 @@ public class PaymentActivity extends AppCompatActivity {
 
             if (debt > 0) {
                 debt -= 1;
+                try {
+                    paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if(debtSearcher.wasIncreased) {
+                    debtToHistoryDB(paymentInfo.currentID);
+                }
+                Calendar newAlarm = debtSearcher.getNewAlarm();
+                startNewAlarm(newAlarm.getTimeInMillis());
+
             }
             if (debt == 0) {
                 newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.PAID));
