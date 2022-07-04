@@ -45,8 +45,22 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
 
-            android:textColor="#fbf9fa "
+            android:layout_alignRight="@id/paymentInfo"
+            android:layout_marginRight="112dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="Внесена оплата"
+            android:textColor="#fbf9fa "
+
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/changeDateButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+
+            android:textColor="#fbf9fa "
+            android:text="Изменить Дату"
             android:layout_marginRight="10dp"
             android:layout_alignRight="@id/paymentInfo"
             android:layout_centerVertical="true"

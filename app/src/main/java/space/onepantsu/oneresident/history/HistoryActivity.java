@@ -108,12 +108,10 @@ public class HistoryActivity extends AppCompatActivity {
 
         String type = "";
 
-        //ResidentActivity.ResidentInfo residentInfo = getResidentInfoByID(historyInfo.currentResidentID);
-
         switch (historyInfo.currentType.toString()){
             case "INCREASED_DEBT": type = "Арендатору необходимо внести оплату"; break;
             case "WAS_PAID": type = "Арендатор внёс оплату"; break;
-            //case "CHANGED_DATE": type = "Перенос даты оплаты арендатора на " + residentInfo.currentDate; break;
+            case "CHANGED_DATE": type = "Перенос даты оплаты арендатора"; break;
             case "DELETED_RESIDENT": type = "Арендатор был удалён"; break;
             case "ADDED_RESIDENT": type = "Арендатор был дабвлен"; break;
             default: break;

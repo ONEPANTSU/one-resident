@@ -11,18 +11,14 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +37,6 @@ import space.onepantsu.oneresident.history.database.HistoryType;
 import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
-import space.onepantsu.oneresident.residents.ChangeResidentActivity;
 import space.onepantsu.oneresident.residents.Error;
 import space.onepantsu.oneresident.residents.ResidentActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
@@ -119,33 +114,30 @@ public class PaymentActivity extends AppCompatActivity {
             startNewAlarm(newAlarm.getTimeInMillis());
         }
 
-        //String paymentTextBuilder = getResidentInfo(paymentInfo.currentID) + "\nSTATUS:\t" +
-                //paymentInfo.currentStatus + "\nDEBT:\t" + paymentInfo.currentDebt;
         String paymentTextBuilder = getResidentInfo(paymentInfo.currentID);
         paymentText.setText(paymentTextBuilder);
 
-        //ImageView paidButton = view.findViewById(R.id.paidButton);
 
         Button toPayButton = view.findViewById(R.id.toPayButton);
         toPayButton.setOnClickListener(v -> wasPaid(paymentInfo));
         if(paymentInfo.currentDebt == 0) {
             toPayButton.setClickable(false);
-            // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ УЖЕ ОПЛАЧЕНО)
-           // paidButton.setImageDrawable(getDrawable(R.drawable.checkbox));
             toPayButton.setBackground(getDrawable(R.drawable.background_paybutton_payed));
             toPayButton.setText("Оплачено");
         }
         else{
-            // ПОМЕНЯТЬ НА ИЗОБРАЖЕНИЕ ДЛЯ КНОПКИ ОПЛАТИТЬ (СОСТОЯНИЕ НАДО ОПЛАТИТЬ)
-            //paidButton.setImageDrawable(getDrawable(R.drawable.checkbox_grey));
             toPayButton.setBackground(getDrawable(R.drawable.background_paybutton));
             toPayButton.setText("Оплатить");
 
         }
+
+        Button changeDateButton = view.findViewById(R.id.changeDateButton);
+        changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
+
         linear.addView(view);
     }
 
-    private void changeDate(PaymentInfo paymentInfo){
+    public void changeDate(PaymentInfo paymentInfo){
         ResidentActivity.ResidentInfo resident = new ResidentActivity.ResidentInfo();
 
         DBMS residentDBMS = new DBMS(this);
@@ -205,11 +197,6 @@ public class PaymentActivity extends AppCompatActivity {
                 System.out.println("Ошибка при чтении строки");
             }
         }
-        /*Intent intent = new Intent(PaymentActivity.this, ChangeResidentActivity.class);
-        intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), resident);
-        intent.putExtra("FROM", "PaymentActivity");
-        startActivity(intent);
-        closeActivity();*/
         dateDialog(PaymentActivity.this, resident);
     }
 
@@ -220,17 +207,8 @@ public class PaymentActivity extends AppCompatActivity {
         builder.setTitle("Изменение даты")
                 .setMessage("Введите следующую дату оплаты (дд.мм.гггг):")
                 .setView(edittext)
-                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        saveNewDate(residentInfo, edittext.getText().toString());
-                        Toast.makeText(activity,"Нажата кнопка 'OK'",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(activity,"Нажата кнопка 'Отмена'",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                .setPositiveButton("ОК", (dialog, id) -> saveNewDate(residentInfo, edittext.getText().toString()))
+                .setNegativeButton("Отмена", (dialog, id) -> {});
         builder.create().show();
     }
 
@@ -281,15 +259,17 @@ public class PaymentActivity extends AppCompatActivity {
 
                 startNewAlarm(calendar.getTimeInMillis());
 
+                changedDateToHistoryDB(residentInfo.currentID);
+
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 overridePendingTransition(0, 0);
 
-                Toast.makeText(this, "Арендатор успешно изменён", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Дата успешно изменена", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             InfoButton dialogButton = new InfoButton();
-            DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+            DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений!", "Проверьте корректность заполненных полей.", dialogButton);
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             warning.show(transaction, "dialog");
@@ -300,7 +280,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
         catch (Exception e) {
         InfoButton dialogButton = new InfoButton();
-        DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+        DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений!", "Проверьте корректность заполненных полей.", dialogButton);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         warning.show(transaction, "dialog");
@@ -310,14 +290,9 @@ public class PaymentActivity extends AppCompatActivity {
     private void tryAgain(Error error) {
         String errorMessage;
         switch(error){
-            case WRONG_STREET: errorMessage = "Поле \"Улица\" должно быть заполнено!"; break;
-            case WRONG_HOUSE: errorMessage = "Поле \"Дом\" должно быть заполнено!"; break;
-            case WRONG_SURNAME: errorMessage = "Поле \"Фамилия\" арендатора должно быть заполнено!"; break;
-            case WRONG_NAME: errorMessage = "Поле \"Имя\" арендатора должно быть заполнено!"; break;
             case WRONG_DATE: errorMessage = "Поле \"Дата\" должно быть заполнено!"; break;
             case WRONG_DATE_FORMAT: errorMessage = "Неверный формат поля \"Дата!\""; break;
-            case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
-            default: errorMessage = "Ошибка при сохранении изменений арендатора!"; break;
+            default: errorMessage = "Ошибка при сохранении изменений!"; break;
         }
 
         InfoButton dialogButton = new InfoButton();
@@ -561,6 +536,57 @@ public class PaymentActivity extends AppCompatActivity {
             values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
             values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
             values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.WAS_PAID));
+
+            db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
+        }
+    }
+
+    public void changedDateToHistoryDB(int id){
+
+        DBMS residentDBMS = new DBMS(this);
+        SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
+                DataBase.ResidentsTable.COLUMN_SURNAME};
+        @SuppressLint("Recycle") Cursor cursor = residentDB.query(
+                DataBase.ResidentsTable.TABLE_NAME,   // таблица
+                projection,            // столбцы
+                DataBase.ResidentsTable._ID + " = ?",                  // столбцы для условия WHERE
+                new String[] {String.valueOf(id)},                  // значения для условия WHERE
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+        int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
+        int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
+        if(cursor.moveToNext()) {
+            String name = cursor.getString(nameColumnIndex);
+            String surname = cursor.getString(surnameColumnIndex);
+
+
+            HistoryDBMS dbms = new HistoryDBMS(this);
+            SQLiteDatabase db = dbms.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            String month;
+            if (calendar.get(Calendar.MONTH) + 1 < 10) {
+                month = "0" + (calendar.get(Calendar.MONTH) + 1);
+            } else {
+                month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+            }
+            String day;
+            if (calendar.get(Calendar.DATE) < 10) {
+                day = "0" + calendar.get(Calendar.DATE);
+            } else {
+                day = String.valueOf(calendar.get(Calendar.DATE));
+            }
+            String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
+
+            values.put(HistoryDB.HistoryTable.DATE, date);
+            values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
+            values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+            values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.CHANGED_DATE));
 
             db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);
         }
