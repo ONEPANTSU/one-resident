@@ -118,8 +118,8 @@ public class HistoryActivity extends AppCompatActivity {
             default: break;
         }
 
-        return historyInfo.currentDate + "\n" + historyInfo.currentResidentSurname + " "
-                + historyInfo.currentResidentName + "\n" + type;
+        return historyInfo.currentResidentSurname + ' ' + historyInfo.currentResidentName
+                + '\n' + type + '\n' + historyInfo.currentDate;
     }
 
     public void clearHistory(){
