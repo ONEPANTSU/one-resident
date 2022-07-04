@@ -132,7 +132,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         }
 
-        ImageButton changeDateButton = view.findViewById(R.id.changeDateButton);
+        Button changeDateButton = view.findViewById(R.id.changeDateButton);
         changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
 
         linear.addView(view);
