@@ -3,6 +3,8 @@ package space.onepantsu.oneresident.history;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -120,7 +122,7 @@ public class HistoryActivity extends AppCompatActivity {
                 + '\n' + type + '\n' + historyInfo.currentDate;
     }
 
-    public void clearHistory(View view){
+    public void clearHistory(){
         SQLiteDatabase db = dbms.getReadableDatabase();
         db.delete(HistoryDB.HistoryTable.TABLE_NAME, null, null);
         Toast.makeText(this, "История оплаты была очищена", Toast.LENGTH_SHORT).show();
@@ -128,6 +130,14 @@ public class HistoryActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(getIntent());
         overridePendingTransition(0, 0);
+    }
+    public void deleteDialog(View view)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Вы уверены, что хотите удалить историю оплаты?")
+                .setPositiveButton("ОК", (dialog, id) -> clearHistory())
+                .setNegativeButton("Отмена", (dialog, id) -> {});
+        builder.create().show();
     }
 
     public void goBack(View view){

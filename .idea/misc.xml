@@ -3,22 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Desktop/lox/OneResident/app/src/main/res/layout/activity_history.xml" value="0.14447463768115942" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/house_block.xml" value="0.1545" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/house_mini.xml" value="0.1" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/drawable/plus.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_add.xml" value="0.264" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.264" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_change_resident.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_history.xml" value="0.152" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_payment.xml" value="0.1" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident.xml" value="0.25" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_resident_info.xml" value="0.15307971014492755" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.1" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/activity_settings.xml" value="0.2359375" />
         <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_history_layout.xml" value="0.1" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_payment_layout.xml" value="0.2" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.29245283018867924" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/settings_activity.xml" value="0.12" />
-        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.126" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_payment_layout.xml" value="0.536" />
+        <entry key="..\:/Users/79063/Desktop/OneResident/app/src/main/res/layout/custom_resident_layout.xml" value="0.32653061224489793" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable-v24/house.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ChibiHolder/OneRezident/OneResident/app/src/main/res/drawable/arrow.xml" value="0.11" />
@@ -52,7 +50,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
