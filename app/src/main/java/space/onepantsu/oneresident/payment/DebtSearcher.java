@@ -78,7 +78,7 @@ public class DebtSearcher {
             }
             else if (afterPayment.after(previousDay)){
                 if(paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
-                    changeStatus(paymentInfo, PaymentStatus.NOT_PAID);
+                    changeStatus(paymentInfo);
                     paymentInfo.currentStatus = String.valueOf(PaymentStatus.NOT_PAID);
                 }
                 if(paymentInfo.currentDebt == 0){
@@ -119,7 +119,7 @@ public class DebtSearcher {
         return debt;
     }
 
-    private void changeStatus(PaymentActivity.PaymentInfo paymentInfo, PaymentStatus status){
+    private void changeStatus(PaymentActivity.PaymentInfo paymentInfo){
         PaymentDBMS paymentDBMS = new PaymentDBMS(context);
         SQLiteDatabase db = paymentDBMS.getWritableDatabase();
         ContentValues newValues = new ContentValues();
@@ -127,7 +127,7 @@ public class DebtSearcher {
                 " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()) {
-           newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(status));
+           newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
             String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
             db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
         }

@@ -1,5 +1,8 @@
 package space.onepantsu.oneresident.payment;
 
+import static space.onepantsu.oneresident.settings.SettingsActivity.ALARM_HOURS;
+import static space.onepantsu.oneresident.settings.SettingsActivity.ALARM_MINUTES;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,6 +15,7 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -204,7 +208,7 @@ public class PaymentActivity extends AppCompatActivity {
     public void dateDialog(Activity activity, ResidentActivity.ResidentInfo residentInfo) {
         final EditText edittext = new EditText(activity);
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        edittext.setText(residentInfo.currentDate);
+        edittext.setHint(residentInfo.currentDate);
         builder.setTitle("Изменение даты")
                 .setMessage("Введите следующую дату оплаты (дд.мм.гггг):")
                 .setView(edittext)
@@ -222,9 +226,13 @@ public class PaymentActivity extends AppCompatActivity {
         int day, month, year;
         try{
             if (stringDate.equals("")) {
-                error = Error.WRONG_DATE;
-                throw new IllegalArgumentException();
-            } else if (stringDate.charAt(2) != '.' || stringDate.charAt(5) != '.'
+                stringDate = residentInfo.currentDate;
+                day = stringDate.charAt(0) * 10 + stringDate.charAt(1) - 528;
+                month = stringDate.charAt(3) * 10 + stringDate.charAt(4) - 528;
+                year = (int) stringDate.charAt(6) * 1000 + (int) stringDate.charAt(7) * 100
+                        + (int) stringDate.charAt(8) * 10 + (int) stringDate.charAt(9) - 53328;
+            }
+            else if (stringDate.charAt(2) != '.' || stringDate.charAt(5) != '.'
                     || stringDate.length() != 10) {
                 throw new IllegalArgumentException();
             } else {
@@ -255,8 +263,27 @@ public class PaymentActivity extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month - 1);
                 calendar.set(Calendar.DAY_OF_MONTH, day);
-                calendar.set(Calendar.HOUR_OF_DAY, 12);
-                calendar.set(Calendar.MINUTE, 0);
+                SharedPreferences sharedPreferences;
+                sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+                String stringHours = sharedPreferences.getString(ALARM_HOURS, "");
+                int hours;
+                if(stringHours.charAt(0) == '0'){
+                    hours = (int) stringHours.charAt(1) - 528;
+                }
+                else{
+                    hours = (int) stringHours.charAt(0) * 10 + (int) stringHours.charAt(1) - 528;
+                }
+                String stringMinutes = sharedPreferences.getString(ALARM_MINUTES, "");
+                int minutes;
+                if(stringHours.charAt(0) == '0'){
+                    minutes = (int) stringMinutes.charAt(1) - 528;
+                }
+                else{
+                    minutes = (int) stringMinutes.charAt(0) * 10 + (int) stringMinutes.charAt(1) - 528;
+                }
+
+                calendar.set(Calendar.HOUR_OF_DAY, hours);
+                calendar.set(Calendar.MINUTE, minutes);
 
                 startNewAlarm(calendar.getTimeInMillis());
 
