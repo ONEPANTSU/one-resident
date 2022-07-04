@@ -83,6 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
             }
             catch (Exception e){
                 System.out.println("Ошибка при чтении строки");
+
             }
         }
 
@@ -95,6 +96,7 @@ public class HistoryActivity extends AppCompatActivity {
         TextView paymentText = view.findViewById(R.id.historyInfo);
 
         String paymentTextBuilder = getHistoryInfo(historyInfo);
+
 
         paymentText.setText(paymentTextBuilder);
 

@@ -10,13 +10,24 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/historyInfo"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+
+            android:background="@drawable/border_text"
+            android:backgroundTint="#e8e9ed"
             android:text="Some text"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
             android:textAlignment="textStart"/>
 
     </RelativeLayout>

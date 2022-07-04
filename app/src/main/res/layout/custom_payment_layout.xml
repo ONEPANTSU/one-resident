@@ -12,16 +12,19 @@
             android:id="@+id/paymentInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
+
             android:background="@drawable/border_text"
             android:backgroundTint="#e8e9ed"
+
             android:paddingLeft="60dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+
             android:text="Some text"
             android:textAlignment="textStart"
             android:textColor="@color/black"
@@ -37,35 +40,32 @@
             android:background="@drawable/house_mini"
             android:layout_alignLeft="@id/paymentInfo"
             android:text="+"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="ContentDescription,MissingConstraints"
+             />
 
 
         <Button
             android:id="@+id/toPayButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-
             android:layout_alignRight="@id/paymentInfo"
-            android:layout_marginRight="112dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Внесена оплата"
             android:textColor="#fbf9fa "
 
             tools:ignore="MissingConstraints" />
 
-        <Button
+        <ImageButton
             android:id="@+id/changeDateButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textColor="#fbf9fa "
-            android:text="Изменить Дату"
-            android:layout_marginRight="10dp"
+            android:background="@drawable/clock"
+            android:layout_marginRight="140dp"
             android:layout_alignRight="@id/paymentInfo"
             android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
 
             tools:ignore="MissingConstraints" />
 

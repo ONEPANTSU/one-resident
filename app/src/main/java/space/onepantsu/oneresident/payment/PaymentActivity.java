@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,7 +132,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         }
 
-        Button changeDateButton = view.findViewById(R.id.changeDateButton);
+        ImageButton changeDateButton = view.findViewById(R.id.changeDateButton);
         changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
 
         linear.addView(view);
