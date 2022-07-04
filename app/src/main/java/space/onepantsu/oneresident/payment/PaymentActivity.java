@@ -5,10 +5,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,7 +19,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +41,7 @@ import space.onepantsu.oneresident.payment.database.PaymentDB;
 import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
 import space.onepantsu.oneresident.residents.ChangeResidentActivity;
+import space.onepantsu.oneresident.residents.Error;
 import space.onepantsu.oneresident.residents.ResidentActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
@@ -202,11 +206,126 @@ public class PaymentActivity extends AppCompatActivity {
                 System.out.println("Ошибка при чтении строки");
             }
         }
-        Intent intent = new Intent(PaymentActivity.this, ChangeResidentActivity.class);
+        /*Intent intent = new Intent(PaymentActivity.this, ChangeResidentActivity.class);
         intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), resident);
         intent.putExtra("FROM", "PaymentActivity");
         startActivity(intent);
-        closeActivity();
+        closeActivity();*/
+        dateDialog(PaymentActivity.this, resident);
+    }
+
+    public void dateDialog(Activity activity, ResidentActivity.ResidentInfo residentInfo) {
+        final EditText edittext = new EditText(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        edittext.setText(residentInfo.currentDate);
+        builder.setTitle("Изменение даты")
+                .setMessage("Введите следующую дату оплаты (дд.мм.гггг):")
+                .setView(edittext)
+                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        saveNewDate(residentInfo, edittext.getText().toString());
+                        Toast.makeText(activity,"Нажата кнопка 'OK'",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(activity,"Нажата кнопка 'Отмена'",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void saveNewDate(ResidentActivity.ResidentInfo residentInfo, String stringDate) {
+        space.onepantsu.oneresident.residents.Error error = space.onepantsu.oneresident.residents.Error.OK;
+        DBMS dbms = new DBMS(this);
+        SQLiteDatabase db = dbms.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+
+        int day, month, year;
+        try{
+            if (stringDate.equals("")) {
+                error = Error.WRONG_DATE;
+                throw new IllegalArgumentException();
+            } else if (stringDate.charAt(2) != '.' || stringDate.charAt(5) != '.'
+                    || stringDate.length() != 10) {
+                throw new IllegalArgumentException();
+            } else {
+                try {
+                    System.out.println(stringDate.charAt(0) * 10);
+                    day = stringDate.charAt(0) * 10 + stringDate.charAt(1) - 528;
+                    month = stringDate.charAt(3) * 10 + stringDate.charAt(4) - 528;
+                    year = (int) stringDate.charAt(6) * 1000 + (int) stringDate.charAt(7) * 100
+                            + (int) stringDate.charAt(8) * 10 + (int) stringDate.charAt(9) - 53328;
+                    if (day > 31 || day < 1 || month > 12 || month < 1) {
+                        throw new Exception();
+                    }
+
+                } catch (Exception e) {
+                    error = Error.WRONG_DATE_FORMAT;
+                    throw new IllegalArgumentException();
+
+                }
+            }
+            newValues.put(DataBase.ResidentsTable.COLUMN_DATE, stringDate);
+
+            String where = DataBase.ResidentsTable._ID + "=" + residentInfo.currentID;
+
+            try {
+                db.update(DataBase.ResidentsTable.TABLE_NAME, newValues, where, null);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month - 1);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                calendar.set(Calendar.HOUR_OF_DAY, 12);
+                calendar.set(Calendar.MINUTE, 0);
+
+                startNewAlarm(calendar.getTimeInMillis());
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+
+                Toast.makeText(this, "Арендатор успешно изменён", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            InfoButton dialogButton = new InfoButton();
+            DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            warning.show(transaction, "dialog");
+        }
+    }
+        catch (IllegalArgumentException e){
+        tryAgain(error);
+    }
+        catch (Exception e) {
+        InfoButton dialogButton = new InfoButton();
+        DialogFrame warning = new DialogFrame("Ошибка при сохранении изменений арендатора!", "Проверьте корректность заполненных полей.", dialogButton);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        warning.show(transaction, "dialog");
+    }
+    }
+
+    private void tryAgain(Error error) {
+        String errorMessage;
+        switch(error){
+            case WRONG_STREET: errorMessage = "Поле \"Улица\" должно быть заполнено!"; break;
+            case WRONG_HOUSE: errorMessage = "Поле \"Дом\" должно быть заполнено!"; break;
+            case WRONG_SURNAME: errorMessage = "Поле \"Фамилия\" арендатора должно быть заполнено!"; break;
+            case WRONG_NAME: errorMessage = "Поле \"Имя\" арендатора должно быть заполнено!"; break;
+            case WRONG_DATE: errorMessage = "Поле \"Дата\" должно быть заполнено!"; break;
+            case WRONG_DATE_FORMAT: errorMessage = "Неверный формат поля \"Дата!\""; break;
+            case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
+            default: errorMessage = "Ошибка при сохранении изменений арендатора!"; break;
+        }
+
+        InfoButton dialogButton = new InfoButton();
+        DialogFrame warning = new DialogFrame("Ошибка!",  errorMessage, dialogButton);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        warning.show(transaction, "dialog");
     }
 
     private String getResidentInfo(int id){
