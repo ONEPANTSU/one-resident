@@ -76,11 +76,18 @@ public class DebtSearcher {
                 wasIncreased = true;
                 return increaseDebt(paymentInfo);
             }
-            else if (afterPayment.after(previousDay) &&
-                    paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
-                changeStatus(paymentInfo, PaymentStatus.NOT_PAID);
-                paymentInfo.currentStatus = String.valueOf(PaymentStatus.NOT_PAID);
+            else if (afterPayment.after(previousDay)){
+                if(paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
+                    changeStatus(paymentInfo, PaymentStatus.NOT_PAID);
+                    paymentInfo.currentStatus = String.valueOf(PaymentStatus.NOT_PAID);
+                }
+                if(paymentInfo.currentDebt == 0){
+                    paymentInfo.currentDebt = 1;
+                    newAlarm = currentCalendar;
+                    newAlarm.roll(Calendar.SECOND, 5);
+                }
             }
+
         }
         return paymentInfo.currentDebt;
     }
@@ -148,7 +155,8 @@ public class DebtSearcher {
             Calendar paymentDay = new GregorianCalendar();
             paymentDay.setTime(Objects.requireNonNull(format.parse(residentsDate)));
 
-            Calendar previousDay = paymentDay;
+            Calendar previousDay = Calendar.getInstance();
+            previousDay.setTimeInMillis(paymentDay.getTimeInMillis());
 
             if(residentsPeriod < 30 || residentsPeriod > 31){
                 paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);

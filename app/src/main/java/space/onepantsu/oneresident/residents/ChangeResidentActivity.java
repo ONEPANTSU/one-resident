@@ -359,7 +359,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
             intent = new Intent(this, PaymentActivity.class);
         }
         else{
-            intent = new Intent(this, ResidentInfoActivity.class);
+            intent = new Intent(this, ResidentActivity.class);
         }
         startActivity(intent);
         closeActivity();
