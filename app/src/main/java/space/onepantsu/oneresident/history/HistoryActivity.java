@@ -110,7 +110,7 @@ public class HistoryActivity extends AppCompatActivity {
         String type = "";
 
         switch (historyInfo.currentType.toString()){
-            case "INCREASED_DEBT": type = "Арендатору надо внести оплату"; break;
+            case "INCREASED_DEBT": type = "Арендатору необходимо внести оплату"; break;
             case "WAS_PAID": type = "Арендатор внёс оплату"; break;
             case "CHANGED_DATE": type = "Перенос даты оплаты арендатора"; break;
             case "DELETED_RESIDENT": type = "Арендатор был удалён"; break;
