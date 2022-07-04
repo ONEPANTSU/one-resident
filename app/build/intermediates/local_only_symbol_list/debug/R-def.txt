@@ -73,7 +73,6 @@ id imageView
 id linearLayout
 id nav_graph
 id nav_graph2
-id paidButton
 id paymentButton
 id paymentInfo
 id relativeLayout

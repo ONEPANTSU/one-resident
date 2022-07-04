@@ -23,20 +23,15 @@ public final class CustomPaymentLayoutBinding implements ViewBinding {
   public final Button changeDateButton;
 
   @NonNull
-  public final Button paidButton;
-
-  @NonNull
   public final Button paymentInfo;
 
   @NonNull
   public final Button toPayButton;
 
   private CustomPaymentLayoutBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button changeDateButton, @NonNull Button paidButton, @NonNull Button paymentInfo,
-      @NonNull Button toPayButton) {
+      @NonNull Button changeDateButton, @NonNull Button paymentInfo, @NonNull Button toPayButton) {
     this.rootView = rootView;
     this.changeDateButton = changeDateButton;
-    this.paidButton = paidButton;
     this.paymentInfo = paymentInfo;
     this.toPayButton = toPayButton;
   }
@@ -74,12 +69,6 @@ public final class CustomPaymentLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.paidButton;
-      Button paidButton = ViewBindings.findChildViewById(rootView, id);
-      if (paidButton == null) {
-        break missingId;
-      }
-
       id = R.id.paymentInfo;
       Button paymentInfo = ViewBindings.findChildViewById(rootView, id);
       if (paymentInfo == null) {
@@ -93,7 +82,7 @@ public final class CustomPaymentLayoutBinding implements ViewBinding {
       }
 
       return new CustomPaymentLayoutBinding((ConstraintLayout) rootView, changeDateButton,
-          paidButton, paymentInfo, toPayButton);
+          paymentInfo, toPayButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
