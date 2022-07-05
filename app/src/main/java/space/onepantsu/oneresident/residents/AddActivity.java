@@ -39,7 +39,6 @@ import space.onepantsu.oneresident.dialogframe.BackButtonFromAdd;
 import space.onepantsu.oneresident.dialogframe.DialogFrame;
 import space.onepantsu.oneresident.dialogframe.InfoButton;
 import space.onepantsu.oneresident.service.AlarmReceiver;
-import space.onepantsu.oneresident.settings.SettingsActivity;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -75,9 +74,11 @@ public class AddActivity extends AppCompatActivity {
     private Integer price = null;
     private String comment = "";
 
+    private final String TAG = "AddActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
@@ -98,6 +99,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void acceptChanges(View view){
+        Log.i(TAG, "acceptChanges()");
         AcceptButton dialogButton = new AddResidentButton(this);
         DialogFrame warning = new DialogFrame("Вы уверены, что хотите сохранить арендатора?",  "", dialogButton);
         FragmentManager manager = getSupportFragmentManager();
@@ -117,6 +119,7 @@ public class AddActivity extends AppCompatActivity {
             case WRONG_PRICE: errorMessage = "Поле \"Стоимость арендной платы\" должно быть заполнено!"; break;
             default: errorMessage = "Ошибка при добавлении арендатора!"; break;
            }
+        Log.w(TAG, "tryAgain() - " + error);
 
         InfoButton dialogButton = new InfoButton();
         DialogFrame warning = new DialogFrame("Ошибка!",  errorMessage, dialogButton);
@@ -288,8 +291,9 @@ public class AddActivity extends AppCompatActivity {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private void startAlarm(long startTime){
-
-        Log.i("ALARM", "Start Alarm");
+        Calendar logCalendar = Calendar.getInstance();
+        logCalendar.setTimeInMillis(startTime);
+        Log.i(TAG, "startAlarm() - " + logCalendar.getTime());
         AlarmManager alarmManager;
 
         PendingIntent alarmIntent;
@@ -305,6 +309,7 @@ public class AddActivity extends AppCompatActivity {
 
 
     private void addToPaymentDB(int id){
+        Log.i(TAG, "addToPaymentDB()");
         PaymentDBMS dbms = new PaymentDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -322,6 +327,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private void addToHistoryDB(int id, String name, String surname){
+        Log.i(TAG, "addToHistoryDB()");
         HistoryDBMS dbms = new HistoryDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -354,6 +360,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void addToDB(){
+        Log.i(TAG, "addToDB() - Start to Save to DB");
         System.out.println("Добавление в Базу Данных...");
         DBMS dbms = new DBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
@@ -376,8 +383,10 @@ public class AddActivity extends AppCompatActivity {
 
         if (newRowId == -1) {
             // Если ID  -1, значит произошла ошибка
+            Log.e(TAG, "addToDB() - Error");
             Toast.makeText(this, "Ошибка при добавлении арендатора", Toast.LENGTH_SHORT).show();
         } else {
+            Log.i(TAG, "addToDB() - Success");
             Toast.makeText(this, "Добавление произошло успешно!", Toast.LENGTH_SHORT).show();
 
             String selectQuery = "SELECT  * FROM " + DataBase.ResidentsTable.TABLE_NAME;
@@ -402,7 +411,7 @@ public class AddActivity extends AppCompatActivity {
 
 
     public void debtToHistoryDB(int id){
-
+        Log.i(TAG, "debtToHistoryDB()");
         DBMS residentDBMS = new DBMS(this);
         SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
         String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
@@ -512,6 +521,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void goBack(View view){
+        Log.i(TAG, "goBack()");
         if(allIsNotEmpty()){
             AcceptButton dialogButton = new BackButtonFromAdd(this);
             DialogFrame warning = new DialogFrame("Вы уверены, что хотите вернуться?",
