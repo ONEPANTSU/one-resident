@@ -139,7 +139,7 @@ public class ResidentActivity extends AppCompatActivity {
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
 
 
-        int maxLength = 26;
+        int maxLength = 20;
 
         if(!newResident.currentStreet.equals("")){
             residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
@@ -251,6 +251,13 @@ public class ResidentActivity extends AppCompatActivity {
 
     public void onAddActivity(View view){
         Intent intent = new Intent(this, AddActivity.class);
+        startActivity(intent);
+        closeActivity();
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         closeActivity();
     }

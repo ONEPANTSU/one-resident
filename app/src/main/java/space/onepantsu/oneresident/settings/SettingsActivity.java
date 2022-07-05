@@ -35,16 +35,6 @@ public class SettingsActivity extends AppCompatActivity {
         timeSettings.setHint(sharedPreferences.getString(ALARM_HOURS, "") + ":" + sharedPreferences.getString(ALARM_MINUTES, ""));
     }
 
-    public void goBack(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        closeActivity();
-    }
-
-    private void closeActivity() {
-        this.finish();
-    }
-
     public void acceptChanges(View view) {
         if (!timeSettings.getText().toString().equals("")){
             if(checkTime()){
@@ -86,6 +76,23 @@ public class SettingsActivity extends AppCompatActivity {
             return hours >= 0 && hours < 24 && minutes >= 0 && minutes < 60;
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        closeActivity();
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        closeActivity();
+    }
+
+    private void closeActivity() {
+        this.finish();
     }
 
 }
