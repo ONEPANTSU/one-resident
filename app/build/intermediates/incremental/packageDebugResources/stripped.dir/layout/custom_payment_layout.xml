@@ -60,7 +60,7 @@
 
             tools:ignore="MissingConstraints,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-        
+
 
     </RelativeLayout>
 

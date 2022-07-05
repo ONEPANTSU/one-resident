@@ -45,92 +45,24 @@ public class DebtSearcher {
                 null,                  // Don't filter by row groups
                 null);
         int dateColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_DATE);
-        int periodColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_PERIOD);
         if(cursor.moveToNext()) {
             String residentsDate = cursor.getString(dateColumnIndex);
-            int residentsPeriod = cursor.getInt(periodColumnIndex);
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
             Calendar currentCalendar = Calendar.getInstance();
+            currentCalendar.setTimeInMillis(System.currentTimeMillis());
+
             Calendar paymentDay = new GregorianCalendar();
             paymentDay.setTime(Objects.requireNonNull(format.parse(residentsDate)));
 
-            Calendar previousDay = new GregorianCalendar();
-            previousDay.set(paymentDay.get(Calendar.YEAR),
-                    paymentDay.get(Calendar.MONTH), paymentDay.get(Calendar.DATE));
-
-
-            paymentDay.roll(Calendar.DAY_OF_YEAR, residentsPeriod);
-            if(previousDay.get(Calendar.MONTH) == Calendar.DECEMBER &&
-                    paymentDay.get(Calendar.MONTH) == Calendar.JANUARY){
-                paymentDay.roll(Calendar.YEAR, 1);
+            if(currentCalendar.before(paymentDay)){
+                paymentInfo.currentDebt = 0;
             }
-
-            Calendar afterPayment = new GregorianCalendar();
-            afterPayment.set(currentCalendar.get(Calendar.YEAR),
-                    currentCalendar.get(Calendar.MONTH), currentCalendar.get(Calendar.DATE));
-            afterPayment.roll(Calendar.DAY_OF_YEAR, -1);
-
-            if(currentCalendar.get(Calendar.YEAR) == paymentDay.get(Calendar.YEAR) &&
-                currentCalendar.get(Calendar.MONTH) == paymentDay.get(Calendar.MONTH) &&
-                currentCalendar.get(Calendar.DAY_OF_YEAR) == paymentDay.get(Calendar.DAY_OF_YEAR)){
-                wasIncreased = true;
-                return increaseDebt(paymentInfo);
-            }
-            else if (afterPayment.after(previousDay)){
-                if(paymentInfo.currentStatus.equals(String.valueOf(PaymentStatus.PAID))){
-                    changeStatus(paymentInfo);
-                    paymentInfo.currentStatus = String.valueOf(PaymentStatus.NOT_PAID);
-                }
-                if(paymentInfo.currentDebt == 0){
-                    paymentInfo.currentDebt = 1;
-                    newAlarm = currentCalendar;
-                    newAlarm.roll(Calendar.SECOND, 5);
-                }
+            else{
+                paymentInfo.currentDebt = 1;
             }
 
         }
         return paymentInfo.currentDebt;
-    }
-
-    @SuppressLint("Range")
-    public int increaseDebt(PaymentActivity.PaymentInfo paymentInfo) throws ParseException {
-        PaymentDBMS paymentDBMS = new PaymentDBMS(context);
-        SQLiteDatabase db = paymentDBMS.getWritableDatabase();
-        ContentValues newValues = new ContentValues();
-        int debt = 0;
-        String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
-                " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
-        if(cursor.moveToNext()) {
-            debt = cursor.getInt(cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT));
-            debt += 1;
-            newValues.put(PaymentDB.PaymentTable.DEBT, debt);
-            String status = cursor.getString(cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS));
-            if (status.equals(String.valueOf(PaymentStatus.PAID))) {
-                newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
-            }
-            String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
-            db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
-
-            changeDate(paymentInfo);
-
-            checkDebtByPaymentInfo(paymentInfo);
-        }
-        return debt;
-    }
-
-    private void changeStatus(PaymentActivity.PaymentInfo paymentInfo){
-        PaymentDBMS paymentDBMS = new PaymentDBMS(context);
-        SQLiteDatabase db = paymentDBMS.getWritableDatabase();
-        ContentValues newValues = new ContentValues();
-        String selectQuery = "SELECT  * FROM " + PaymentDB.PaymentTable.TABLE_NAME +
-                " WHERE " + PaymentDB.PaymentTable._ID + " = " + paymentInfo.currentID;
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
-        if(cursor.moveToNext()) {
-           newValues.put(PaymentDB.PaymentTable.STATUS, String.valueOf(PaymentStatus.NOT_PAID));
-            String where = PaymentDB.PaymentTable._ID + "=" + paymentInfo.currentID;
-            db.update(PaymentDB.PaymentTable.TABLE_NAME, newValues, where, null);
-        }
     }
 
     public void changeDate(PaymentActivity.PaymentInfo paymentInfo) throws ParseException {

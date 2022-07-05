@@ -23,7 +23,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,7 +84,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         int idColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable._ID);
         int statusColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS);
-        int debtColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.DEBT);
 
         while (cursor.moveToNext()) {
             try {
@@ -93,7 +91,9 @@ public class PaymentActivity extends AppCompatActivity {
 
                 paymentInfo.currentID = cursor.getInt(idColumnIndex);
                 paymentInfo.currentStatus = cursor.getString(statusColumnIndex);
-                paymentInfo.currentDebt = cursor.getInt(debtColumnIndex);
+
+                DebtSearcher debtSearcher = new DebtSearcher(this);
+                paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
 
                 addPaymentView(paymentInfo);
 
@@ -106,22 +106,13 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables", "ResourceAsColor"})
-    private void addPaymentView(PaymentInfo paymentInfo) throws ParseException {
+    private void addPaymentView(PaymentInfo paymentInfo) {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
         TextView paymentText = view.findViewById(R.id.paymentInfo);
 
-        DebtSearcher debtSearcher = new DebtSearcher(this);
-        paymentInfo.currentDebt = debtSearcher.checkDebtByPaymentInfo(paymentInfo);
-        if(debtSearcher.wasIncreased){
-            debtToHistoryDB(paymentInfo.currentID);
-            Calendar newAlarm = debtSearcher.getNewAlarm();
-            startNewAlarm(newAlarm.getTimeInMillis());
-        }
-
         String paymentTextBuilder = getResidentInfo(paymentInfo.currentID);
         paymentText.setText(paymentTextBuilder);
-
 
         Button toPayButton = view.findViewById(R.id.toPayButton);
         toPayButton.setOnClickListener(v -> wasPaid(paymentInfo));
@@ -537,7 +528,6 @@ public class PaymentActivity extends AppCompatActivity {
         if(cursor.moveToNext()) {
             String name = cursor.getString(nameColumnIndex);
             String surname = cursor.getString(surnameColumnIndex);
-
 
             HistoryDBMS dbms = new HistoryDBMS(this);
             SQLiteDatabase db = dbms.getWritableDatabase();
