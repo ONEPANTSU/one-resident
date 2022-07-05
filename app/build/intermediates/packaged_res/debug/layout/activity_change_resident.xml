@@ -16,11 +16,12 @@
             android:id="@+id/backButtonFromResidentActivity"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:background="#fafafa"
             android:onClick="goBack"
-            app:srcCompat="@drawable/arrow2" />
+            app:srcCompat="@drawable/arrow2"
+            tools:ignore="ContentDescription" />
 
 
 
@@ -31,10 +32,10 @@
             android:layout_height="60dp"
             android:background="#fafafa"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             app:srcCompat="@drawable/save"
             android:layout_alignParentEnd="true"
-            />
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
     <ScrollView
@@ -46,7 +47,7 @@
         android:layout_height="match_parent">
         <LinearLayout
 
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
@@ -54,7 +55,8 @@
             <TextView
                 android:id="@+id/textViewMakeChanges"
                 style="@style/header_section_changeRS"
-                android:text="Внесите изменения" />
+                android:text="Внесите изменения"
+                tools:ignore="HardcodedText" />
             <!-- CITY-->
             <TextView
                 android:id="@+id/textViewCity"
@@ -120,7 +122,7 @@
             <EditText
                 android:id="@+id/textSurname"
                 style="@style/text_field_changeRS"
-                android:hint="*Фамилия"
+                android:hint="Фамилия"
                 android:inputType="textPersonName" />
             <!-- NAME-->
             <TextView
@@ -131,7 +133,7 @@
             <EditText
                 android:id="@+id/textName"
                 style="@style/text_field_changeRS"
-                android:hint="*Имя"
+                android:hint="Имя"
                 android:inputType="textPersonName" />
             <!-- SECONDNAME-->
             <TextView
@@ -164,7 +166,7 @@
             <EditText
                 android:id="@+id/textDate"
                 style="@style/text_field_changeRS"
-                android:hint="*Дата начала аренды (дд.мм.гггг)"
+                android:hint="Дата следующего платежа (дд.мм.гггг)"
                 android:inputType="date" />
             <!-- PERIOD-->
             <TextView
@@ -186,7 +188,7 @@
             <EditText
                 android:id="@+id/textPrice"
                 style="@style/text_field_changeRS"
-                android:hint="*Стоимость арендной платы"
+                android:hint="Стоимость арендной платы"
                 android:inputType="number" />
             <!-- COMMENT-->
             <TextView
