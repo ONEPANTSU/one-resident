@@ -131,7 +131,7 @@
             <EditText
                 android:id="@+id/editTextAddSurname"
                 style="@style/text_field"
-                android:hint="*Фамилия"
+                android:hint="Фамилия"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -142,7 +142,7 @@
             <EditText
                 android:id="@+id/editTextAddName"
                 style="@style/text_field"
-                android:hint="*Имя"
+                android:hint="Имя"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -181,7 +181,7 @@
             <EditText
                 android:id="@+id/editTextAddDate"
                 style="@style/text_field"
-                android:hint="*Дата начала аренды (дд.мм.гггг)"
+                android:hint="Дата следующего платежа (дд.мм.гггг)"
                 android:inputType="date" />
 
             <TextView
@@ -203,7 +203,7 @@
             <EditText
                 android:id="@+id/editTextAddPrice"
                 style="@style/text_field"
-                android:hint="*Стоимость арендной платы"
+                android:hint="Стоимость арендной платы"
                 android:inputType="number" />
 
             <TextView
