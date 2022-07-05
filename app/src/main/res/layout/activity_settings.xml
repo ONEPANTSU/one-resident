@@ -35,7 +35,7 @@
             android:background="@drawable/round_style"
             android:backgroundTint="@color/defolt"
             android:onClick="acceptChanges"
-            android:text="Сохранить"
+            android:text="@string/save"
             android:textColor="@color/white"
             android:alpha="0.9"
             tools:ignore="HardcodedText" />
@@ -61,13 +61,13 @@
             <TextView
                 android:id="@+id/settingsTextTime"
                 style="@style/text_headerField"
-                android:text="Время получения уведомлений (чч:мм)"
+                android:text="@string/time_of_receipt"
                 tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/settingsEditTime"
                 style="@style/text_field"
-                android:hint="12:00"
+                android:hint="@string/time"
                 android:inputType="textPersonName"
                 android:importantForAutofill="no"
                 tools:ignore="HardcodedText" />
