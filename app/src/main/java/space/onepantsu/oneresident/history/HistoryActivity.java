@@ -140,6 +140,13 @@ public class HistoryActivity extends AppCompatActivity {
         builder.create().show();
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        closeActivity();
+    }
+
     public void goBack(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -114,7 +114,7 @@ public class PaymentActivity extends AppCompatActivity {
         Button residentInfoBttn = view.findViewById(R.id.paymentInfo);
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
 
-        int maxLength = 20;
+        int maxLength = 15;
 
         if (newResident != null) {
             if (!newResident.currentStreet.equals("")) {
@@ -648,6 +648,13 @@ public class PaymentActivity extends AppCompatActivity {
         alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        closeActivity();
     }
 
     public void goBack(View view){
