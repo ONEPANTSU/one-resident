@@ -10,19 +10,18 @@
         tools:ignore="MissingConstraints">
 
 
-
         <Button
             android:id="@+id/paymentInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-
             android:background="@drawable/border_text"
+
             android:backgroundTint="#e8e9ed"
+            android:clickable="false"
 
 
             android:paddingStart="60dp"

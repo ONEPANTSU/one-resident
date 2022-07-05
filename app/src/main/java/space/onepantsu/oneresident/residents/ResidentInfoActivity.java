@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import space.onepantsu.oneresident.R;
+import space.onepantsu.oneresident.payment.PaymentActivity;
 
 public class ResidentInfoActivity extends AppCompatActivity {
 
     ResidentActivity.ResidentInfo resident;
+    String fromActivity;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -24,6 +26,8 @@ public class ResidentInfoActivity extends AppCompatActivity {
         if (arguments != null) {
             resident = (ResidentActivity.ResidentInfo)
                     arguments.getSerializable(ResidentActivity.ResidentInfo.class.getSimpleName());
+
+            fromActivity = arguments.getString("FROM");
 
             TextView city = findViewById(R.id.textCity);
             TextView street = findViewById(R.id.textStreet);
@@ -101,8 +105,15 @@ public class ResidentInfoActivity extends AppCompatActivity {
     }
 
     public void back(){
-        Intent intent = new Intent(this, ResidentActivity.class);
-        startActivity(intent);
+        Intent intent;
+        if(fromActivity.equals("ResidentActivity")){
+            intent = new Intent(this, ResidentActivity.class);
+            startActivity(intent);
+        }
+        else if(fromActivity.equals("PaymentActivity")){
+            intent = new Intent(this, PaymentActivity.class);
+            startActivity(intent);
+        }
         closeActivity();
     }
 

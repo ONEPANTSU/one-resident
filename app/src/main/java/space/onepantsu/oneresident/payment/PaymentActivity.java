@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -43,6 +42,7 @@ import space.onepantsu.oneresident.payment.database.PaymentDBMS;
 import space.onepantsu.oneresident.payment.database.PaymentStatus;
 import space.onepantsu.oneresident.residents.Error;
 import space.onepantsu.oneresident.residents.ResidentActivity;
+import space.onepantsu.oneresident.residents.ResidentInfoActivity;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
 import space.onepantsu.oneresident.service.AlarmReceiver;
@@ -109,28 +109,66 @@ public class PaymentActivity extends AppCompatActivity {
     private void addPaymentView(PaymentInfo paymentInfo) {
         @SuppressLint("InflateParams") final View view = getLayoutInflater().inflate(R.layout.custom_payment_layout, null);
 
-        TextView paymentText = view.findViewById(R.id.paymentInfo);
+        ResidentActivity.ResidentInfo newResident = getResidentInfo(paymentInfo.currentID);
 
-        String paymentTextBuilder = getResidentInfo(paymentInfo.currentID);
-        paymentText.setText(paymentTextBuilder);
+        Button residentInfoBttn = view.findViewById(R.id.paymentInfo);
+        StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
 
-        Button toPayButton = view.findViewById(R.id.toPayButton);
-        toPayButton.setOnClickListener(v -> wasPaid(paymentInfo));
-        if(paymentInfo.currentDebt == 0) {
-            toPayButton.setClickable(false);
-            toPayButton.setBackground(getDrawable(R.drawable.background_paybutton_payed));
-            toPayButton.setText("Оплачено");
+        int maxLength = 20;
+
+        if (newResident != null) {
+            if (!newResident.currentStreet.equals("")) {
+                residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
+
+                int currentLenght = residentInfoBttnTextBuilder.toString().length();
+
+                if (currentLenght > maxLength) {
+                    residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght - 1);
+                    residentInfoBttnTextBuilder.append("...");
+                }
+                residentInfoBttnTextBuilder.append("\n");
+            }
+            if (!newResident.currentHouse.equals("")) {
+                residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
+            }
+            if (newResident.currentFlat > 0) {
+                residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
+            }
+
+            residentInfoBttnTextBuilder.append("\n");
+            residentInfoBttnTextBuilder.append(newResident.currentPrice).append(" р");
+
+            if (!newResident.currentDate.equals("")) {
+                residentInfoBttnTextBuilder.append("\n");
+                residentInfoBttnTextBuilder.append(newResident.currentDate);
+            }
+            residentInfoBttn.setText(residentInfoBttnTextBuilder.toString());
+
+            residentInfoBttn.setOnClickListener(view1 -> {
+                Intent intent = new Intent(PaymentActivity.this, ResidentInfoActivity.class);
+                intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), newResident);
+                intent.putExtra("FROM", "PaymentActivity");
+                startActivity(intent);
+                closeActivity();
+            });
+
+            Button toPayButton = view.findViewById(R.id.toPayButton);
+            toPayButton.setOnClickListener(v -> toPayDialog(this, paymentInfo));
+            if (paymentInfo.currentDebt == 0) {
+                toPayButton.setClickable(false);
+                toPayButton.setBackground(getDrawable(R.drawable.background_paybutton_payed));
+                toPayButton.setText("Оплачено");
+            } else {
+                toPayButton.setBackground(getDrawable(R.drawable.background_paybutton));
+                toPayButton.setText("Оплатить");
+
+            }
+
+            Button changeDateButton = view.findViewById(R.id.changeDateButton);
+            changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
+
+            linear.addView(view);
         }
-        else{
-            toPayButton.setBackground(getDrawable(R.drawable.background_paybutton));
-            toPayButton.setText("Оплатить");
-
-        }
-
-        Button changeDateButton = view.findViewById(R.id.changeDateButton);
-        changeDateButton.setOnClickListener(v -> changeDate(paymentInfo));
-
-        linear.addView(view);
     }
 
     public void changeDate(PaymentInfo paymentInfo){
@@ -207,6 +245,16 @@ public class PaymentActivity extends AppCompatActivity {
                 .setNegativeButton("Отмена", (dialog, id) -> {});
         builder.create().show();
     }
+
+    public void toPayDialog(Activity activity, PaymentInfo paymentInfo) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Подтвержение")
+                .setMessage("Вы уверены, что арендатор произвёл оплату?")
+                .setPositiveButton("ОК", (dialog, id) -> wasPaid(paymentInfo))
+                .setNegativeButton("Отмена", (dialog, id) -> {});
+        builder.create().show();
+    }
+
 
     private void saveNewDate(ResidentActivity.ResidentInfo residentInfo, String stringDate) {
         space.onepantsu.oneresident.residents.Error error = space.onepantsu.oneresident.residents.Error.OK;
@@ -321,7 +369,7 @@ public class PaymentActivity extends AppCompatActivity {
         warning.show(transaction, "dialog");
     }
 
-    private String getResidentInfo(int id){
+    private ResidentActivity.ResidentInfo getResidentInfo(int id){
 
         DBMS dbms = new DBMS(this);
         SQLiteDatabase db = dbms.getReadableDatabase();
@@ -364,39 +412,14 @@ public class PaymentActivity extends AppCompatActivity {
                 newResident.currentPrice = cursor.getInt(priceColumnIndex);
                 newResident.currentComment = cursor.getString(commentColumnIndex);
 
-                StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
+                return newResident;
 
-                int maxLength = 26;
-
-                if(!newResident.currentStreet.equals("")){
-                    residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
-
-                    int currentLenght = residentInfoBttnTextBuilder.toString().length();
-
-                    if(currentLenght > maxLength){
-                        residentInfoBttnTextBuilder.delete(maxLength-3, currentLenght-1);
-                        residentInfoBttnTextBuilder.append("...");
-                    }
-                    residentInfoBttnTextBuilder.append("\n");
-                }
-                if(!newResident.currentHouse.equals("")){
-                    residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
-                }
-                if(newResident.currentFlat > 0){
-                    residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
-                }
-                if(!newResident.currentDate.equals("")){
-                    residentInfoBttnTextBuilder.append("\n");
-                    residentInfoBttnTextBuilder.append(newResident.currentDate);
-                }
-                return residentInfoBttnTextBuilder.toString();
-
-            }
-            catch (Exception e){
-                System.out.println("Ошибка при чтении строки");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        return "";
+
+        return null;
     }
 
     public void wasPaid(PaymentInfo paymentInfo){
