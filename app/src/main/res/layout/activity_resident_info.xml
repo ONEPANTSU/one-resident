@@ -55,14 +55,12 @@
             <TextView
                 android:id="@+id/textViewAddressHeader"
                 style="@style/header_section"
-                android:text="Адрес обьекта"
-                tools:ignore="HardcodedText" />
+                android:text="@string/address_of_the_object" />
             <!-- CITY-->
             <TextView
                 android:id="@+id/textViewCity"
                 style="@style/text_headerField_RS_info"
-                android:text="Город"
-                tools:ignore="HardcodedText" />
+                android:text="@string/city" />
             <TextView
                 android:id="@+id/textCity"
                 android:layout_width="match_parent"
@@ -80,8 +78,7 @@
             <TextView
                 android:id="@+id/textViewStreet"
                 style="@style/text_headerField_RS_info"
-                android:text="Улица"
-                tools:ignore="HardcodedText" />
+                android:text="@string/street_defolt" />
             <TextView
                 android:id="@+id/textStreet"
                 android:layout_width="match_parent"
@@ -99,8 +96,7 @@
             <TextView
                 android:id="@+id/textViewHouse"
                 style="@style/text_headerField_RS_info"
-                android:text="Дом"
-                tools:ignore="HardcodedText" />
+                android:text="@string/house_defolt" />
             <TextView
                 android:id="@+id/textHouse"
                 android:layout_width="match_parent"
@@ -118,8 +114,7 @@
             <TextView
                 android:id="@+id/textViewLevel"
                 style="@style/text_headerField_RS_info"
-                android:text="Этаж"
-                tools:ignore="HardcodedText" />
+                android:text="@string/level" />
             <TextView
                 android:id="@+id/textLevel"
                 android:layout_width="match_parent"
@@ -137,8 +132,7 @@
             <TextView
                 android:id="@+id/textViewFlat"
                 style="@style/text_headerField_RS_info"
-                android:text="Квартира"
-                tools:ignore="HardcodedText" />
+                android:text="@string/flat" />
             <TextView
                 android:id="@+id/textFlat"
                 android:layout_width="match_parent"
@@ -155,15 +149,13 @@
             <TextView
                 android:id="@+id/textViewResidentHeader"
                 style="@style/header_section"
-                android:text="Данные арендатора"
-                tools:ignore="HardcodedText" />
+                android:text="@string/tenant_data" />
             <!-- SURNAME-->
 
             <TextView
                 android:id="@+id/textViewSurname"
                 style="@style/text_headerField_RS_info"
-                android:text="Фамилия"
-                tools:ignore="HardcodedText" />
+                android:text="@string/surname_defolt" />
             <TextView
                 android:id="@+id/textSurname"
                 android:layout_width="match_parent"
@@ -181,8 +173,7 @@
             <TextView
                 android:id="@+id/textViewName"
                 style="@style/text_headerField_RS_info"
-                android:text="Имя"
-                tools:ignore="HardcodedText" />
+                android:text="@string/name_defolt" />
             <TextView
                 android:id="@+id/textName"
                 android:layout_width="match_parent"
@@ -200,8 +191,7 @@
             <TextView
                 android:id="@+id/textViewSecondName"
                 style="@style/text_headerField_RS_info"
-                android:text="Отчество"
-                tools:ignore="HardcodedText" />
+                android:text="@string/secondName" />
             <TextView
                 android:id="@+id/textSecondName"
                 android:layout_width="match_parent"
@@ -218,8 +208,7 @@
             <TextView
                 android:id="@+id/textViewPhone"
                 style="@style/text_headerField_RS_info"
-                android:text="Номер телефона"
-                tools:ignore="HardcodedText" />
+                android:text="@string/phone" />
             <TextView
                 android:id="@+id/textPhone"
                 android:layout_width="match_parent"
@@ -237,15 +226,13 @@
             <TextView
                 android:id="@+id/textViewRentHeader"
                 style="@style/header_section"
-                android:text="Данные об аренде"
-                tools:ignore="HardcodedText" />
+                android:text="@string/rental_data" />
             <!-- DATE-->
 
             <TextView
                 android:id="@+id/textViewDate"
                 style="@style/text_headerField_RS_info"
-                android:text="Дата следующего платежа"
-                tools:ignore="HardcodedText" />
+                android:text="@string/date_defolt" />
             <TextView
                 android:id="@+id/textDate"
                 android:layout_width="match_parent"
@@ -263,8 +250,7 @@
             <TextView
                 android:id="@+id/textViewPeriod"
                 style="@style/text_headerField_RS_info"
-                android:text="Период внесения арендной платы"
-                tools:ignore="HardcodedText" />
+                android:text="@string/period" />
             <TextView
                 android:id="@+id/textPeriod"
                 android:layout_width="match_parent"
@@ -281,8 +267,7 @@
             <TextView
                 android:id="@+id/textViewPrice"
                 style="@style/text_headerField_RS_info"
-                android:text="Стоимость арендной платы"
-                tools:ignore="HardcodedText" />
+                android:text="@string/cost_defolt" />
             <TextView
                 android:id="@+id/textPrice"
                 android:layout_width="match_parent"
@@ -299,8 +284,7 @@
             <TextView
                 android:id="@+id/textViewComment"
                 style="@style/text_headerField_RS_info"
-                android:text="Комментарий"
-                tools:ignore="HardcodedText" />
+                android:text="@string/comment" />
             <TextView
                 android:id="@+id/textComment"
                 android:layout_width="match_parent"
