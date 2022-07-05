@@ -32,7 +32,7 @@
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="15sp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="HardcodedText,MissingConstraints,RtlSymmetry" />
 
 
         <Button

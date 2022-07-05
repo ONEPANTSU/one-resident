@@ -19,17 +19,17 @@
             android:onClick="goBack"
             app:srcCompat="@drawable/arrow2"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="#fafafa"
-            />
+            tools:ignore="ContentDescription" />
         <!--Сделать прозрачность блока кнопок при скролинге -->
         <Button
             android:id="@+id/buttonAdd"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="160dp"
+            android:layout_marginStart="160dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/round_style"
             android:backgroundTint="@color/defolt"
@@ -37,7 +37,7 @@
             android:text="Добавить"
             android:textColor="@color/white"
             android:alpha="0.9"
-            />
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <ScrollView
@@ -51,7 +51,7 @@
         android:fadingEdgeLength="100dp">
         <LinearLayout
 
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
@@ -60,18 +60,22 @@
             <TextView
                 android:id="@+id/textViewAddressHeader"
                 style="@style/header_section"
-                android:text="Адрес обьекта" />
+                android:text="Адрес обьекта"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewCity"
                 style="@style/text_headerField"
-                android:text="Город" />
+                android:text="Город"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddCity"
                 style="@style/text_field"
                 android:hint="Город"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewStreet"
@@ -82,7 +86,9 @@
                 android:id="@+id/editTextAddStreet"
                 style="@style/text_field"
                 android:hint="Улица"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewHouse"
@@ -93,34 +99,43 @@
                 android:id="@+id/editTextAddHouse"
                 style="@style/text_field"
                 android:hint="Дом"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewLevel"
                 style="@style/text_headerField"
-                android:text="Этаж" />
+                android:text="Этаж"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddLevel"
                 style="@style/text_field"
                 android:hint="Этаж"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewFlat"
                 style="@style/text_headerField"
-                android:text="Квартира" />
+                android:text="Квартира"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddFlat"
                 style="@style/text_field"
                 android:hint="Квартира"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewResidentHeader"
                 style="@style/header_section"
-                android:text="Данные арендатора" />
+                android:text="Данные арендатора"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewSurname"
@@ -132,7 +147,9 @@
                 android:id="@+id/editTextAddSurname"
                 style="@style/text_field"
                 android:hint="Фамилия"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewName"
@@ -143,34 +160,43 @@
                 android:id="@+id/editTextAddName"
                 style="@style/text_field"
                 android:hint="Имя"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewSecondName"
                 style="@style/text_headerField"
-                android:text="Отчество" />
+                android:text="Отчество"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddSecondName"
                 style="@style/text_field"
                 android:hint="Отчество"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewPhone"
                 style="@style/text_headerField"
-                android:text="Номер телефона" />
+                android:text="Номер телефона"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddPhone"
                 style="@style/text_field"
                 android:hint="Номер телефона"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewRentHeader"
                 style="@style/header_section"
-                android:text="Данные об аренде" />
+                android:text="Данные об аренде"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textViewDate"
@@ -182,18 +208,23 @@
                 android:id="@+id/editTextAddDate"
                 style="@style/text_field"
                 android:hint="Дата следующего платежа (дд.мм.гггг)"
-                android:inputType="date" />
+                android:inputType="date"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewPeriod"
                 style="@style/text_headerField"
-                android:text="Период внесения арендной платы" />
+                android:text="Период внесения арендной платы"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddPeriod"
                 style="@style/text_field"
                 android:hint="Период внесения арендной платы"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewPrice"
@@ -204,19 +235,24 @@
                 android:id="@+id/editTextAddPrice"
                 style="@style/text_field"
                 android:hint="Стоимость арендной платы"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textViewComment"
                 style="@style/text_headerField"
-                android:text="Комментарий" />
+                android:text="Комментарий"
+                tools:ignore="HardcodedText" />
 
             <EditText
                 android:id="@+id/editTextAddComment"
                 style="@style/text_field"
                 android:layout_marginBottom="25dp"
                 android:hint="Комментарий"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
     </ScrollView>

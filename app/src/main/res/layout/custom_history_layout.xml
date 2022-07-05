@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/historyInfo"
 
-            android:drawableLeft="@drawable/history_payment_image_"
+            android:drawableStart="@drawable/history_payment_image_"
 
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -22,16 +22,17 @@
             android:layout_marginTop="10dp"
             android:drawablePadding="20dp"
 
-            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
 
             android:background="@drawable/border_text"
             android:backgroundTint="#e8e9ed"
             android:text="Some text"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/black"
-            android:textAlignment="textStart"/>
+            android:textAlignment="textStart"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
     </RelativeLayout>
 

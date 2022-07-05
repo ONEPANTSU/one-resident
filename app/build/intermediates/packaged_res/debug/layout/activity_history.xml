@@ -17,12 +17,12 @@
             android:id="@+id/backButtonFromHistoryActivity"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:background="#fafafa"
             android:onClick="goBack"
             app:srcCompat="@drawable/arrow2"
-            />
+            tools:ignore="ContentDescription,HardcodedText" />
 
         <ImageButton
             android:id="@+id/deleteAllFromHistoryActivity"
@@ -30,12 +30,13 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:background="#fafafa"
 
             app:srcCompat="@drawable/delete_for_history"
             android:layout_alignParentEnd="true"
-            />
+            android:contentDescription="delete"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 
@@ -52,7 +53,7 @@
 
         <LinearLayout
             android:id="@+id/historyLinear"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical">

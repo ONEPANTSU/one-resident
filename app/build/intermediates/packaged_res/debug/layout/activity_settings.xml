@@ -20,17 +20,17 @@
             android:onClick="goBack"
             app:srcCompat="@drawable/arrow2"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="#fafafa"
-            />
+            tools:ignore="ContentDescription" />
         <!--Сделать прозрачность блока кнопок при скролинге -->
         <Button
             android:id="@+id/buttonSave"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="160dp"
+            android:layout_marginStart="160dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/round_style"
             android:backgroundTint="@color/defolt"
@@ -38,7 +38,7 @@
             android:text="Сохранить"
             android:textColor="@color/white"
             android:alpha="0.9"
-            />
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 
@@ -53,7 +53,7 @@
 
         <LinearLayout
             android:id="@+id/residentLinear"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
@@ -68,7 +68,9 @@
                 android:id="@+id/settingsEditTime"
                 style="@style/text_field"
                 android:hint="12:00"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </ScrollView>

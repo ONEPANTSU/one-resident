@@ -12,20 +12,21 @@
         android:layout_height="90dp"
         android:background="@drawable/round_style"
         android:backgroundTint="@color/defolt"
-        android:drawableLeft="@drawable/resident"
+        android:drawableStart="@drawable/resident"
         android:drawablePadding="-40dp"
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:onClick="onResidentActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:text="Арендаторы "
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/paymentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <Button
         android:id="@+id/paymentButton"
@@ -33,20 +34,20 @@
         android:layout_height="90dp"
         android:background="@drawable/round_style"
         android:backgroundTint="@color/defolt"
-        android:drawableLeft="@drawable/payment"
+        android:drawableStart="@drawable/payment"
         android:drawablePadding="-90dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:onClick="onPaymentActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:text="Оплата"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/residentButton"
-         />
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <Button
         android:id="@+id/historyButton"
@@ -54,19 +55,19 @@
         android:layout_height="90dp"
         android:background="@drawable/round_style"
         android:backgroundTint="@color/defolt"
-        android:drawableLeft="@drawable/history_payment"
+        android:drawableStart="@drawable/history_payment"
         android:layout_marginTop="20dp"
         android:onClick="onHistoryActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:text="История оплаты "
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentButton"
         android:drawablePadding="-10dp"
-        />
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <Button
         android:id="@+id/settingsButton"
@@ -74,18 +75,19 @@
         android:layout_height="90dp"
         android:background="@drawable/round_style"
         android:backgroundTint="@color/defolt"
-        android:drawableLeft="@drawable/settings"
+        android:drawableStart="@drawable/settings"
         android:drawablePadding="-50dp"
         android:layout_marginTop="20dp"
         android:onClick="onSettingsActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:text="Настройки"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/historyButton" />
+        app:layout_constraintTop_toBottomOf="@+id/historyButton"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -97,6 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
