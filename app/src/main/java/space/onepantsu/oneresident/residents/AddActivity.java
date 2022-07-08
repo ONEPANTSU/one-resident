@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -302,11 +303,25 @@ public class AddActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
         intent.putExtra("text", "Узнайте, кто должен внести оплату!");
-        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int)startTime, intent, 0);
+        try{
+            alarmIntent = createPendingIntentGetBroadCast(getApplicationContext(), (int) startTime, intent, 0);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
+        }
+        catch (Exception e){
+            Log.e(TAG, "startAlarm() - PendingIntent.getBroadcast() ERROR");
+            System.out.println(e.getCause());
+        }
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
     }
 
+    @SuppressLint("ObsoleteSdkInt")
+    public static PendingIntent createPendingIntentGetBroadCast(Context context, int id, Intent intent, int flag) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            return PendingIntent.getBroadcast(context, id, intent, flag);
+        }
+    }
 
     private void addToPaymentDB(int id){
         Log.i(TAG, "addToPaymentDB()");

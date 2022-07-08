@@ -14,34 +14,58 @@
     <color name="white">#FFFFFFFF</color>
     <dimen name="fab_margin">16dp</dimen>
     <item name="textView2" type="id"/>
+    <string name="add">Добавить</string>
+    <string name="address_of_the_object">Адрес обьекта</string>
     <string name="app_name">ONE::Resident</string>
-    <string name="city"><font color="#C20800">*</font>Город</string>
+    <string name="city">Город</string>
+    <string name="comment">Комментарий</string>
     <string name="cost"><font color="#C20800">*</font>Стоимость арендной платы</string>
+    <string name="cost_defolt">Стоимость арендной платы</string>
     <string name="date"><font color="#C20800">*</font>Дата следующего платежа (дд.мм.гггг)</string>
+    <string name="date_defolt">Дата следующего платежа (дд.мм.гггг)</string>
     <string name="first_fragment_label">First Fragment</string>
+    <string name="flat">Квартира</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="house"><font color="#C20800">*</font>Дом</string>
+    <string name="house_defolt">Дом</string>
+    <string name="level">Этаж</string>
+    <string name="make_changes">Внесите изменения</string>
     <string name="name"><font color="#C20800">*</font>Имя</string>
+    <string name="name_defolt">Имя</string>
     <string name="next">Next</string>
+    <string name="payment">Оплата</string>
+    <string name="payment_history">История оплаты</string>
+    <string name="period">Период внесения арендной платы</string>
+    <string name="phone">Номер телефона</string>
     <string name="previous">Previous</string>
+    <string name="rental_data">Данные об аренде</string>
+    <string name="save">Сохранить</string>
+    <string name="secondName">Отчёство</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="settings">Настройки</string>
     <string name="street"><font color="#C20800">*</font>Улица</string>
+    <string name="street_defolt">Улица</string>
     <string name="surname"><font color="#C20800">*</font>Фамилия</string>
+    <string name="surname_defolt">Фамилия</string>
+    <string name="tenant_data">Данные арендатора</string>
+    <string name="tenants">Арендаторы</string>
+    <string name="time">12:00</string>
+    <string name="time_of_receipt">Время получения уведомлений (чч:мм)</string>
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_payment">PaymentActivity</string>
     <style name="Theme.OneResident" parent="Theme.AppCompat.Light.NoActionBar">
-        
+        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        
+        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        
+        <!-- Status bar color. -->
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        
+        <!-- Customize your theme here. -->
     </style>
     <style name="Theme.OneResident.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.OneResident.NoActionBar">

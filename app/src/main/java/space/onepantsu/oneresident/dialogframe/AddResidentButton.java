@@ -1,5 +1,7 @@
 package space.onepantsu.oneresident.dialogframe;
 
+import android.util.Log;
+
 import space.onepantsu.oneresident.residents.AddActivity;
 
 public class AddResidentButton extends AcceptButton{
@@ -15,6 +17,7 @@ public class AddResidentButton extends AcceptButton{
             activity.addResident();
         }
         catch (Exception e){
+            Log.e("ADD_RESIDENT_BUTTON", "ERROR");
             e.getCause();
         }
     }
