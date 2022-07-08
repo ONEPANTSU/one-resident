@@ -12,10 +12,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Objects;
-
-import space.onepantsu.oneresident.payment.database.PaymentDB;
-import space.onepantsu.oneresident.payment.database.PaymentDBMS;
-import space.onepantsu.oneresident.payment.database.PaymentStatus;
 import space.onepantsu.oneresident.residents.database.DBMS;
 import space.onepantsu.oneresident.residents.database.DataBase;
 

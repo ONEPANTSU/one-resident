@@ -21,3 +21,7 @@ project/
 .idea/
 
 *.properties
+
+app/build/
+
+app/release/
