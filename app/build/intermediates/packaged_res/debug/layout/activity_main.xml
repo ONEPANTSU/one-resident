@@ -18,7 +18,7 @@
         android:gravity="center"
         android:onClick="onResidentActivity"
         android:paddingStart="20dp"
-        android:text="Арендаторы "
+        android:text="@string/tenants"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/paymentButton"
@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="HardcodedText,RtlSymmetry" />
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/paymentButton"
@@ -40,14 +40,14 @@
         android:gravity="center"
         android:onClick="onPaymentActivity"
         android:paddingStart="20dp"
-        android:text="Оплата"
+        android:text="@string/payment"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/residentButton"
-        tools:ignore="HardcodedText,RtlSymmetry" />
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/historyButton"
@@ -59,7 +59,7 @@
         android:layout_marginTop="20dp"
         android:onClick="onHistoryActivity"
         android:paddingStart="20dp"
-        android:text="История оплаты "
+        android:text="@string/payment_history"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentButton"
         android:drawablePadding="-10dp"
-        tools:ignore="HardcodedText,RtlSymmetry" />
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/settingsButton"
@@ -80,14 +80,14 @@
         android:layout_marginTop="20dp"
         android:onClick="onSettingsActivity"
         android:paddingStart="20dp"
-        android:text="Настройки"
+        android:text="@string/settings"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/historyButton"
-        tools:ignore="HardcodedText,RtlSymmetry" />
+        tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/imageView"
