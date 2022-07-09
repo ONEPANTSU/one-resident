@@ -80,7 +80,7 @@ public class PaymentActivity extends AppCompatActivity {
                 null,                  // значения для условия WHERE
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
-                null);                   // порядок сортировки
+                PaymentDB.PaymentTable.DEBT + " DESC");                   // порядок сортировки
 
         int idColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable._ID);
         int statusColumnIndex = cursor.getColumnIndex(PaymentDB.PaymentTable.STATUS);
