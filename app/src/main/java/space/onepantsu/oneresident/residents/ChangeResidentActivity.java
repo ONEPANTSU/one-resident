@@ -364,7 +364,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
         intent.putExtra("text", "Узнайте, кто должен внести оплату!");
-        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) startTime, intent, 0);
+        alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) startTime, intent, PendingIntent.FLAG_IMMUTABLE);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, alarmIntent);
     }

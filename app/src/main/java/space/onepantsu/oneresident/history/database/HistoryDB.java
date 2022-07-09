@@ -13,6 +13,11 @@ public class HistoryDB {
 
         public final static String DATE = "date";
         public final static String RESIDENT_ID = "residentID";
+        public final static String RESIDENT_OBJECT = "object";
+        public final static String RESIDENT_CITY = "city";
+        public final static String RESIDENT_STREET = "street";
+        public final static String RESIDENT_HOUSE = "house";
+        public final static String RESIDENT_FLAT = "flat";
         public final static String RESIDENT_NAME = "residentName";
         public final static String RESIDENT_SURNAME = "residentSurname";
         public final static String TYPE = "type";

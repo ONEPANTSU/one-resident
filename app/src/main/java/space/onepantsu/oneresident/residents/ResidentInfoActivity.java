@@ -94,7 +94,6 @@ public class ResidentInfoActivity extends AppCompatActivity {
 
     }
 
-
     public void changeResident(View view){
         Intent intent = new Intent(ResidentInfoActivity.this, ChangeResidentActivity.class);
         intent.putExtra(ResidentActivity.ResidentInfo.class.getSimpleName(), resident);
@@ -102,7 +101,6 @@ public class ResidentInfoActivity extends AppCompatActivity {
         startActivity(intent);
         closeActivity();
     }
-
 
     public void goBack(View view){
         back();

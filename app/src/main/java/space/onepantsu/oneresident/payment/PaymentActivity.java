@@ -147,9 +147,9 @@ public class PaymentActivity extends AppCompatActivity {
                     residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
                 }
 
-                residentInfoBttnTextBuilder.append("\n");
-                residentInfoBttnTextBuilder.append(newResident.currentPrice).append(" р");
             }
+            residentInfoBttnTextBuilder.append("\n");
+            residentInfoBttnTextBuilder.append(newResident.currentPrice).append(" р");
             if (!newResident.currentDate.equals("")) {
                 residentInfoBttnTextBuilder.append("\n");
                 residentInfoBttnTextBuilder.append(newResident.currentDate);
@@ -499,8 +499,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         DBMS residentDBMS = new DBMS(this);
         SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
-        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
-                DataBase.ResidentsTable.COLUMN_SURNAME};
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_OBJECT,
+                DataBase.ResidentsTable.COLUMN_CITY, DataBase.ResidentsTable.COLUMN_STREET,
+                DataBase.ResidentsTable.COLUMN_HOUSE, DataBase.ResidentsTable.COLUMN_FLAT,
+                DataBase.ResidentsTable.COLUMN_NAME, DataBase.ResidentsTable.COLUMN_SURNAME};
         @SuppressLint("Recycle") Cursor cursor = residentDB.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
@@ -509,9 +511,19 @@ public class PaymentActivity extends AppCompatActivity {
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
                 null);
+        int objectColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_OBJECT);
+        int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
+        int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
+        int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
+        int flatColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_FLAT);
         int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
         int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
         if(cursor.moveToNext()) {
+            String object = cursor.getString(objectColumnIndex);
+            String city = cursor.getString(cityColumnIndex);
+            String street = cursor.getString(streetColumnIndex);
+            String house = cursor.getString(houseColumnIndex);
+            int flat = cursor.getInt(flatColumnIndex);
             String name = cursor.getString(nameColumnIndex);
             String surname = cursor.getString(surnameColumnIndex);
 
@@ -538,6 +550,11 @@ public class PaymentActivity extends AppCompatActivity {
 
             values.put(HistoryDB.HistoryTable.DATE, date);
             values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_OBJECT, object);
+            values.put(HistoryDB.HistoryTable.RESIDENT_CITY, city);
+            values.put(HistoryDB.HistoryTable.RESIDENT_STREET, street);
+            values.put(HistoryDB.HistoryTable.RESIDENT_HOUSE, house);
+            values.put(HistoryDB.HistoryTable.RESIDENT_FLAT, flat);
             values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
             values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
             values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.INCREASED_DEBT));
@@ -550,8 +567,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         DBMS residentDBMS = new DBMS(this);
         SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
-        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
-                DataBase.ResidentsTable.COLUMN_SURNAME};
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_OBJECT,
+                DataBase.ResidentsTable.COLUMN_CITY, DataBase.ResidentsTable.COLUMN_STREET,
+                DataBase.ResidentsTable.COLUMN_HOUSE, DataBase.ResidentsTable.COLUMN_FLAT,
+                DataBase.ResidentsTable.COLUMN_NAME, DataBase.ResidentsTable.COLUMN_SURNAME};
         @SuppressLint("Recycle") Cursor cursor = residentDB.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
@@ -560,9 +579,19 @@ public class PaymentActivity extends AppCompatActivity {
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
                 null);
+        int objectColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_OBJECT);
+        int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
+        int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
+        int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
+        int flatColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_FLAT);
         int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
         int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
         if(cursor.moveToNext()) {
+            String object = cursor.getString(objectColumnIndex);
+            String city = cursor.getString(cityColumnIndex);
+            String street = cursor.getString(streetColumnIndex);
+            String house = cursor.getString(houseColumnIndex);
+            int flat = cursor.getInt(flatColumnIndex);
             String name = cursor.getString(nameColumnIndex);
             String surname = cursor.getString(surnameColumnIndex);
 
@@ -588,6 +617,11 @@ public class PaymentActivity extends AppCompatActivity {
 
             values.put(HistoryDB.HistoryTable.DATE, date);
             values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_OBJECT, object);
+            values.put(HistoryDB.HistoryTable.RESIDENT_CITY, city);
+            values.put(HistoryDB.HistoryTable.RESIDENT_STREET, street);
+            values.put(HistoryDB.HistoryTable.RESIDENT_HOUSE, house);
+            values.put(HistoryDB.HistoryTable.RESIDENT_FLAT, flat);
             values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
             values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
             values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.WAS_PAID));
@@ -600,8 +634,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         DBMS residentDBMS = new DBMS(this);
         SQLiteDatabase residentDB = residentDBMS.getWritableDatabase();
-        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_NAME,
-                DataBase.ResidentsTable.COLUMN_SURNAME};
+        String[] projection = {DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_OBJECT,
+                DataBase.ResidentsTable.COLUMN_CITY, DataBase.ResidentsTable.COLUMN_STREET,
+                DataBase.ResidentsTable.COLUMN_HOUSE, DataBase.ResidentsTable.COLUMN_FLAT,
+                DataBase.ResidentsTable.COLUMN_NAME, DataBase.ResidentsTable.COLUMN_SURNAME};
         @SuppressLint("Recycle") Cursor cursor = residentDB.query(
                 DataBase.ResidentsTable.TABLE_NAME,   // таблица
                 projection,            // столбцы
@@ -610,9 +646,19 @@ public class PaymentActivity extends AppCompatActivity {
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
                 null);
+        int objectColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_OBJECT);
+        int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
+        int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
+        int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
+        int flatColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_FLAT);
         int nameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_NAME);
         int surnameColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_SURNAME);
         if(cursor.moveToNext()) {
+            String object = cursor.getString(objectColumnIndex);
+            String city = cursor.getString(cityColumnIndex);
+            String street = cursor.getString(streetColumnIndex);
+            String house = cursor.getString(houseColumnIndex);
+            int flat = cursor.getInt(flatColumnIndex);
             String name = cursor.getString(nameColumnIndex);
             String surname = cursor.getString(surnameColumnIndex);
 
@@ -639,6 +685,11 @@ public class PaymentActivity extends AppCompatActivity {
 
             values.put(HistoryDB.HistoryTable.DATE, date);
             values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
+            values.put(HistoryDB.HistoryTable.RESIDENT_OBJECT, object);
+            values.put(HistoryDB.HistoryTable.RESIDENT_CITY, city);
+            values.put(HistoryDB.HistoryTable.RESIDENT_STREET, street);
+            values.put(HistoryDB.HistoryTable.RESIDENT_HOUSE, house);
+            values.put(HistoryDB.HistoryTable.RESIDENT_FLAT, flat);
             values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
             values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
             values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.CHANGED_DATE));

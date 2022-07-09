@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,6 +37,11 @@ public class HistoryActivity extends AppCompatActivity {
     public static class HistoryInfo implements Serializable {
         public int currentID;
         public String currentDate;
+        public String currentResidentObject;
+        public String currentResidentCity;
+        public String currentResidentStreet;
+        public String currentResidentHouse;
+        public Integer currentResidentFlat;
         public String currentResidentName;
         public String currentResidentSurname;
         public int currentResidentID;
@@ -49,7 +53,10 @@ public class HistoryActivity extends AppCompatActivity {
 
         SQLiteDatabase db = dbms.getReadableDatabase();
 
-        String[] projection = { HistoryDB.HistoryTable._ID, HistoryDB.HistoryTable.DATE,
+        String[] projection = { HistoryDB.HistoryTable._ID,
+                                HistoryDB.HistoryTable.DATE, HistoryDB.HistoryTable.RESIDENT_OBJECT,
+                                HistoryDB.HistoryTable.RESIDENT_CITY, HistoryDB.HistoryTable.RESIDENT_STREET,
+                                HistoryDB.HistoryTable.RESIDENT_HOUSE, HistoryDB.HistoryTable.RESIDENT_FLAT,
                                 HistoryDB.HistoryTable.RESIDENT_ID, HistoryDB.HistoryTable.RESIDENT_NAME,
                                 HistoryDB.HistoryTable.RESIDENT_SURNAME, HistoryDB.HistoryTable.TYPE };
 
@@ -65,6 +72,11 @@ public class HistoryActivity extends AppCompatActivity {
         int idColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable._ID);
         int dataColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.DATE);
         int residentIDColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_ID);
+        int residentObjectColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_OBJECT);
+        int residentCityColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_CITY);
+        int residentStreetColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_STREET);
+        int residentHouseColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_HOUSE);
+        int residentFLatColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_FLAT);
         int residentNameColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_NAME);
         int residentSurnameColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.RESIDENT_SURNAME);
         int typeColumnIndex = cursor.getColumnIndex(HistoryDB.HistoryTable.TYPE);
@@ -75,6 +87,13 @@ public class HistoryActivity extends AppCompatActivity {
 
                 historyInfo.currentID = cursor.getInt(idColumnIndex);
                 historyInfo.currentDate = cursor.getString(dataColumnIndex);
+
+                historyInfo.currentResidentObject = cursor.getString(residentObjectColumnIndex);
+                historyInfo.currentResidentCity = cursor.getString(residentCityColumnIndex);
+                historyInfo.currentResidentStreet = cursor.getString(residentStreetColumnIndex);
+                historyInfo.currentResidentHouse = cursor.getString(residentHouseColumnIndex);
+                historyInfo.currentResidentFlat = Integer.valueOf(cursor.getString(residentFLatColumnIndex));
+
                 historyInfo.currentResidentName = cursor.getString(residentNameColumnIndex);
                 historyInfo.currentResidentSurname = cursor.getString(residentSurnameColumnIndex);
                 historyInfo.currentResidentID = cursor.getInt(residentIDColumnIndex);
@@ -118,8 +137,45 @@ public class HistoryActivity extends AppCompatActivity {
             default: break;
         }
 
-        return historyInfo.currentResidentSurname + ' ' + historyInfo.currentResidentName
-                + '\n' + type + '\n' + historyInfo.currentDate;
+        StringBuilder historyInfoTextBuilder = new StringBuilder();
+
+        int maxLength = 20;
+
+        if(!historyInfo.currentResidentObject.equals("")){
+            historyInfoTextBuilder.append("\"").append(historyInfo.currentResidentObject).append("\"");
+
+            int currentLenght = historyInfoTextBuilder.toString().length();
+            if (currentLenght > maxLength) {
+                historyInfoTextBuilder.delete(maxLength - 3, currentLenght);
+                historyInfoTextBuilder.append("...\"");
+            }
+        }
+        else{
+            if (!historyInfo.currentResidentStreet.equals("")) {
+                historyInfoTextBuilder.append("ул.").append(historyInfo.currentResidentStreet);
+
+                int currentLenght = historyInfoTextBuilder.toString().length();
+
+                if (currentLenght > maxLength) {
+                    historyInfoTextBuilder.delete(maxLength - 3, currentLenght);
+                    historyInfoTextBuilder.append("...");
+                }
+                historyInfoTextBuilder.append("\n");
+            }
+            if (!historyInfo.currentResidentHouse.equals("")) {
+                historyInfoTextBuilder.append("д.").append(historyInfo.currentResidentHouse);
+            }
+            if (historyInfo.currentResidentFlat > 0) {
+                historyInfoTextBuilder.append(",\t кв.").append(historyInfo.currentResidentFlat);
+            }
+        }
+
+        historyInfoTextBuilder.append('\n');
+        historyInfoTextBuilder.append(type);
+        historyInfoTextBuilder.append('\n');
+        historyInfoTextBuilder.append(historyInfo.currentDate);
+
+        return historyInfoTextBuilder.toString();
     }
 
     public void clearHistory(){

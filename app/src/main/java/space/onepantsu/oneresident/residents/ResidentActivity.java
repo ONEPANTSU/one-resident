@@ -128,7 +128,6 @@ public class ResidentActivity extends AppCompatActivity {
                 System.out.println("Ошибка при чтении строки");
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -140,7 +139,6 @@ public class ResidentActivity extends AppCompatActivity {
 
         Button residentInfoBttn = view.findViewById(R.id.residentInfo);
         StringBuilder residentInfoBttnTextBuilder = new StringBuilder();
-
 
         int maxLength = 20;
 
@@ -233,7 +231,7 @@ public class ResidentActivity extends AppCompatActivity {
         }
     }
 
-    public void deleteToHistoryDB(int id, String name, String surname){
+    public void deleteToHistoryDB(ResidentInfo resident){
         HistoryDBMS dbms = new HistoryDBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -257,9 +255,14 @@ public class ResidentActivity extends AppCompatActivity {
         String date = day + "." + month + "." + calendar.get(Calendar.YEAR);
 
         values.put(HistoryDB.HistoryTable.DATE, date);
-        values.put(HistoryDB.HistoryTable.RESIDENT_ID, id);
-        values.put(HistoryDB.HistoryTable.RESIDENT_NAME, name);
-        values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, surname);
+        values.put(HistoryDB.HistoryTable.RESIDENT_ID, resident.currentID);
+        values.put(HistoryDB.HistoryTable.RESIDENT_OBJECT, resident.currentObject);
+        values.put(HistoryDB.HistoryTable.RESIDENT_CITY, resident.currentCity);
+        values.put(HistoryDB.HistoryTable.RESIDENT_STREET, resident.currentStreet);
+        values.put(HistoryDB.HistoryTable.RESIDENT_HOUSE, resident.currentHouse);
+        values.put(HistoryDB.HistoryTable.RESIDENT_FLAT, resident.currentFlat);
+        values.put(HistoryDB.HistoryTable.RESIDENT_NAME, resident.currentName);
+        values.put(HistoryDB.HistoryTable.RESIDENT_SURNAME, resident.currentSurname);
         values.put(HistoryDB.HistoryTable.TYPE, String.valueOf(HistoryType.DELETED_RESIDENT));
 
         db.insert(HistoryDB.HistoryTable.TABLE_NAME, null, values);

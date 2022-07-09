@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import space.onepantsu.oneresident.payment.database.PaymentDB;
+import space.onepantsu.oneresident.residents.database.DataBase;
 
 public class HistoryDBMS extends SQLiteOpenHelper {
 
@@ -39,6 +40,11 @@ public class HistoryDBMS extends SQLiteOpenHelper {
         String SQL_CREATE_HISTORY_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
                 + HistoryDB.HistoryTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + HistoryDB.HistoryTable.DATE + " DATE NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_OBJECT + " TEXT, "
+                + HistoryDB.HistoryTable.RESIDENT_CITY + " TEXT, "
+                + HistoryDB.HistoryTable.RESIDENT_STREET + " TEXT NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_HOUSE + " TEXT NOT NULL, "
+                + HistoryDB.HistoryTable.RESIDENT_FLAT + " INTEGER, "
                 + HistoryDB.HistoryTable.RESIDENT_ID + " INTEGER NOT NULL, "
                 + HistoryDB.HistoryTable.RESIDENT_NAME + " TEXT NOT NULL, "
                 + HistoryDB.HistoryTable.RESIDENT_SURNAME + " TEXT NOT NULL, "
