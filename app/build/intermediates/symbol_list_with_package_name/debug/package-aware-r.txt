@@ -1272,7 +1272,7 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
-color defolt
+color defout
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -2776,6 +2776,7 @@ id editTextAddFlat
 id editTextAddHouse
 id editTextAddLevel
 id editTextAddName
+id editTextAddObject
 id editTextAddPeriod
 id editTextAddPhone
 id editTextAddPrice
@@ -3066,6 +3067,7 @@ id textFlat
 id textHouse
 id textLevel
 id textName
+id textObject
 id textPeriod
 id textPhone
 id textPrice
@@ -3086,6 +3088,7 @@ id textViewHouse
 id textViewLevel
 id textViewMakeChanges
 id textViewName
+id textViewObject
 id textViewPeriod
 id textViewPhone
 id textViewPrice
@@ -3479,6 +3482,7 @@ string name_defolt
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string next
+string object
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

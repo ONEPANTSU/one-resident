@@ -48,6 +48,9 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
   public final TextView textName;
 
   @NonNull
+  public final TextView textObject;
+
+  @NonNull
   public final TextView textPeriod;
 
   @NonNull
@@ -90,6 +93,9 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
   public final TextView textViewName;
 
   @NonNull
+  public final TextView textViewObject;
+
+  @NonNull
   public final TextView textViewPeriod;
 
   @NonNull
@@ -117,13 +123,14 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
       @NonNull ImageButton backButtonFromResidentActivity, @NonNull ImageButton buttonAdd,
       @NonNull TextView textCity, @NonNull TextView textComment, @NonNull TextView textDate,
       @NonNull TextView textFlat, @NonNull TextView textHouse, @NonNull TextView textLevel,
-      @NonNull TextView textName, @NonNull TextView textPeriod, @NonNull TextView textPhone,
-      @NonNull TextView textPrice, @NonNull TextView textSecondName, @NonNull TextView textStreet,
-      @NonNull TextView textSurname, @NonNull TextView textViewAddressHeader,
-      @NonNull TextView textViewCity, @NonNull TextView textViewComment,
-      @NonNull TextView textViewDate, @NonNull TextView textViewFlat,
-      @NonNull TextView textViewHouse, @NonNull TextView textViewLevel,
-      @NonNull TextView textViewName, @NonNull TextView textViewPeriod,
+      @NonNull TextView textName, @NonNull TextView textObject, @NonNull TextView textPeriod,
+      @NonNull TextView textPhone, @NonNull TextView textPrice, @NonNull TextView textSecondName,
+      @NonNull TextView textStreet, @NonNull TextView textSurname,
+      @NonNull TextView textViewAddressHeader, @NonNull TextView textViewCity,
+      @NonNull TextView textViewComment, @NonNull TextView textViewDate,
+      @NonNull TextView textViewFlat, @NonNull TextView textViewHouse,
+      @NonNull TextView textViewLevel, @NonNull TextView textViewName,
+      @NonNull TextView textViewObject, @NonNull TextView textViewPeriod,
       @NonNull TextView textViewPhone, @NonNull TextView textViewPrice,
       @NonNull TextView textViewRentHeader, @NonNull TextView textViewResidentHeader,
       @NonNull TextView textViewSecondName, @NonNull TextView textViewStreet,
@@ -138,6 +145,7 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
     this.textHouse = textHouse;
     this.textLevel = textLevel;
     this.textName = textName;
+    this.textObject = textObject;
     this.textPeriod = textPeriod;
     this.textPhone = textPhone;
     this.textPrice = textPrice;
@@ -152,6 +160,7 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
     this.textViewHouse = textViewHouse;
     this.textViewLevel = textViewLevel;
     this.textViewName = textViewName;
+    this.textViewObject = textViewObject;
     this.textViewPeriod = textViewPeriod;
     this.textViewPhone = textViewPhone;
     this.textViewPrice = textViewPrice;
@@ -243,6 +252,12 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textObject;
+      TextView textObject = ViewBindings.findChildViewById(rootView, id);
+      if (textObject == null) {
+        break missingId;
+      }
+
       id = R.id.textPeriod;
       TextView textPeriod = ViewBindings.findChildViewById(rootView, id);
       if (textPeriod == null) {
@@ -327,6 +342,12 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textViewObject;
+      TextView textViewObject = ViewBindings.findChildViewById(rootView, id);
+      if (textViewObject == null) {
+        break missingId;
+      }
+
       id = R.id.textViewPeriod;
       TextView textViewPeriod = ViewBindings.findChildViewById(rootView, id);
       if (textViewPeriod == null) {
@@ -377,11 +398,11 @@ public final class ActivityResidentInfoBinding implements ViewBinding {
 
       return new ActivityResidentInfoBinding((ConstraintLayout) rootView,
           backButtonFromResidentActivity, buttonAdd, textCity, textComment, textDate, textFlat,
-          textHouse, textLevel, textName, textPeriod, textPhone, textPrice, textSecondName,
-          textStreet, textSurname, textViewAddressHeader, textViewCity, textViewComment,
-          textViewDate, textViewFlat, textViewHouse, textViewLevel, textViewName, textViewPeriod,
-          textViewPhone, textViewPrice, textViewRentHeader, textViewResidentHeader,
-          textViewSecondName, textViewStreet, textViewSurname);
+          textHouse, textLevel, textName, textObject, textPeriod, textPhone, textPrice,
+          textSecondName, textStreet, textSurname, textViewAddressHeader, textViewCity,
+          textViewComment, textViewDate, textViewFlat, textViewHouse, textViewLevel, textViewName,
+          textViewObject, textViewPeriod, textViewPhone, textViewPrice, textViewRentHeader,
+          textViewResidentHeader, textViewSecondName, textViewStreet, textViewSurname);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -51,6 +51,9 @@ public final class ActivityAddBinding implements ViewBinding {
   public final EditText editTextAddName;
 
   @NonNull
+  public final EditText editTextAddObject;
+
+  @NonNull
   public final EditText editTextAddPeriod;
 
   @NonNull
@@ -96,6 +99,9 @@ public final class ActivityAddBinding implements ViewBinding {
   public final TextView textViewName;
 
   @NonNull
+  public final TextView textViewObject;
+
+  @NonNull
   public final TextView textViewPeriod;
 
   @NonNull
@@ -124,14 +130,15 @@ public final class ActivityAddBinding implements ViewBinding {
       @NonNull EditText editTextAddCity, @NonNull EditText editTextAddComment,
       @NonNull EditText editTextAddDate, @NonNull EditText editTextAddFlat,
       @NonNull EditText editTextAddHouse, @NonNull EditText editTextAddLevel,
-      @NonNull EditText editTextAddName, @NonNull EditText editTextAddPeriod,
-      @NonNull EditText editTextAddPhone, @NonNull EditText editTextAddPrice,
-      @NonNull EditText editTextAddSecondName, @NonNull EditText editTextAddStreet,
-      @NonNull EditText editTextAddSurname, @NonNull LinearLayout linearLayout,
-      @NonNull TextView textViewAddressHeader, @NonNull TextView textViewCity,
-      @NonNull TextView textViewComment, @NonNull TextView textViewDate,
-      @NonNull TextView textViewFlat, @NonNull TextView textViewHouse,
-      @NonNull TextView textViewLevel, @NonNull TextView textViewName,
+      @NonNull EditText editTextAddName, @NonNull EditText editTextAddObject,
+      @NonNull EditText editTextAddPeriod, @NonNull EditText editTextAddPhone,
+      @NonNull EditText editTextAddPrice, @NonNull EditText editTextAddSecondName,
+      @NonNull EditText editTextAddStreet, @NonNull EditText editTextAddSurname,
+      @NonNull LinearLayout linearLayout, @NonNull TextView textViewAddressHeader,
+      @NonNull TextView textViewCity, @NonNull TextView textViewComment,
+      @NonNull TextView textViewDate, @NonNull TextView textViewFlat,
+      @NonNull TextView textViewHouse, @NonNull TextView textViewLevel,
+      @NonNull TextView textViewName, @NonNull TextView textViewObject,
       @NonNull TextView textViewPeriod, @NonNull TextView textViewPhone,
       @NonNull TextView textViewPrice, @NonNull TextView textViewRentHeader,
       @NonNull TextView textViewResidentHeader, @NonNull TextView textViewSecondName,
@@ -146,6 +153,7 @@ public final class ActivityAddBinding implements ViewBinding {
     this.editTextAddHouse = editTextAddHouse;
     this.editTextAddLevel = editTextAddLevel;
     this.editTextAddName = editTextAddName;
+    this.editTextAddObject = editTextAddObject;
     this.editTextAddPeriod = editTextAddPeriod;
     this.editTextAddPhone = editTextAddPhone;
     this.editTextAddPrice = editTextAddPrice;
@@ -161,6 +169,7 @@ public final class ActivityAddBinding implements ViewBinding {
     this.textViewHouse = textViewHouse;
     this.textViewLevel = textViewLevel;
     this.textViewName = textViewName;
+    this.textViewObject = textViewObject;
     this.textViewPeriod = textViewPeriod;
     this.textViewPhone = textViewPhone;
     this.textViewPrice = textViewPrice;
@@ -249,6 +258,12 @@ public final class ActivityAddBinding implements ViewBinding {
       id = R.id.editTextAddName;
       EditText editTextAddName = ViewBindings.findChildViewById(rootView, id);
       if (editTextAddName == null) {
+        break missingId;
+      }
+
+      id = R.id.editTextAddObject;
+      EditText editTextAddObject = ViewBindings.findChildViewById(rootView, id);
+      if (editTextAddObject == null) {
         break missingId;
       }
 
@@ -342,6 +357,12 @@ public final class ActivityAddBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textViewObject;
+      TextView textViewObject = ViewBindings.findChildViewById(rootView, id);
+      if (textViewObject == null) {
+        break missingId;
+      }
+
       id = R.id.textViewPeriod;
       TextView textViewPeriod = ViewBindings.findChildViewById(rootView, id);
       if (textViewPeriod == null) {
@@ -392,12 +413,12 @@ public final class ActivityAddBinding implements ViewBinding {
 
       return new ActivityAddBinding((ConstraintLayout) rootView, backButtonFromResidentActivity,
           buttonAdd, editTextAddCity, editTextAddComment, editTextAddDate, editTextAddFlat,
-          editTextAddHouse, editTextAddLevel, editTextAddName, editTextAddPeriod, editTextAddPhone,
-          editTextAddPrice, editTextAddSecondName, editTextAddStreet, editTextAddSurname,
-          linearLayout, textViewAddressHeader, textViewCity, textViewComment, textViewDate,
-          textViewFlat, textViewHouse, textViewLevel, textViewName, textViewPeriod, textViewPhone,
-          textViewPrice, textViewRentHeader, textViewResidentHeader, textViewSecondName,
-          textViewStreet, textViewSurname);
+          editTextAddHouse, editTextAddLevel, editTextAddName, editTextAddObject, editTextAddPeriod,
+          editTextAddPhone, editTextAddPrice, editTextAddSecondName, editTextAddStreet,
+          editTextAddSurname, linearLayout, textViewAddressHeader, textViewCity, textViewComment,
+          textViewDate, textViewFlat, textViewHouse, textViewLevel, textViewName, textViewObject,
+          textViewPeriod, textViewPhone, textViewPrice, textViewRentHeader, textViewResidentHeader,
+          textViewSecondName, textViewStreet, textViewSurname);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

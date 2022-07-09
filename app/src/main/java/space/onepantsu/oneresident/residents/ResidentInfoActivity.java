@@ -29,6 +29,7 @@ public class ResidentInfoActivity extends AppCompatActivity {
 
             fromActivity = arguments.getString("FROM");
 
+            TextView object = findViewById(R.id.textObject);
             TextView city = findViewById(R.id.textCity);
             TextView street = findViewById(R.id.textStreet);
             TextView house = findViewById(R.id.textHouse);
@@ -43,6 +44,9 @@ public class ResidentInfoActivity extends AppCompatActivity {
             TextView price = findViewById(R.id.textPrice);
             TextView comment = findViewById(R.id.textComment);
 
+            if(!resident.currentObject.equals("")){
+                object.setText(resident.currentObject);
+            }
             if(!resident.currentCity.equals("")){
                 city.setText(resident.currentCity);
             }

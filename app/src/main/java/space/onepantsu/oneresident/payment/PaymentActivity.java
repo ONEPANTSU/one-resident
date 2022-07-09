@@ -70,8 +70,8 @@ public class PaymentActivity extends AppCompatActivity {
     public void checkPayment(){
         SQLiteDatabase db = dbms.getReadableDatabase();
 
-        String[] projection = {
-                PaymentDB.PaymentTable._ID,  PaymentDB.PaymentTable.STATUS, PaymentDB.PaymentTable.DEBT};
+        String[] projection = { PaymentDB.PaymentTable._ID,
+                PaymentDB.PaymentTable.STATUS, PaymentDB.PaymentTable.DEBT};
 
         @SuppressLint("Recycle") Cursor cursor = db.query(
                 PaymentDB.PaymentTable.TABLE_NAME,   // таблица
@@ -117,27 +117,39 @@ public class PaymentActivity extends AppCompatActivity {
         int maxLength = 15;
 
         if (newResident != null) {
-            if (!newResident.currentStreet.equals("")) {
-                residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
+            if(!newResident.currentObject.equals("")){
+                residentInfoBttnTextBuilder.append("\"").append(newResident.currentObject).append("\"");
 
                 int currentLenght = residentInfoBttnTextBuilder.toString().length();
-
                 if (currentLenght > maxLength) {
-                    residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght - 1);
-                    residentInfoBttnTextBuilder.append("...");
+                    residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght);
+                    residentInfoBttnTextBuilder.append("...\"");
                 }
+
                 residentInfoBttnTextBuilder.append("\n");
             }
-            if (!newResident.currentHouse.equals("")) {
-                residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
-            }
-            if (newResident.currentFlat > 0) {
-                residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
-            }
+            else {
+                if (!newResident.currentStreet.equals("")) {
+                    residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
 
-            residentInfoBttnTextBuilder.append("\n");
-            residentInfoBttnTextBuilder.append(newResident.currentPrice).append(" р");
+                    int currentLenght = residentInfoBttnTextBuilder.toString().length();
 
+                    if (currentLenght > maxLength) {
+                        residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght - 1);
+                        residentInfoBttnTextBuilder.append("...");
+                    }
+                    residentInfoBttnTextBuilder.append("\n");
+                }
+                if (!newResident.currentHouse.equals("")) {
+                    residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
+                }
+                if (newResident.currentFlat > 0) {
+                    residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
+                }
+
+                residentInfoBttnTextBuilder.append("\n");
+                residentInfoBttnTextBuilder.append(newResident.currentPrice).append(" р");
+            }
             if (!newResident.currentDate.equals("")) {
                 residentInfoBttnTextBuilder.append("\n");
                 residentInfoBttnTextBuilder.append(newResident.currentDate);
@@ -379,6 +391,7 @@ public class PaymentActivity extends AppCompatActivity {
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
 
         int idColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable._ID);
+        int objectColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_OBJECT);
         int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
         int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
         int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
@@ -398,6 +411,7 @@ public class PaymentActivity extends AppCompatActivity {
                 ResidentActivity.ResidentInfo newResident = new ResidentActivity.ResidentInfo();
 
                 newResident.currentID = cursor.getInt(idColumnIndex);
+                newResident.currentObject = cursor.getString(objectColumnIndex);
                 newResident.currentCity = cursor.getString(cityColumnIndex);
                 newResident.currentStreet = cursor.getString(streetColumnIndex);
                 newResident.currentHouse = cursor.getString(houseColumnIndex);

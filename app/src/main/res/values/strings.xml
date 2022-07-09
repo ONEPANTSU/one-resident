@@ -23,6 +23,7 @@
     <string name="name_defolt">Имя</string>
     <string name="date_defolt">Дата следующего платежа (дд.мм.гггг)</string>
     <string name="cost_defolt">Стоимость арендной платы</string>
+    <string name="object">Название объекта</string>
     <string name="city">Город</string>
     <string name="level">Этаж</string>
     <string name="flat">Квартира</string>

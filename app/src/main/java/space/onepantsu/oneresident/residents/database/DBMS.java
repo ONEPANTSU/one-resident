@@ -38,6 +38,7 @@ public class DBMS extends SQLiteOpenHelper {
         // Строка для создания таблицы
         String SQL_CREATE_RESIDENTS_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
                 + DataBase.ResidentsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DataBase.ResidentsTable.COLUMN_OBJECT + " TEXT, "
                 + DataBase.ResidentsTable.COLUMN_CITY + " TEXT, "
                 + DataBase.ResidentsTable.COLUMN_STREET + " TEXT NOT NULL, "
                 + DataBase.ResidentsTable.COLUMN_HOUSE + " TEXT NOT NULL, "

@@ -62,7 +62,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_style"
-            android:backgroundTint="@color/defolt"
+            android:backgroundTint="@color/defout"
             android:onClick="onAddActivity"
             app:srcCompat="@drawable/plus"
             android:layout_alignParentEnd="true"

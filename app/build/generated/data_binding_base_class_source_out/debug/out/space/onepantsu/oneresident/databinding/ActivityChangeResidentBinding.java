@@ -49,6 +49,9 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
   public final EditText textName;
 
   @NonNull
+  public final EditText textObject;
+
+  @NonNull
   public final EditText textPeriod;
 
   @NonNull
@@ -91,6 +94,9 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
   public final TextView textViewName;
 
   @NonNull
+  public final TextView textViewObject;
+
+  @NonNull
   public final TextView textViewPeriod;
 
   @NonNull
@@ -112,16 +118,16 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
       @NonNull ImageButton backButtonFromResidentActivity, @NonNull ImageButton buttonAdd,
       @NonNull EditText textCity, @NonNull EditText textComment, @NonNull EditText textDate,
       @NonNull EditText textFlat, @NonNull EditText textHouse, @NonNull EditText textLevel,
-      @NonNull EditText textName, @NonNull EditText textPeriod, @NonNull EditText textPhone,
-      @NonNull EditText textPrice, @NonNull EditText textSecondName, @NonNull EditText textStreet,
-      @NonNull EditText textSurname, @NonNull TextView textViewCity,
+      @NonNull EditText textName, @NonNull EditText textObject, @NonNull EditText textPeriod,
+      @NonNull EditText textPhone, @NonNull EditText textPrice, @NonNull EditText textSecondName,
+      @NonNull EditText textStreet, @NonNull EditText textSurname, @NonNull TextView textViewCity,
       @NonNull TextView textViewComment, @NonNull TextView textViewDate,
       @NonNull TextView textViewFlat, @NonNull TextView textViewHouse,
       @NonNull TextView textViewLevel, @NonNull TextView textViewMakeChanges,
-      @NonNull TextView textViewName, @NonNull TextView textViewPeriod,
-      @NonNull TextView textViewPhone, @NonNull TextView textViewPrice,
-      @NonNull TextView textViewSecondName, @NonNull TextView textViewStreet,
-      @NonNull TextView textViewSurname) {
+      @NonNull TextView textViewName, @NonNull TextView textViewObject,
+      @NonNull TextView textViewPeriod, @NonNull TextView textViewPhone,
+      @NonNull TextView textViewPrice, @NonNull TextView textViewSecondName,
+      @NonNull TextView textViewStreet, @NonNull TextView textViewSurname) {
     this.rootView = rootView;
     this.backButtonFromResidentActivity = backButtonFromResidentActivity;
     this.buttonAdd = buttonAdd;
@@ -132,6 +138,7 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
     this.textHouse = textHouse;
     this.textLevel = textLevel;
     this.textName = textName;
+    this.textObject = textObject;
     this.textPeriod = textPeriod;
     this.textPhone = textPhone;
     this.textPrice = textPrice;
@@ -146,6 +153,7 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
     this.textViewLevel = textViewLevel;
     this.textViewMakeChanges = textViewMakeChanges;
     this.textViewName = textViewName;
+    this.textViewObject = textViewObject;
     this.textViewPeriod = textViewPeriod;
     this.textViewPhone = textViewPhone;
     this.textViewPrice = textViewPrice;
@@ -235,6 +243,12 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textObject;
+      EditText textObject = ViewBindings.findChildViewById(rootView, id);
+      if (textObject == null) {
+        break missingId;
+      }
+
       id = R.id.textPeriod;
       EditText textPeriod = ViewBindings.findChildViewById(rootView, id);
       if (textPeriod == null) {
@@ -319,6 +333,12 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textViewObject;
+      TextView textViewObject = ViewBindings.findChildViewById(rootView, id);
+      if (textViewObject == null) {
+        break missingId;
+      }
+
       id = R.id.textViewPeriod;
       TextView textViewPeriod = ViewBindings.findChildViewById(rootView, id);
       if (textViewPeriod == null) {
@@ -357,10 +377,11 @@ public final class ActivityChangeResidentBinding implements ViewBinding {
 
       return new ActivityChangeResidentBinding((ConstraintLayout) rootView,
           backButtonFromResidentActivity, buttonAdd, textCity, textComment, textDate, textFlat,
-          textHouse, textLevel, textName, textPeriod, textPhone, textPrice, textSecondName,
-          textStreet, textSurname, textViewCity, textViewComment, textViewDate, textViewFlat,
-          textViewHouse, textViewLevel, textViewMakeChanges, textViewName, textViewPeriod,
-          textViewPhone, textViewPrice, textViewSecondName, textViewStreet, textViewSurname);
+          textHouse, textLevel, textName, textObject, textPeriod, textPhone, textPrice,
+          textSecondName, textStreet, textSurname, textViewCity, textViewComment, textViewDate,
+          textViewFlat, textViewHouse, textViewLevel, textViewMakeChanges, textViewName,
+          textViewObject, textViewPeriod, textViewPhone, textViewPrice, textViewSecondName,
+          textViewStreet, textViewSurname);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

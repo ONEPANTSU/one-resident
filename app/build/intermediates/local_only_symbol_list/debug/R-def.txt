@@ -3,7 +3,7 @@ local
 color backgroundAdd
 color bg_custom
 color black
-color defolt
+color defout
 color ic_launcher_background
 color purple_200
 color purple_500
@@ -60,6 +60,7 @@ id editTextAddFlat
 id editTextAddHouse
 id editTextAddLevel
 id editTextAddName
+id editTextAddObject
 id editTextAddPeriod
 id editTextAddPhone
 id editTextAddPrice
@@ -90,6 +91,7 @@ id textFlat
 id textHouse
 id textLevel
 id textName
+id textObject
 id textPeriod
 id textPhone
 id textPrice
@@ -106,6 +108,7 @@ id textViewHouse
 id textViewLevel
 id textViewMakeChanges
 id textViewName
+id textViewObject
 id textViewPeriod
 id textViewPhone
 id textViewPrice
@@ -150,6 +153,7 @@ string make_changes
 string name
 string name_defolt
 string next
+string object
 string payment
 string payment_history
 string period

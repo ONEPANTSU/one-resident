@@ -114,7 +114,7 @@ public class HistoryActivity extends AppCompatActivity {
             case "WAS_PAID": type = "Арендатор внёс оплату"; break;
             case "CHANGED_DATE": type = "Перенос даты оплаты арендатора"; break;
             case "DELETED_RESIDENT": type = "Арендатор был удалён"; break;
-            case "ADDED_RESIDENT": type = "Арендатор был дабвлен"; break;
+            case "ADDED_RESIDENT": type = "Арендатор был дабавлен"; break;
             default: break;
         }
 

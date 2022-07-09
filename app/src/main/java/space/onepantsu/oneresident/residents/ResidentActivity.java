@@ -39,6 +39,7 @@ public class ResidentActivity extends AppCompatActivity {
 
     public static class ResidentInfo implements Serializable {
         public int currentID;
+        public String currentObject;
         public String currentCity;
         public String currentStreet;
         public String currentHouse;
@@ -65,8 +66,8 @@ public class ResidentActivity extends AppCompatActivity {
     public void checkResidents(){
         SQLiteDatabase db = dbms.getReadableDatabase();
 
-        String[] projection = {
-                DataBase.ResidentsTable._ID, DataBase.ResidentsTable.COLUMN_CITY,
+        String[] projection = { DataBase.ResidentsTable._ID,
+                DataBase.ResidentsTable.COLUMN_OBJECT, DataBase.ResidentsTable.COLUMN_CITY,
                 DataBase.ResidentsTable.COLUMN_STREET, DataBase.ResidentsTable.COLUMN_HOUSE,
                 DataBase.ResidentsTable.COLUMN_LEVEL, DataBase.ResidentsTable.COLUMN_FLAT,
                 DataBase.ResidentsTable.COLUMN_SURNAME, DataBase.ResidentsTable.COLUMN_NAME,
@@ -84,6 +85,7 @@ public class ResidentActivity extends AppCompatActivity {
                 null);                   // порядок сортировки
 
         int idColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable._ID);
+        int objectColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_OBJECT);
         int cityColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_CITY);
         int streetColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_STREET);
         int houseColumnIndex = cursor.getColumnIndex(DataBase.ResidentsTable.COLUMN_HOUSE);
@@ -104,6 +106,7 @@ public class ResidentActivity extends AppCompatActivity {
                 ResidentInfo newResident = new ResidentInfo();
 
                 newResident.currentID = cursor.getInt(idColumnIndex);
+                newResident.currentObject = cursor.getString(objectColumnIndex);
                 newResident.currentCity = cursor.getString(cityColumnIndex);
                 newResident.currentStreet = cursor.getString(streetColumnIndex);
                 newResident.currentHouse = cursor.getString(houseColumnIndex);
@@ -141,22 +144,35 @@ public class ResidentActivity extends AppCompatActivity {
 
         int maxLength = 20;
 
-        if(!newResident.currentStreet.equals("")){
-            residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
+        if(!newResident.currentObject.equals("")){
+            residentInfoBttnTextBuilder.append("\"").append(newResident.currentObject).append("\"");
 
             int currentLenght = residentInfoBttnTextBuilder.toString().length();
-
-            if(currentLenght > maxLength){
-                residentInfoBttnTextBuilder.delete(maxLength-3, currentLenght-1);
-                residentInfoBttnTextBuilder.append("...");
+            if (currentLenght > maxLength) {
+                residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght);
+                residentInfoBttnTextBuilder.append("...\"");
             }
+
             residentInfoBttnTextBuilder.append("\n");
         }
-        if(!newResident.currentHouse.equals("")){
-            residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
-        }
-        if(newResident.currentFlat > 0){
-            residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
+        else {
+            if (!newResident.currentStreet.equals("")) {
+                residentInfoBttnTextBuilder.append("ул.").append(newResident.currentStreet);
+
+                int currentLenght = residentInfoBttnTextBuilder.toString().length();
+
+                if (currentLenght > maxLength) {
+                    residentInfoBttnTextBuilder.delete(maxLength - 3, currentLenght);
+                    residentInfoBttnTextBuilder.append("...");
+                }
+                residentInfoBttnTextBuilder.append("\n");
+            }
+            if (!newResident.currentHouse.equals("")) {
+                residentInfoBttnTextBuilder.append("д.").append(newResident.currentHouse);
+            }
+            if (newResident.currentFlat > 0) {
+                residentInfoBttnTextBuilder.append(",\t кв.").append(newResident.currentFlat);
+            }
         }
         if(!newResident.currentDate.equals("")){
             residentInfoBttnTextBuilder.append("\n");

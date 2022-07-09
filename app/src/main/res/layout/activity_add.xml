@@ -32,7 +32,7 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/round_style"
-            android:backgroundTint="@color/defolt"
+            android:backgroundTint="@color/defout"
             android:onClick="acceptChanges"
             android:text="@string/add"
             android:textColor="@color/white"
@@ -56,13 +56,25 @@
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/textViewAddressHeader"
                 style="@style/header_section"
                 android:text="@string/address_of_the_object"
                 />
 
+            <TextView
+                android:id="@+id/textViewObject"
+                style="@style/text_headerField"
+                android:text="@string/object"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/editTextAddObject"
+                style="@style/text_field"
+                android:hint="@string/object"
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"
+                />
             <TextView
                 android:id="@+id/textViewCity"
                 style="@style/text_headerField"

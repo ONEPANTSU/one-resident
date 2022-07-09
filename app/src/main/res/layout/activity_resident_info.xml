@@ -56,6 +56,23 @@
                 android:id="@+id/textViewAddressHeader"
                 style="@style/header_section"
                 android:text="@string/address_of_the_object" />
+            <!-- OBJECT-->
+            <TextView
+                android:id="@+id/textViewObject"
+                style="@style/text_headerField_RS_info"
+                android:text="@string/object" />
+            <TextView
+                android:id="@+id/textObject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                style="@style/text_field_RS_info" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/defout"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
             <!-- CITY-->
             <TextView
                 android:id="@+id/textViewCity"
@@ -70,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- STREET-->
@@ -88,7 +105,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- HOUSE-->
@@ -106,7 +123,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- LEVEL-->
@@ -124,7 +141,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- FLAT-->
@@ -142,7 +159,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- header_personalData-->
@@ -165,7 +182,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- NAME-->
@@ -183,7 +200,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- SECONDNAME-->
@@ -201,7 +218,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- PHONE-->
@@ -218,7 +235,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
 
@@ -242,7 +259,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- PERIOD-->
@@ -260,7 +277,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- PRICE-->
@@ -277,7 +294,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
             <!-- COMMENT-->
@@ -294,7 +311,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/defolt"
+                android:background="@color/defout"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"/>
 

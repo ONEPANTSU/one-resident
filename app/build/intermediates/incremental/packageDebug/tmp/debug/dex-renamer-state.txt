@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#Sat Jul 09 00:48:15 MSK 2022
-=======
-#Sat Jul 09 00:39:37 MSK 2022
->>>>>>> main
+#Sat Jul 09 14:55:17 MSK 2022
 path.4=1/classes.dex
 path.3=13/classes.dex
 path.2=11/classes.dex

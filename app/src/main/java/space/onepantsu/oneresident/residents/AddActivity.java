@@ -47,6 +47,7 @@ public class AddActivity extends AppCompatActivity {
 
     private boolean isDebt = false;
 
+    private EditText addObject;
     private EditText addCity;
     private EditText addStreet;
     private EditText addHouse;
@@ -61,6 +62,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText addPrice;
     private EditText addComment;
 
+    private String object = "";
     private String city = "";
     private String street = "";
     private String house = "";
@@ -83,6 +85,7 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        addObject = findViewById(R.id.editTextAddObject);
         addCity = findViewById(R.id.editTextAddCity);
         addStreet = findViewById(R.id.editTextAddStreet);
         addHouse = findViewById(R.id.editTextAddHouse);
@@ -139,6 +142,10 @@ public class AddActivity extends AppCompatActivity {
         int month = 0;
         int year = 0;
 
+        try {
+            object = addObject.getText().toString();
+        }
+        catch (Exception ignored){}
         try {
             city = addCity.getText().toString();
         }
@@ -380,6 +387,8 @@ public class AddActivity extends AppCompatActivity {
         DBMS dbms = new DBMS(this);
         SQLiteDatabase db = dbms.getWritableDatabase();
         ContentValues values = new ContentValues();
+
+        values.put(DataBase.ResidentsTable.COLUMN_OBJECT, object);
         values.put(DataBase.ResidentsTable.COLUMN_CITY, city);
         values.put(DataBase.ResidentsTable.COLUMN_STREET, street);
         values.put(DataBase.ResidentsTable.COLUMN_HOUSE, house);

@@ -44,7 +44,7 @@ import space.onepantsu.oneresident.service.AlarmReceiver;
 public class ChangeResidentActivity extends AppCompatActivity {
     boolean isDataError = false;
     ResidentActivity.ResidentInfo resident;
-    EditText city, street, house, level, flat,
+    EditText object, city, street, house, level, flat,
             surname, name, secondname, phone, date, period, price, comment;
 
     Map<String, String> previosValues = new HashMap<>();
@@ -56,6 +56,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_resident);
         Bundle arguments = getIntent().getExtras();
 
+        object = findViewById(R.id.textObject);
         city = findViewById(R.id.textCity);
         street = findViewById(R.id.textStreet);
         house = findViewById(R.id.textHouse);
@@ -74,6 +75,9 @@ public class ChangeResidentActivity extends AppCompatActivity {
             resident = (ResidentActivity.ResidentInfo)
                     arguments.getSerializable(ResidentActivity.ResidentInfo.class.getSimpleName());
 
+            if(!resident.currentObject.equals("")){
+                object.setText(resident.currentObject);
+            }
             if(!resident.currentCity.equals("")){
                 city.setText(resident.currentCity);
             }
@@ -118,6 +122,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 comment.setText(resident.currentComment);
             }
         }
+        previosValues.put("object", object.getText().toString());
         previosValues.put("city", city.getText().toString());
         previosValues.put("street", street.getText().toString());
         previosValues.put("house", house.getText().toString());
@@ -222,6 +227,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
                 }
             }
 
+            newValues.put(DataBase.ResidentsTable.COLUMN_OBJECT, object.getText().toString());
             newValues.put(DataBase.ResidentsTable.COLUMN_CITY, city.getText().toString());
             newValues.put(DataBase.ResidentsTable.COLUMN_STREET, street.getText().toString());
             newValues.put(DataBase.ResidentsTable.COLUMN_HOUSE, house.getText().toString());
@@ -299,6 +305,7 @@ public class ChangeResidentActivity extends AppCompatActivity {
     private boolean isChanged(){
         return !Objects.equals(previosValues.get("flat"), flat.getText().toString()) ||
                 !Objects.equals(previosValues.get("city"), city.getText().toString()) ||
+                !Objects.equals(previosValues.get("object"), city.getText().toString()) ||
                 !Objects.equals(previosValues.get("period"), period.getText().toString()) ||
                 !Objects.equals(previosValues.get("level"), level.getText().toString()) ||
                 !Objects.equals(previosValues.get("price"), price.getText().toString()) ||

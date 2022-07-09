@@ -10,6 +10,7 @@ public class DataBase {
         public final static String TABLE_NAME = "residents";
 
         public final static String _ID = BaseColumns._ID;
+        public final static String COLUMN_OBJECT = "object";
         public final static String COLUMN_CITY = "city";
         public final static String COLUMN_STREET = "street";
         public final static String COLUMN_HOUSE = "house";

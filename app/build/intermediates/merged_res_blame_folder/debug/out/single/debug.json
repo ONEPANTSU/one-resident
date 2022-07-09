@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
-    },
-    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph2.xml.flat",
@@ -32,12 +32,12 @@
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\delete_for_history.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\drawable_edit.xml.flat",
         "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\drawable\\edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_payment.xml.flat",
