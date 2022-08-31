@@ -27,7 +27,7 @@
     <string name="city">Город</string>
     <string name="level">Этаж</string>
     <string name="flat">Квартира</string>
-    <string name="secondName">Отчёство</string>
+    <string name="secondName">Отчество</string>
     <string name="phone">Номер телефона</string>
     <string name="period">Период внесения арендной платы</string>
     <string name="comment">Комментарий</string>

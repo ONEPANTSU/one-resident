@@ -42,7 +42,7 @@
     <string name="previous">Previous</string>
     <string name="rental_data">Данные об аренде</string>
     <string name="save">Сохранить</string>
-    <string name="secondName">Отчёство</string>
+    <string name="secondName">Отчество</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="settings">Настройки</string>
     <string name="street"><font color="#C20800">*</font>Улица</string>

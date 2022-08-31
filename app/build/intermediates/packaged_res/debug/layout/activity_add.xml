@@ -206,9 +206,9 @@
 
             <EditText
                 android:id="@+id/editTextAddDate"
+                android:inputType="date"
                 style="@style/text_field"
                 android:hint="@string/date_defolt"
-                android:inputType="date"
                 android:importantForAutofill="no" />
 
             <TextView
@@ -222,6 +222,7 @@
                 android:hint="@string/period"
                 android:inputType="number"
                 android:importantForAutofill="no" />
+
 
             <TextView
                 android:id="@+id/textViewPrice"

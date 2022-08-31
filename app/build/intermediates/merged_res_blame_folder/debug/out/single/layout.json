@@ -1,46 +1,46 @@
 [
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_payment.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_payment.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_resident_layout.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\custom_resident_layout.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_change_resident.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_change_resident.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_payment_layout.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\custom_payment_layout.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_resident_info.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_resident_info.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_add.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_add.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_payment.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_payment.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_resident_info.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_resident_info.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_settings.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_settings.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_settings.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_history_layout.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\custom_history_layout.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_payment_layout.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_payment_layout.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_change_resident.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_change_resident.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_resident.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_resident.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_resident.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_resident.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_history.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\activity_history.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_resident_layout.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_resident_layout.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_history.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_history.xml"
     },
     {
-        "merged": "C:\\Users\\79063\\Desktop\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\custom_history_layout.xml",
-        "source": "C:\\Users\\79063\\Desktop\\OneResident\\app\\src\\main\\res\\layout\\custom_history_layout.xml"
+        "merged": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_add.xml",
+        "source": "C:\\DISP\\Proga\\AndrApp\\OneResident\\app\\src\\main\\res\\layout\\activity_add.xml"
     }
 ]

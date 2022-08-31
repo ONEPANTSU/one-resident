@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,8 +19,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -57,7 +61,9 @@ public class AddActivity extends AppCompatActivity {
     private EditText addName;
     private EditText addSecondName;
     private EditText addPhone;
-    private EditText addDate;
+
+    private EditText addDate; // мой кусок
+
     private EditText addPeriod;
     private EditText addPrice;
     private EditText addComment;
@@ -99,6 +105,67 @@ public class AddActivity extends AppCompatActivity {
         addPeriod = findViewById(R.id.editTextAddPeriod);
         addPrice = findViewById(R.id.editTextAddPrice);
         addComment = findViewById(R.id.editTextAddComment);
+
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        addDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month++;
+                        String sday, smonth;
+                        if (day < 10){
+                            sday = '0' + Integer.toString(day);
+                        }
+                        else {
+                            sday = Integer.toString(day);
+                        }
+                        if (month < 10){
+                            smonth = '0' + Integer.toString(month);
+                        }
+                        else {
+                            smonth = Integer.toString(month);
+                        }
+                        String date = sday + "." + smonth +"." +year;
+                        addDate.setText(date);
+                    }
+                }, year, month,day);
+                datePickerDialog.show();
+
+
+            }
+        });
+        addDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (addDate.length() == 2) {
+                    addDate.setText(s + ".");
+                    addDate.setSelection(addDate.getText().length());
+                }
+                if (addDate.length() == 5) {
+                    addDate.setText(s + ".");
+                    addDate.setSelection(addDate.getText().length());
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
     }
 
