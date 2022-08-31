@@ -142,6 +142,7 @@ public class AddActivity extends AppCompatActivity {
             }
         });
         addDate.addTextChangedListener(new TextWatcher() {
+            String previousS = addDate.getText().toString();
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -150,15 +151,27 @@ public class AddActivity extends AppCompatActivity {
             @Override
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (addDate.length() == 2) {
-                    addDate.setText(s + ".");
-                    addDate.setSelection(addDate.getText().length());
-                }
-                if (addDate.length() == 5) {
-                    addDate.setText(s + ".");
-                    addDate.setSelection(addDate.getText().length());
-                }
+                if (previousS.length() < s.length()) {
+                    if (addDate.length() == 2) {
+                        addDate.setText(s + ".");
+                        addDate.setSelection(addDate.getText().length());
+                    }
+                    if (addDate.length() == 5) {
+                        addDate.setText(s + ".");
+                        addDate.setSelection(addDate.getText().length());
+                    }
 
+
+                }
+//                else {
+//                    if (s.charAt(1) == '.'){
+//                        addDate.setText(removeByIndex(s.toString(), 1));
+//                    }
+//                    if (s.charAt(4) == '.'){
+//                        addDate.setText(removeByIndex(s.toString(), 4));
+//                    }
+//                }
+                previousS = addDate.getText().toString();
             }
 
             @Override
@@ -167,6 +180,10 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String removeByIndex(String str, int index) {
+        return str.replaceFirst("\\.[\\d]", ".");
     }
 
     public void acceptChanges(View view){
